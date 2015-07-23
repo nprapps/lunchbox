@@ -143,15 +143,15 @@ $(function() {
     $save.on('click', saveImage);
 
     $themeButtons.on('click', function() {
-        $themeButtons.removeClass().addClass('btn btn-default');
-        $(this).addClass('btn-primary');
+        $themeButtons.removeClass().addClass('btn btn-primary');
+        $(this).addClass('active');
         $poster.removeClass('poster-theme1 poster-theme2 poster-theme3 poster-theme4')
                     .addClass('poster-' + $(this).attr('id'));
     });
 
     $aspectRatioButtons.on('click', function() {
-        $aspectRatioButtons.removeClass().addClass('btn btn-default');
-        $(this).addClass('btn-primary');
+        $aspectRatioButtons.removeClass().addClass('btn btn-primary');
+        $(this).addClass('active');
         $poster.removeClass('square sixteen-by-nine').addClass($(this).attr('id'));
 
         if ($poster.hasClass('sixteen-by-nine')) {
@@ -164,7 +164,7 @@ $(function() {
     });
 
     $quote.on('click', function() {
-        $(this).find('button').toggleClass('btn-primary btn-default');
+        $(this).find('button').toggleClass('active');
         $poster.toggleClass('quote');
     });
 

@@ -179,78 +179,79 @@ canvas {
     overflow: hidden;
     color: @text-color;
 
-    &.poster-news {
+    &.poster-theme1 {
         .logo-wrapper {
-            .logo.logo-news {
-                display: inline-block !important;
-                border: none;
+            background-image: @logo-path;
+            background-repeat: no-repeat;
+            background-size: @logo-sq-width @logo-sq-height;
+            width: @logo-sq-width + @padding;
+            height: @logo-sq-height + @padding;
 
-                .sixteen-by-nine& {
-                    height: 40px;
-                    width: auto;
-                }
+            .sixteen-by-nine& {
+                background-size: @logo-16x9-width @logo-16x9-height;
+                width: @logo-16x9-width + @padding;
+                height: @logo-16x9-height + @padding;
             }
         }
     }
 
-    &.poster-music {
-        background: @musicDark;
-        color: @musicLight;
-
-        .logo {
-            border: 1px solid @musicLight;
-        }
-
+    &.poster-theme2 {
+        background: @theme2-bg-color;
+        color: @theme2-text-color;
         .logo-wrapper {
-            background: @musicDark;
-            padding-bottom: @padding * 2 - 14;
+            background: @theme2-bg-color;
+            color: @theme2-text-color;
+            background-image: @theme2-logo-path;
+            background-repeat: no-repeat;
+            background-size: @theme2-sq-logo-width @theme2-sq-logo-height;
+            width: @theme2-sq-logo-width + @padding;
+            height: @theme2-sq-logo-height + @padding;
 
-            .logo.logo-music {
-                display: inline-block !important;
-                border: none;
-
-                .sixteen-by-nine& {
-                    width: 242px;
-                    height: 65px;
-                    overflow: hidden;
-                    background: url('../assets/npr-music-logo-small.png') no-repeat;
-                    padding-left: 242px;
-                }
+            .sixteen-by-nine& {
+                background-size: @theme2-16x9-logo-width @theme2-16x9-logo-height;
+                width: @theme2-16x9-logo-width + @padding;
+                height: @theme2-16x9-logo-height + @padding;
             }
         }
     }
 
-    &.poster-snap-judgement {
-        background: #C66137;
-        color: #fff;
 
+    &.poster-theme3 {
         .logo-wrapper {
-            background: #C66137;
-            color: #fff;
-            padding-bottom: @padding * 2 - 14;
+            background-image: @theme3-logo-path;
+            background-repeat: no-repeat;
+            background-size: @theme3-sq-logo-width @theme3-sq-logo-height;
+            width: @theme3-sq-logo-width + @padding;
+            height: @theme3-sq-logo-height + @padding;
 
-            .logo.logo-snap-judgement {
-                display: inline-block !important;
-                border: none;
-                width: 300px;
+            .sixteen-by-nine& {
+                background-size: @theme3-16x9-logo-width @theme3-16x9-logo-height;
+                width: @theme3-16x9-logo-width + @padding;
+                height: @theme3-16x9-logo-height + @padding;
+            }          
+        }
+    }
 
-                .sixteen-by-nine& {
-                    width: 150px;
-                }
+    &.poster-theme4 {
+        background: @theme4-bg-color;
+        color: @theme4-text-color;
+        .logo-wrapper {
+            background: @theme4-bg-color;
+            color: @theme4-text-color;
+            background-image: @theme4-logo-path;
+            background-repeat: no-repeat;
+            background-size: @theme4-sq-logo-width @theme4-sq-logo-height;
+            width: @theme4-sq-logo-width + @padding;
+            height: @theme4-sq-logo-height + @padding;
+
+            .sixteen-by-nine& {
+                background-size: @theme4-16x9-logo-width @theme4-16x9-logo-height;
+                width: @theme4-16x9-logo-width + @padding;
+                height: @theme4-16x9-logo-height + @padding;
             }
         }
     }
 
-    &.poster-fresh-air {
-        .logo-wrapper {
-            padding-bottom: @padding * 2 - 14;
-
-            .logo.logo-fresh-air {
-                display: inline-block !important;
-                border: none;
-            }
-        }
-    }
 
     &.sixteen-by-nine {
         height: 360px;
@@ -365,6 +366,12 @@ canvas {
         background-size: @logo-sq-width @logo-sq-height;
         width: @logo-sq-width + @padding;
         height: @logo-sq-height + @padding;
+
+        .sixteen-by-nine& {
+            background-size: @logo-16x9-width @logo-16x9-height;
+            width: @logo-16x9-width + @padding;
+            height: @logo-16x9-height + @padding;
+        }
 
         .logo {
             .hide;

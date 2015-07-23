@@ -161,7 +161,7 @@ var adjustFontSize = function(e, size) {
 var onThemeClick = function(e) {
     $themeButtons.removeClass().addClass('btn btn-primary');
     $(this).addClass('active');
-    $poster.removeClass('poster-news poster-music poster-fresh-air poster-snap-judgement')
+    $poster.removeClass('poster-theme1 poster-theme2 poster-theme3 poster-theme4')
                 .addClass('poster-' + $(this).attr('id'));
 }
 
