@@ -9,7 +9,6 @@ App Template for static publishing.
 
 import app_config
 import json
-import oauth
 import static
 
 from flask import Flask, make_response, render_template
@@ -24,7 +23,6 @@ app.add_template_filter(urlencode_filter, name='urlencode')
 
 @app.route('/')
 @app.route('/index.html')
-@oauth.oauth_required
 def index():
     """
     Example view demonstrating rendering a simple HTML page.
@@ -34,28 +32,24 @@ def index():
     return make_response(render_template('index.html', **context))
 
 @app.route('/factlist/index.html')
-@oauth.oauth_required
 def factlist():
     context = make_context()
     context['name'] = 'Factlist'
     return make_response(render_template('factlist.html', **context))
 
 @app.route('/quotable/index.html')
-@oauth.oauth_required
 def quotable():
     context = make_context()
     context['name'] = 'Quotable'
     return make_response(render_template('quotable.html', **context))
 
 @app.route('/waterbug/index.html')
-@oauth.oauth_required
 def waterbug():
     context = make_context()
     context['name'] = 'Waterbug'
     return make_response(render_template('waterbug.html', **context))
 
 app.register_blueprint(static.static)
-app.register_blueprint(oauth.oauth)
 
 # Enable Werkzeug debug pages
 if app_config.DEBUG:

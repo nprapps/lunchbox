@@ -13,18 +13,8 @@ import app_config
 
 # Other fabfiles
 import assets
-import data
-import flat
-import issues
 import render
-import text
 import utils
-
-if app_config.DEPLOY_TO_SERVERS:
-    import servers
-
-if app_config.DEPLOY_CRONTAB:
-    import cron_jobs
 
 # Bootstrap can only be run once, then it's disabled
 if app_config.PROJECT_SLUG == '$NEW_PROJECT_SLUG':
@@ -33,7 +23,6 @@ if app_config.PROJECT_SLUG == '$NEW_PROJECT_SLUG':
 """
 Base configuration
 """
-env.user = app_config.SERVER_USER
 env.forward_agent = True
 
 env.hosts = []
@@ -127,14 +116,6 @@ Changes to deployment requires a full-stack test. Deployment
 has two primary functions: Pushing flat files to S3 and deploying
 code to a remote server if required.
 """
-@task
-def update():
-    """
-    Update all application data not in repository (copy, assets, etc).
-    """
-    text.update()
-    assets.sync()
-    data.update()
 
 @task
 def deploy(remote='origin', reload=False):
@@ -194,52 +175,11 @@ def deploy(remote='origin', reload=False):
     if not check_timestamp():
         reset_browsers()
 
-
-@task
-def check_timestamp():
-    require('settings', provided_by=[production, staging])
-
-    bucket = utils.get_bucket(app_config.S3_BUCKET)
-    k = Key(bucket)
-    k.key = '%s/live-data/timestamp.json' % app_config.PROJECT_SLUG
-    if k.exists():
-        return True
-    else:
-        return False
-
-@task
-def reset_browsers():
-    """
-    Deploy a timestamp so the client will reset their page. For bugfixes
-    """
-    require('settings', provided_by=[production, staging])
-
-    if not os.path.exists('www/live-data'):
-        os.makedirs('www/live-data')
-
-    payload = {}
-    now = datetime.now().strftime('%s')
-    payload['timestamp'] = now
-
-    with open('www/live-data/timestamp.json', 'w') as f:
-        json.dump(payload, f)
-
-    flat.deploy_folder(
-        app_config.S3_BUCKET,
-        'www/live-data',
-        '%s/live-data' % app_config.PROJECT_SLUG,
-        headers={
-            'Cache-Control': 'max-age=%i' % app_config.DEFAULT_MAX_AGE
-        }
-    )
-
 @task
 def build_electron():
     require('settings', provided_by=[production, staging])
 
-    update()
     render.render_all()
-
     if not os.path.exists('electron'):
         os.makedirs('electron')
 
