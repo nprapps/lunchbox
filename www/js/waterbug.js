@@ -1,3 +1,52 @@
+/*
+* CONFIG VARS
+*/
+
+// widths and padding
+var canvasWidth = 1000;
+var elementPadding = 40;
+
+// app load defaults
+var currentCrop = 'twitter';
+var currentLogo = 'npr';
+var currentLogoColor = 'white';
+var currentTextColor = 'white';
+var defaultImage = '../assets/test-kitten.jpg';
+var defaultLogo = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png';
+
+// type
+var fontWeight = 'normal';
+var fontSize = '20pt';
+var fontFace = "\"Gotham SSm\"";
+var fontShadow = 'rgba(0,0,0,0.7)';
+var fontShadowOffsetX = 0;
+var fontShadowOffsetY = 0;
+var fontShadowBlur = 10;
+
+// logo
+var logoDimensions = {
+    'npr': {
+        w: 150,
+        h: 51
+    },
+    'music': {
+        w: 306,
+        h: 81
+    }
+};
+var whiteLogoAlpha = '0.8';
+var blackLogoAlpha = '0.6';
+
+// copyright options, see buildCreditString() for more options
+var orgName = 'NPR';
+var freelanceString = 'for ' + orgName;
+
+/*
+* END CONFIG VARS
+*/
+
+//////////////////////////////
+
 // DOM elements
 var $source;
 var $photographer;
@@ -25,27 +74,11 @@ var MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
 // state
 var scaledImageHeight;
 var scaledImageWidth;
-var fixedWidth = 1000;
 var previewScale = IS_MOBILE ? 0.32 : 0.64;
 var dy = 0;
 var dx = 0;
-var logoDimensions = {
-    'npr': {
-        w: 150,
-        h: 51
-    },
-    'music': {
-        w: 306,
-        h: 81
-    }
-};
-var elementPadding = 40;
 var image;
 var imageFilename = 'image';
-var currentCrop = 'twitter';
-var currentLogo = 'npr';
-var currentLogoColor = 'white';
-var currentTextColor = 'white';
 var currentCopyright;
 var credit = 'Belal Khan/Flickr'
 var shallowImage = false;
@@ -78,9 +111,9 @@ var onDocumentLoad = function(e) {
     $fileinput = $('.fileinput');
     $customFilename = $('.custom-filename');
 
-    img.src = '../assets/test-kitten.jpg';
+    img.src = defaultImage;
     img.onload = onImageLoad;
-    logo.src = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png';
+    logo.src = defaultLogo;
     logo.onload = renderCanvas;
 
     $photographer.on('keyup', renderCanvas);
@@ -118,11 +151,11 @@ var onDocumentLoad = function(e) {
 */
 var renderCanvas = function() {
     // canvas is always the same width
-    canvas.width = fixedWidth;
+    canvas.width = canvasWidth;
 
     // if we're cropping, use the aspect ratio for the height
     if (currentCrop !== 'original') {
-        canvas.height = fixedWidth / (16/9);
+        canvas.height = canvasWidth / (16/9);
     }
 
     // clear the canvas
@@ -132,20 +165,20 @@ var renderCanvas = function() {
     var imageAspect = img.width / img.height;
 
     if (currentCrop === 'original') {
-        canvas.height = fixedWidth / imageAspect;
+        canvas.height = canvasWidth / imageAspect;
         scaledImageHeight = canvas.height;
         ctx.drawImage(
             img,
             0,
             0,
-            fixedWidth,
+            canvasWidth,
             scaledImageHeight
         );
     } else {
         if (img.width / img.height > canvas.width / canvas.height) {
             shallowImage = true;
 
-            scaledImageHeight = fixedWidth / imageAspect;
+            scaledImageHeight = canvasWidth / imageAspect;
             scaledImageWidth = canvas.height * (img.width / img.height)
             ctx.drawImage(
                 img,
@@ -161,7 +194,7 @@ var renderCanvas = function() {
         } else {
             shallowImage = false;
 
-            scaledImageHeight = fixedWidth / imageAspect;
+            scaledImageHeight = canvasWidth / imageAspect;
             ctx.drawImage(
                 img,
                 0,
@@ -170,7 +203,7 @@ var renderCanvas = function() {
                 img.height,
                 dx,
                 dy,
-                fixedWidth,
+                canvasWidth,
                 scaledImageHeight
             );
         }
@@ -178,9 +211,9 @@ var renderCanvas = function() {
 
     // set alpha channel, draw the logo
     if (currentLogoColor === 'white') {
-        ctx.globalAlpha = "0.8";
+        ctx.globalAlpha = whiteLogoAlpha;
     } else {
-        ctx.globalAlpha = "0.6";
+        ctx.globalAlpha = blackLogoAlpha;
     }
     ctx.drawImage(
         logo,
@@ -197,13 +230,13 @@ var renderCanvas = function() {
     ctx.textBaseline = 'bottom';
     ctx.textAlign = 'left';
     ctx.fillStyle = currentTextColor;
-    ctx.font = 'normal 20pt "Gotham SSm"';
+    ctx.font = fontWeight + ' ' + fontSize + ' ' + fontFace;
 
     if (currentTextColor === 'white') {
-        ctx.shadowColor = 'rgba(0,0,0,0.7)';
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-        ctx.shadowBlur = 10;
+        ctx.shadowColor = fontShadow;
+        ctx.shadowOffsetX = fontShadowOffsetX;
+        ctx.shadowOffsetY = fontShadowOffsetY;
+        ctx.shadowBlur = fontShadowBlur;
     }
 
     if (currentCopyright) {
@@ -229,12 +262,12 @@ var buildCreditString = function() {
 
     if (val === 'npr') {
         if ($photographer.val() === '') {
-            creditString = 'NPR';
+            creditString = orgName;
         } else {
-            creditString = $photographer.val() + '/NPR';
+            creditString = $photographer.val() + '/' + orgName;
         }
     } else if (val === 'freelance') {
-        creditString = $photographer.val() + ' for NPR';
+        creditString = $photographer.val() + ' ' + freelanceString;
         if ($photographer.val() !== '') {
             $photographer.parents('.form-group').removeClass('has-warning');
         } else {
