@@ -4,12 +4,12 @@
 @import "less/variables";
 
 html {
-    min-width: 680px;
+//    min-width: 680px;
 }
 
 body {
     background: @gray-lighter;
-    min-width: 680px;
+//    min-width: 680px;
     font-family: @font-family !important;
     font-size: @base-font-size !important;
 }
@@ -47,8 +47,13 @@ header {
     }
 
     .header-wrapper {
-        margin: 0 auto;
-        padding: 0 @grid-gutter-width / 2;
+        margin: 0 0 11px 0;
+        padding: 0;
+        
+        @media screen and (min-width: 700px){
+            margin: 0 auto;
+            padding: 0 @grid-gutter-width / 2;
+        }
     }
 
 
@@ -58,11 +63,11 @@ header {
         font-weight: normal;
         line-height: 32px;
         font-size: @font-size-h3;
+        letter-spacing: 2px;
         margin: 0;
         -webkit-font-smoothing: antialiased;
         font-family: @font-family;
         
-
         span.help {
             font-size: 14px;
             margin-left: 11px;
