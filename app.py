@@ -30,7 +30,7 @@ def index():
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context()
-    context['name'] = 'Home'
+    context['name'] = 'TKTK App Name'
     return make_response(render_template('index.html', **context))
 
 @app.route('/factlist/index.html')
