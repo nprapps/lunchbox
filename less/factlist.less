@@ -153,8 +153,7 @@ canvas {
     label {
         display: block;
         font-weight: normal;
-        font-family: @font-family-condensed;
-        text-transform: uppercase;
+        font-family: @condensed-font-family;
         letter-spacing: 0.1rem;
 
         .tooltip {
@@ -285,13 +284,14 @@ canvas {
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-size: @base-font-size;
+        font-family: @condensed-font-family;
         margin-top: 0;
         margin-bottom: 1em;
         overflow: hidden;
-  }
+    }
   .kicker {
-      white-space: nowrap;
-  }
+        white-space: nowrap;
+    }
 
     blockquote {
         padding: 0 0 0 1em;
@@ -357,6 +357,11 @@ canvas {
         margin: 0;
         font-size: 46px;
         background: rgba(255,255,255,0.9);
+        background-image: @logo-path;
+        background-repeat: no-repeat;
+        background-size: @logo-width @logo-height;
+        width: @logo-width + @padding;
+        height: @logo-height + @padding;
 
         .logo {
             .hide;
