@@ -1,5 +1,10 @@
 {% extends '_base.html' %}
 
+{% block extra_css %}
+{{ CSS.push('less/factlist.less') }}
+{{ CSS.render('css/factlist.min.css') }}
+{% endblock extra_css %}
+
 {% block content %}
 <div class="content">
     <div class="poster-wrapper">
