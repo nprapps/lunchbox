@@ -7,24 +7,25 @@ var canvasWidth = 1000; // this will be the exported width of the image
 var elementPadding = 40; // padding around the logo and credit text
 
 // app load defaults
-var currentCrop = 'twitter';
-var currentLogo = 'npr';
-var currentLogoColor = 'white';
-var currentTextColor = 'white';
-var defaultImage = '../assets/test-kitten.jpg';
-var defaultLogo = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png';
+var currentCrop = 'twitter'; // default crop size
+var currentLogo = 'npr'; // default logo slug
+var currentLogoColor = 'white'; // default logo color
+var currentTextColor = 'white'; // default text color
+var defaultImage = '../assets/test-kitten.jpg'; // path to image to load as test image
+var defaultLogo = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png'; // path to default logo
 
 // type
-var fontWeight = 'normal';
-var fontSize = '20pt';
-var fontFace = "\"Gotham SSm\"";
-var fontShadow = 'rgba(0,0,0,0.7)';
-var fontShadowOffsetX = 0;
-var fontShadowOffsetY = 0;
-var fontShadowBlur = 10;
+var fontWeight = 'normal'; // font weight for credit
+var fontSize = '20pt'; // font size for credit
+var fontFace = "\"Gotham SSm\""; // font family for credit
+var fontShadow = 'rgba(0,0,0,0.7)'; // font shadow for credit
+var fontShadowOffsetX = 0; // font shadow offset x
+var fontShadowOffsetY = 0; // font shadow offset y
+var fontShadowBlur = 10; // font shadow blur
 
 // logo
 var logoDimensions = {
+    // each logo you support may need separate dimensions, define them here
     'npr': {
         w: 150,
         h: 51
@@ -34,6 +35,8 @@ var logoDimensions = {
         h: 81
     }
 };
+
+// logo opacity for colors
 var whiteLogoAlpha = '0.8';
 var blackLogoAlpha = '0.6';
 

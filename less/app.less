@@ -1,4 +1,10 @@
 @import "less/lib/bootstrap/bootstrap";
+@import "less/variables";
+
+body {
+    font-family: @font-family !important;
+    font-size: @base-font-size !important;
+}
 
 header {
     background: @gray-darker;
@@ -41,6 +47,8 @@ header {
         font-size: @font-size-h3;
         margin: 0;
         -webkit-font-smoothing: antialiased;
+        font-family: @font-family;
+        
 
         span.help {
             font-size: 14px;
