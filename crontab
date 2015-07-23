@@ -1,0 +1,1 @@
+* * * * * ubuntu /bin/bash /home/ubuntu/apps/portland2/repository/run_on_server.sh fab $DEPLOYMENT_TARGET cron_jobs.test >/var/log/portland2/crontab.log 2>&1
