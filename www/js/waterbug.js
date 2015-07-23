@@ -3,8 +3,8 @@
 */
 
 // widths and padding
-var canvasWidth = 1000;
-var elementPadding = 40;
+var canvasWidth = 1000; // this will be the exported width of the image
+var elementPadding = 40; // padding around the logo and credit text
 
 // app load defaults
 var currentCrop = 'twitter';
@@ -142,6 +142,15 @@ var onDocumentLoad = function(e) {
     });
 
     // $imageLink.on('paste', handleImageLink);
+
+    var scale = $('.canvas-cell').width() / canvasWidth;
+    $canvas.css({
+        'webkitTransform': 'scale(' + scale + ')',
+        'MozTransform': 'scale(' + scale + ')',
+        'msTransform': 'scale(' + scale + ')',
+        'OTransform': 'scale(' + scale + ')',
+        'transform': 'scale(' + scale + ')'
+    });
 
     renderCanvas();
 }
