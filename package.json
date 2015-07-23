@@ -1,8 +1,12 @@
 {
-    "name": "app-template",
-    "version": "1.0.0",
-    "dependencies": {
-        "less": "~1.7.0",
-        "universal-jst": "~1.0.5"
-    }
+  "name": "app-template",
+  "version": "1.0.0",
+  "dependencies": {
+    "electron-packager": "~5.0.1",
+    "less": "~1.7.0",
+    "universal-jst": "~1.0.5"
+  },
+  "scripts": {
+    "build": "electron-packager www Portland --platform=all --arch=all --version=0.30.0 --overwrite --out electron/"
+  }
 }

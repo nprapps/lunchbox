@@ -24,6 +24,23 @@
 @brand-danger:          #d9534f;
 @brand-info:            #5bc0de;
 
+// NPR colors
+// -------------------------
+@inlineLink: #4774cc;
+@primaryControl: #6d8ac4;
+@secondaryControl: #bccae5;
+@heavyGray: #e0e0e0;
+@lightGray: #ebebeb;
+@brandingGray: #7c7c7c;
+@nprTextColor: #111;
+@darkHover: #4065a2;
+@deepBlue: #7598C9;
+
+//music palette
+@musicDark: #41474E;
+@musicMedium: #e6ebf2;
+@musicLight: #dbe0e6;
+
 // Scaffolding
 // -------------------------
 
@@ -125,8 +142,8 @@
 @btn-default-border:             #ccc;
 
 @btn-primary-color:              #fff;
-@btn-primary-bg:                 @brand-primary;
-@btn-primary-border:             darken(@btn-primary-bg, 5%);
+@btn-primary-bg:                 #6d8ac4;
+@btn-primary-border:             transparent; //darken(#6d8ac4, 5%);
 
 @btn-success-color:              #fff;
 @btn-success-bg:                 @brand-success;
@@ -231,7 +248,7 @@
 
 // Large screen / wide desktop
 // Note: Deprecated @screen-lg and @screen-lg-desktop as of v3.0.1
-@screen-lg:                  1200px;
+@screen-lg:                  1085px;
 @screen-lg-min:              @screen-lg;
 @screen-lg-desktop:          @screen-lg-min;
 
@@ -639,5 +656,5 @@
 @container-md:                 @container-desktop;
 
 // Large screen / wide desktop
-@container-large-desktop:      ((1140px + @grid-gutter-width));
+@container-large-desktop:      ((1024px + @grid-gutter-width));
 @container-lg:                 @container-large-desktop;

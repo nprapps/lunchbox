@@ -133,7 +133,7 @@ def update():
     Update all application data not in repository (copy, assets, etc).
     """
     text.update()
-    assets.sync()
+    # assets.sync()
     data.update()
 
 @task
@@ -232,6 +232,18 @@ def reset_browsers():
             'Cache-Control': 'max-age=%i' % app_config.DEFAULT_MAX_AGE
         }
     )
+
+@task
+def build_electron():
+    require('settings', provided_by=[production, staging])
+
+    update()
+    render.render_all()
+
+    if not os.path.exists('electron'):
+        os.makedirs('electron')
+
+    local('npm run-script build')
 
 """
 Destruction

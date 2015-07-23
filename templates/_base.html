@@ -2,12 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- CHARTBEAT -->
-    <script type="text/javascript">
-        var _sf_startpt=(new Date()).getTime();
-    </script>
-
-    <title>{{ COPY.content.project_name }}</title>
+    <title>Portland</title>
 
     <!-- META TAGS -->
     {% include '_meta.html' %}
@@ -17,147 +12,52 @@
 
     <!-- CSS -->
     {{ CSS.push('less/app.less') }}
-    {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/app.min.css') }}
-
-    {% include '_social_tags.html' %}
+    {% block extra_css %}{% endblock extra_css %}
 
     {% block extra_head %}
     {% endblock extra_head %}
 </head>
 <body>
-    <!-- ANALYTICS JAVASCRIPT -->
-    {{ JS.push('js/app_config.js') }}
-    {{ JS.push('js/analytics.js') }}
-    {{ JS.render('js/app-header.min.js') }}
-
     <a class="sr-only" href="#content">Skip To Content</a>
 
     {% block outer_content %}
-    <nav role="navigation">
-        <ul class="site-links">
-            <li class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
-            <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-            <li class="arts"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-            <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-            <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-        </ul>
-        <ul class="social-links">
-            <li class="twitter"><a rel="external" href="http://twitter.com/share?text={{ COPY.sharing.twitter_text|urlencode }}&amp;url={{ SHARE_URL|urlencode }}" alt="Share on Twitter" target="_blank" onclick="ANALYTICS.clickTweet('nav');">Share This Page On Twitter</a></li>
-            <li class="facebook"><a rel="external" href="https://www.facebook.com/dialog/feed?app_id={{ FACEBOOK_APP_ID }}&amp;link={{ SHARE_URL|urlencode }}&amp;name={{ COPY.sharing.facebook_title|urlencode }}&amp;picture={{ FACEBOOK_IMAGE_URL|urlencode }}&amp;redirect_uri={{ SHARE_URL|urlencode }}" alt="Share on Facebook" target="_blank" onclick="ANALYTICS.clickFacebook('nav');">Like This Page On Facebook</a></li>
-        </ul>
-        <ul class="site-links-2">
-            <li class="stations"><a href="http://www.npr.org/templates/stations/stations/">Stations</a></li>
-            <li class="donate"><a href="http://www.npr.org/stations/donate/index.php">Donate</a></li>
-            <li class="shop"><a href="http://shop.npr.org">Shop</a></li>
-        </ul>
-    </nav>
 
     {% block header_content %}
+    <header>
+        <div class="header-wrapper">
+            <a class="toolkit-link" href="../index.html">
+                <span class="logo"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></span>
+                Newsroom Toolkit
+            </a>
+        </div>
+
+        <h1>{{ name }}</h1>
+    </header>
     {% endblock header_content %}
 
     <section id="content">
-        <div class="container">
-            <div class="row">
-                <div id="main-content" class="col-md-8">
-                    {% block content %}
-                    <h1>{{ project_name }}</h1>
-                    App content goes here.
-
-                    <i class="icon icon-play"></i>
-                    {% endblock content %}
-                </div>
-                <div id="bigbox" class="col-md-4">
-                    {# 300x250 ad #}
-                    <div class="adwrapper">
-                        <div id="ad-desktop" class="sponsor300">
-                        </div>
-                        <p class="left">NPR thanks our sponsors</p>
-                        <p class="right"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
-                    </div>
-                </div>
-            </div>
+        <div class="container-fluid">
+            {% block content %}
+            {% endblock content %}
             {% block wide_content %}
             {% endblock wide_content %}
         </div>
     </section>
 
-    <footer>
-        <div class="primary">
-            <ul>
-                <li><a href="http://www.npr.org" data-action="Click Logo"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR Logo"></a></li>
-                <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-                <li class="artslife"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-                <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-                <li class="programs"><a href="http://www.npr.org/programs/">Programs</a></li>
-                <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-                <li class="about"><a href="http://www.npr.org/about/">About</a></li>
-            </ul>
-        </div>
-        <div class="secondary">
-            <p>&copy;2014 NPR</p>
-            <ul>
-                <li id="footerContact"><a href="http://help.npr.org/npr/includes/customer/npr/custforms/contactus.aspx">Contact</a></li>
-                <li><a href="http://www.npr.org/about/termsofuse.html">Terms of Use</a></li>
-                <li><a href="http://www.npr.org/about/privacypolicy.html">Privacy</a></li>
-                <li><a href="http://thin.npr.org/">Text-Only</a></li>
-            </ul>
-        </div>
-    </footer>
-
     {% endblock outer_content %}
 
-    {% block comments %}
-        {% include '_share_modal.html' %}
-    {% endblock %}
-
-    {{ JS.push('js/lib/jquery.js') }}
+    {% block jquery %}
+    {% endblock jquery %}
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/modernizr.js') }}
-    {{ JS.push('js/lib/bootstrap.js') }}
-    {{ JS.push('js/lib/moment.js') }}
-    {{ JS.push('js/lib/ZeroClipboard.js') }}
-
-    {# uncomment both files to use simpleStorage #}
-    {# {{ JS.push('js/lib/simpleStorage.js') }} #}
-    {# {{ JS.push('js/storage.js') }} #}
-
-    {% if RELOAD_TRIGGER %}
-    {{ JS.push('js/reload.js') }}
-    {% endif %}
-
-    {{ JS.push('js/copy.js') }}
-    {{ JS.push('js/ads.js') }}
-    {{ JS.push('js/templates.js') }}
-    {{ JS.push('js/comments.js') }}
-    {{ JS.push('js/share.js') }}
+    {{ JS.push('js/app_config.js') }}
     {{ JS.push('js/app.js') }}
-    {% block extra_foot_js %}{% endblock extra_foot_js %}
     {{ JS.render('js/app-footer.min.js') }}
+
+    {% block extra_foot_js %}{% endblock extra_foot_js %}
 
     {% block extra_foot %}
     {% endblock extra_foot %}
-
-    {# Adhesion ad #}
-    <div id="adhesion">
-        <script type="text/javascript">
-        if (Modernizr.touch && Modernizr.mq('(max-width: 1024px)')) {
-            var ord = Math.floor(Math.random() * 1e16);
-
-            var size = '640x100';
-
-            if (Modernizr.mq('only screen and (min-width: 768px)')) {
-                size = '2048x180';
-            }
-
-            document.write('<scr' + 'ipt type="text/javascript" src="http://ad.doubleclick.net/N6735/adj/n6735.nprmobile/' + APP_CONFIG.NPR_DFP.TARGET + ';storyId=' + APP_CONFIG.NPR_DFP.STORY_ID + ';testserver=false;sz=' + size + ';ord=' + ord + '?"><\/script>');
-        }
-        </script>
-    </div>
-
-    {# Setup Chartbeat last! #}
-    <script type="text/javascript">
-        $(ANALYTICS.setupChartbeat);
-    </script>
 </body>
 </html>

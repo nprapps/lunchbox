@@ -1,5 +1,6 @@
 <!-- Fonts -->
-<script src="{{ S3_BASE_URL }}/js/lib/webfont.js"></script>
+{{ JS.push('js/lib/webfont.js') }}
+{{ JS.render('js/webfont.min.js') }}
 <script>
     var urls = [
         'http://s.npr.org/templates/css/fonts/GothamSSm.css',

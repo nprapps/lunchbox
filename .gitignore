@@ -40,6 +40,10 @@ www/js/copy.js
 www/test/test.html
 www/comments/index.html
 confs/rendered/*
+www/factlist
+www/quotable
+www/waterbug
+
 
 # Local data
 data/gdoc*.csv
@@ -48,3 +52,6 @@ data/copy.xlsx
 www/assets/*
 !www/assets/assetsignore
 www/live-data/*
+
+# built apps
+electron

@@ -2,55 +2,38 @@
 
 {% block header_content %}
 <header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ COPY.content.project_name|smarty }}</h1>
-                <h2>{{ COPY.content.lorem_ipsum|smarty }}</h2>
-            </div>
-        </div>
+    <div class="header-wrapper">
+        <a class="toolkit-link">
+            <span class="logo"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></span>
+            Newsroom Toolkit
+        </a>
     </div>
-</header>
-{% endblock %}
 
+    <h1>{{ name }}</h1>
+</header>
+{% endblock header_content %}
 
 {% block content %}
-<h1>{{ COPY.content.project_name }}</h1>
+    <h1>This thing will have a name</h1>
 
-<div id="story-meta">
-    <p class="byline">by <span>{{ COPY.content.byline }}</span></p>
-    <p class="dateblock">
-        <span class="date">{{ COPY.content.pubdate }}</span>
-        <span class="time"> {{ COPY.content.pubtime }}</span>
-    </p>
-</div>
-
-<a class="comment-button comment-button-bubble comment-drawer-toggle" href="javascript:">
-    <span class="comment-count"></span>
-</a>
-
-<a class="comment-button comment-button-article comment-drawer-toggle" data-toggle="modal" data-backdrop="static" data-target="#share-modal">
-    <span class="comment-count"></span>
-    <span class="comment-label">Share / Discuss</span>
-</a>
-
-<h2 class="knockout-example">Example COPY list</h2>
-<dl>
-    {% for row in COPY.example_list %}
-    <dt>{{ row.term }}</dt><dd>{{ row.definition }}</dd>
-    {% endfor %}
-</dl>
-
-<h2 class="knockout-example">JST example</h2>
-<p id="template-example"></p>
+    <h2>List of tools</h2>
+    <ul>
+        <li><a href="factlist/index.html">Factlist</a></li>
+        <li><a href="quotable/index.html">Quotable</a></li>
+        <li><a href="waterbug/index.html">Waterbug</a></li>
+    </ul>
 {% endblock %}
 
 
 {% block wide_content %}
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="knockout-example">{{ COPY.content.footer_title }}</h2>
-        <p>{{ COPY.content.lorem_ipsum }}</p>
-    </div>
-</div>
 {% endblock %}
+
+{% block jquery %}
+{% if not DEPLOYMENT_TARGET %}
+{{ JS.push('js/lib/jquery.js') }}
+{% else %}
+<script type="text/javascript">
+    window.$ = window.jQuery = require('./js/lib/jquery.js')
+</script>
+{% endif %}
+{% endblock jquery %}

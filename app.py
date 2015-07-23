@@ -29,32 +29,29 @@ def index():
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context()
-
-    with open('data/featured.json') as f:
-        context['featured'] = json.load(f)
-
+    context['name'] = 'Home'
     return make_response(render_template('index.html', **context))
 
-@app.route('/comments/')
-def comments():
-    """
-    Full-page comments view.
-    """
-    return make_response(render_template('comments.html', **make_context()))
+@app.route('/factlist/index.html')
+@oauth.oauth_required
+def factlist():
+    context = make_context()
+    context['name'] = 'Factlist'
+    return make_response(render_template('factlist.html', **context))
 
-@app.route('/widget.html')
-def widget():
-    """
-    Embeddable widget example page.
-    """
-    return make_response(render_template('widget.html', **make_context()))
+@app.route('/quotable/index.html')
+@oauth.oauth_required
+def quotable():
+    context = make_context()
+    context['name'] = 'Quotable'
+    return make_response(render_template('quotable.html', **context))
 
-@app.route('/test_widget.html')
-def test_widget():
-    """
-    Example page displaying widget at different embed sizes.
-    """
-    return make_response(render_template('test_widget.html', **make_context()))
+@app.route('/waterbug/index.html')
+@oauth.oauth_required
+def waterbug():
+    context = make_context()
+    context['name'] = 'Waterbug'
+    return make_response(render_template('waterbug.html', **context))
 
 app.register_blueprint(static.static)
 app.register_blueprint(oauth.oauth)

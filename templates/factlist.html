@@ -1,0 +1,82 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/factlist.less') }}
+{{ CSS.render('css/factlist.min.css') }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="poster-wrapper">
+        <div class="poster quote poster-news sixteen-by-nine">
+            <h2 class="kicker-wrapper"><span class="kicker">What we know</span></h2>
+            <blockquote>
+                <p>Facts go here</p>
+            </blockquote>
+
+            <p class="timestamp"></p>
+
+            <p class="logo-wrapper">
+                <img class="logo logo-news" src="../assets/npr-home.png">
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="form controls col-md-12">
+                <div class="controls-wrapper">
+                    <div class="form-group">
+                        <label for="kicker">
+                            Headline
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ COPY.content.headline_examples|safe }}"></i>
+                        </label>
+                        <input id="kicker" class="form-control" name="kicker" type="text" value="What We Know">
+                    </div>
+                    <div class="form-group">
+                        <label for="fontsize">Font Size</label>
+                        <input id="fontsize" name="fontsize" type="range" min="24" max="66" value="32">
+                    </div>
+                    <div class="form-group">
+                        <label>Aspect ratio</label>
+                        <div id="aspect-ratio" class="btn-group">
+                            <button id="sixteen-by-nine" class="btn btn-primary active">16:9 <i class="fa fa-twitter"></i></button>
+                            <button id="square" class="btn btn-primary">Square</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Show timestamp</label>
+                        <div id="timestamp-toggle" class="btn-group">
+                            <button id="show-timestamp" class="btn btn-primary active">Show</button>
+                            <button id="hide-timestamp" class="btn btn-primary">Hide</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="save" class="btn btn-lg btn-primary">Save image</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="warning">{{ COPY.content.save_warning }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jquery %}
+{% if not DEPLOYMENT_TARGET %}
+{{ JS.push('js/lib/jquery.js') }}
+{% else %}
+<script type="text/javascript">
+    window.$ = window.jQuery = require('../js/lib/jquery.js')
+</script>
+{% endif %}
+{% endblock jquery %}
+
+{% block extra_foot_js %}
+{{ JS.push('js/lib/html2canvas.js') }}
+{{ JS.push('js/lib/medium-editor.min.js') }}
+{{ JS.push('js/lib/moment.js') }}
+{{ JS.push('js/factlist.js') }}
+{{ JS.render('js/factlist.min.js') }}
+{% endblock extra_foot_js %}

@@ -1,0 +1,90 @@
+{% extends '_base.html' %}
+
+
+{% block extra_css %}
+{{ CSS.push('less/quotable.less') }}
+{{ CSS.render('css/quotable.min.css') }}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="poster-wrapper">
+        <div class="poster quote poster-news">
+            <span class="left-quote">&ldquo;</span>
+            <blockquote><p></p></blockquote>
+
+            <p class="source"></p>
+            <p class="show-credit"></p>
+
+            <p class="logo-wrapper">
+                <img class="logo logo-news" src="../assets/npr-home.png">
+                <img class="logo logo-music" src="../assets/npr-music.png">
+                <img class="logo logo-fresh-air" src="../assets/fresh-air.png">
+                <img class="logo logo-snap-judgement" src="../assets/snap-judgement-logo.png">
+
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="form controls col-md-12">
+                <div class="controls-wrapper">
+                    <div class="form-group">
+                        <label for="fontsize">Font Size</label>
+                        <input id="fontsize" name="fontsize" type="range" min="24" max="120" value="90">
+                    </div>
+                    <div class="form-group">
+                        <label>Theme</label>
+                        <div id="theme" class="btn-group-vertical">
+                            <button id="news" class="btn btn-default btn-primary">News</button>
+                            <button id="music" class="btn btn-default">Music</button>
+                            <button id="fresh-air" class="btn btn-default">Fresh Air</button>
+                            <button id="snap-judgement" class="btn btn-default">Snap Judgment</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Aspect ratio</label>
+                        <div id="aspect-ratio" class="btn-group">
+                            <button id="square" class="btn btn-default btn-primary">Square</button>
+                            <button id="sixteen-by-nine" class="btn btn-default">16:9 <small>(Twitter)</small></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Quotation marks</label>
+                        <div id="quote" class="btn-group">
+                            <button class="btn btn-primary">On</button>
+                            <button class="btn btn-default">Off</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="show">Show Attribution <span class="help">(e.g. Morning Edition)</span></label>
+                        <input id="show" class="form-control" name="fontsize" type="text">
+                    </div>
+                    <div class="form-group">
+                        <button id="save" class="btn btn-lg btn-primary">Save image</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jquery %}
+{% if not DEPLOYMENT_TARGET %}
+{{ JS.push('js/lib/jquery.js') }}
+{% else %}
+<script type="text/javascript">
+    window.$ = window.jQuery = require('../js/lib/jquery.js')
+</script>
+{% endif %}
+{% endblock jquery %}
+
+
+{% block extra_foot_js %}
+{{ JS.push('js/lib/html2canvas.js') }}
+{{ JS.push('js/lib/medium-editor.min.js') }}
+{{ JS.push('js/quotable.js') }}
+{{ JS.render('js/quotable.min.js') }}
+{% endblock extra_foot_js %}
