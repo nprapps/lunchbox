@@ -1,10 +1,5 @@
 {% extends '_base.html' %}
 
-{% block extra_css %}
-{{ CSS.push('less/factlist.less') }}
-{{ CSS.render('css/factlist.min.css') }}
-{% endblock %}
-
 {% block content %}
 <div class="content">
     <div class="poster-wrapper">
@@ -33,7 +28,7 @@
                         <input id="kicker" class="form-control" name="kicker" type="text" value="What We Know">
                     </div>
                     <div class="form-group">
-                        <label for="fontsize">Font Size</label>
+                        <label for="fontsize">Font size</label>
                         <input id="fontsize" name="fontsize" type="range" min="24" max="66" value="32">
                     </div>
                     <div class="form-group">
@@ -44,7 +39,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Show timestamp</label>
+                        <label>Timestamp</label>
                         <div id="timestamp-toggle" class="btn-group">
                             <button id="show-timestamp" class="btn btn-primary active">Show</button>
                             <button id="hide-timestamp" class="btn btn-primary">Hide</button>
