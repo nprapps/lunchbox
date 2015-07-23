@@ -344,6 +344,9 @@ canvas {
         margin-top: 0;
         z-index: 101;
         position: relative;
+        &:after {
+            content: @timestamp-timezone;
+        }
     }
 
     .logo-wrapper {
@@ -359,9 +362,9 @@ canvas {
         background: rgba(255,255,255,0.9);
         background-image: @logo-path;
         background-repeat: no-repeat;
-        background-size: @logo-width @logo-height;
-        width: @logo-width + @padding;
-        height: @logo-height + @padding;
+        background-size: @logo-sq-width @logo-sq-height;
+        width: @logo-sq-width + @padding;
+        height: @logo-sq-height + @padding;
 
         .logo {
             .hide;
