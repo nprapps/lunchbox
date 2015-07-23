@@ -23,6 +23,7 @@ app.add_template_filter(smarty_filter, name='smarty')
 app.add_template_filter(urlencode_filter, name='urlencode')
 
 @app.route('/')
+@app.route('/index.html')
 @oauth.oauth_required
 def index():
     """
