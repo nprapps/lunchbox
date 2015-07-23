@@ -78,7 +78,7 @@ var onDocumentLoad = function(e) {
     $fileinput = $('.fileinput');
     $customFilename = $('.custom-filename');
 
-    img.src = APP_CONFIG.DEFAULT_IMAGE;
+    img.src = '../assets/test-kitten.jpg';
     img.onload = onImageLoad;
     logo.src = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png';
     logo.onload = renderCanvas;
