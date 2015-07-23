@@ -1,9 +1,22 @@
 @import "less/lib/bootstrap/bootstrap";
+@import "less/lib/font-awesome/font-awesome";
+@import "less/medium";
 @import "less/variables";
 
+html {
+    min-width: 680px;
+}
+
 body {
+    background: @gray-lighter;
+    min-width: 680px;
     font-family: @font-family !important;
     font-size: @base-font-size !important;
+}
+
+canvas {
+    display: none;
+    background: @musicDark;
 }
 
 header {
@@ -97,4 +110,351 @@ header {
             margin: 0 auto;
         }
     }
+}
+
+.content {
+    display: table;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 640px;
+    margin: 0 auto;
+
+    .poster-wrapper,
+    .container {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    .poster-wrapper {
+        width: 640px;
+    }
+
+    @media screen and (max-width: @screen-sm-max){
+        display: block;
+
+        .poster-wrapper,
+        .container {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: @screen-xs-max){
+        .controls-wrapper {
+            font-size: 250%;
+            .btn {
+                font-size: 100%;
+                height: 88px;
+                min-width: 88px;
+            }
+        }
+
+        #fontsize {
+            display: block;
+            width: 90%;
+        }
+    }
+
+    .touch & {
+        input[type="range"]{
+            background: #fff;
+            width: 100%;
+            height: 88px;
+            -webkit-appearance: none;
+            border-radius: 8px;
+            -moz-border-radius: 8px;
+            -wekkit-border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+
+        input[type="range"]::-webkit-slider-thumb{
+           -webkit-appearance:none !important;
+           width:88px;
+           height:88px;
+           -webkit-appearance: none;
+            border-radius: 8px;
+            -moz-border-radius: 8px;
+            -wekkit-border-radius: 8px;
+            border:none;
+            background: #aaa;
+         }
+
+         @media screen and (min-width: @screen-sm){
+            input[type="range"]{
+                height: 44px;
+            }
+
+            input[type="range"]::-webkit-slider-thumb {
+                width:44px;
+                height:44px;
+            }
+         }
+    }
+}
+
+.controls-wrapper {
+    padding-top: @line-height;
+
+    small {
+        font-size: 100%;
+        opacity: 0.5;
+    }
+
+    .btn-group,
+    .btn-group + .btn {
+        margin-right: @padding / 2;
+    }
+
+    .btn-group-vertical .btn {
+        text-align: left;
+    }
+
+    .form-group,
+    .btn-group {
+        margin-bottom: @line-height / 2;
+    }
+
+    .btn-group,
+    .btn-group-vertical,
+    .input-group .btn {
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .input-group .btn:focus {
+        outline: none;
+    }
+
+    .btn-group-sm > .btn {
+        font-size: 13px;
+        padding: 5px;
+    }
+
+    .btn:active,
+    .btn.active {
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .btn-group .btn:hover {
+        background: #444;
+    }
+
+    label {
+        display: block;
+        font-weight: normal;
+        letter-spacing: 0.1rem;
+
+        .tooltip {
+            text-transform: none;
+            letter-spacing: 0;
+        }
+    }
+
+    .help {
+        color: @gray-light;
+    }
+}
+
+.poster {
+    height: 640px;
+    width: 640px;
+    background: #fff;
+    margin: @line-height;
+    position: relative;
+    padding: @padding * 2;
+    font-size: @base-font-size * 2;
+    line-height: 1 !important;
+    overflow: hidden;
+    color: @text-color;
+
+    &.poster-news {
+        .logo-wrapper {
+            .logo.logo-news {
+                display: inline-block !important;
+                border: none;
+
+                .sixteen-by-nine& {
+                    height: 40px;
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    &.poster-music {
+        background: @musicDark;
+        color: @musicLight;
+
+        .logo {
+            border: 1px solid @musicLight;
+        }
+
+        .logo-wrapper {
+            background: @musicDark;
+            padding-bottom: @padding * 2 - 14;
+
+            .logo.logo-music {
+                display: inline-block !important;
+                border: none;
+
+                .sixteen-by-nine& {
+                    width: 242px;
+                    height: 65px;
+                    overflow: hidden;
+                    background: url('../assets/npr-music-logo-small.png') no-repeat;
+                    padding-left: 242px;
+                }
+            }
+        }
+    }
+
+    &.poster-snap-judgement {
+        background: #C66137;
+        color: #fff;
+
+        .logo-wrapper {
+            background: #C66137;
+            color: #fff;
+            padding-bottom: @padding * 2 - 14;
+
+            .logo.logo-snap-judgement {
+                display: inline-block !important;
+                border: none;
+                width: 300px;
+
+                .sixteen-by-nine& {
+                    width: 150px;
+                }
+            }
+        }
+    }
+
+    &.poster-fresh-air {
+        .logo-wrapper {
+            padding-bottom: @padding * 2 - 14;
+
+            .logo.logo-fresh-air {
+                display: inline-block !important;
+                border: none;
+            }
+        }
+    }
+
+    &.sixteen-by-nine {
+        height: 360px;
+        padding: @padding;
+
+        .quote& {
+            .left-quote {
+                top: @padding;
+                left: @padding;
+            }
+        }
+
+        blockquote {
+            margin-bottom: 20px;
+        }
+
+        .logo-wrapper {
+            padding: @padding;
+
+            img {
+                width: 150px;
+            }
+
+            .poster-music& {
+                padding-bottom: @padding - 10;
+            }
+        }
+    }
+
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: @base-font-size;
+        margin-top: 0;
+        margin-bottom: 1em;
+        overflow: hidden;
+  }
+  .kicker {
+      white-space: nowrap;
+  }
+
+    blockquote {
+        padding: 0 0 0 1em;
+        margin: 0 0 @line-height * 2;
+        border-left: none;
+        font-size: inherit;
+        line-height: 100%;
+        font-weight: normal;
+        display: block;
+        overflow: visible;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        p {
+            font-size: inherit;
+            font-weight: inherit;
+            margin: 0;
+            line-height: 110%;
+            text-indent: @list-text-indent;
+            margin-left: @list-margin-left;
+            margin-bottom: @list-margin-bottom;
+
+
+            span {
+                line-height: inherit !important;
+            }
+
+            &:before {
+                content: @bullet-symbol;
+                margin-right: @bullet-margin;
+            }
+        }
+
+        &:last-child {
+            color: red;
+        }
+    }
+
+    p.timestamp {
+        font-size: @base-font-size;
+        color: @timestamp-color;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: normal;
+        line-height: 1.3;
+        display: block;
+        margin-top: 0;
+        z-index: 101;
+        position: relative;
+    }
+
+    .logo-wrapper {
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        bottom: 0;
+        right: 0;
+        text-align: right;
+        padding:  @padding @padding * 2 @padding * 2;
+        margin: 0;
+        font-size: 46px;
+        background: rgba(255,255,255,0.9);
+
+        .logo {
+            .hide;
+        }
+    }
+}
+
+.warning {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 6px;
 }
