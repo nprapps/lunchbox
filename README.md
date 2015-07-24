@@ -14,7 +14,7 @@ What is this?
 
 **Lunchbox** is a suite of tools to create images intended for social media sharing. It includes:
 
-* *Quotable*: Converts quoted text into a branded image
+* *Quotable*: Converts quoted text into a branded image.
 * *Factlist*: Produces a branded image with a list of items.
 * *Waterbug*: Creates a watermarked image with attribution.
 
@@ -74,6 +74,7 @@ You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-des
 - how to format assets
 - further customizing the app (for more fine-point customizations, where to change things
 - theming
+- editing sharing guidelines
 - changing desktop app icon
 
 Deploy the desktop app
