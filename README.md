@@ -48,25 +48,26 @@ What's in here?
 
 Quick Start
 -------------
-(Bootstrap the project)
 
-The install process is just like any other app template-based project:
+Bootstrap the project by cloning this repo and installing the following:
 
 ```
-mkvirtualenv portland
+mkvirtualenv TKTK APP NAME
 pip install -r requirements.txt
 npm install
 ```
 
-Run the project
+Then run the app:
 
 ```
 fab app
 ```
-
+Visit [localhost:8000](http://127.0.0.1:8000/) in your browser to see the app.
 
 Configuration
 -------------
+
+You can skip configuration if you just want to [deploy the app](#deploy-the-desktop-app) and start using it. Configuration options allow you to tailor the app to match your organization's branding and theme.
 
 - define global variables
 - where to place assets
