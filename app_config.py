@@ -26,6 +26,8 @@ GITHUB_USERNAME = 'nprapps'
 REPOSITORY_URL = 'git@github.com:%s/%s.git' % (GITHUB_USERNAME, REPOSITORY_NAME)
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
+DEV_CONTACT = 'EDIT THIS IN APP_CONFIG.PY'
+
 """
 DEPLOYMENT
 """
