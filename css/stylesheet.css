@@ -210,7 +210,15 @@ a.button {
   float: left;
   background-color: #e7e7e7;
   height: 48px;
+  font-size: 14px;
+  margin-right: 5px;
 }
+@media (max-width: 480px) {
+   a.button {
+    margin-bottom: 5px;
+   }
+}
+
 a.button:hover {
   background: #fafafa; /* Old browsers */
 }
@@ -220,7 +228,6 @@ a.button, a.org-logo {
     border-radius: .5em;
 }
 a.button span {
-  padding-left: 32px;
   display: block;
   height: 24px;
 }
@@ -348,7 +355,7 @@ ul.my-list {
         margin: 0 auto;
     }
 }
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: 720px) {
     .my-list li, .filter-block {
         float: none;
         width: auto;
