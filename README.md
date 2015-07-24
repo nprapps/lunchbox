@@ -1,4 +1,4 @@
-portland
+Lunchbox
 =============
 
 * [What is this?](#what-is-this)
@@ -12,16 +12,16 @@ portland
 What is this?
 -------------
 
-TKTK APP NAME is a suite of tools to create images intended for social media sharing. This includes:
+**Lunchbox** is a suite of tools to create images intended for social media sharing. It includes:
 
-* *Quotable*: Creates a branded quoted text as an image
-* *Factlist*: Creates a branded bulleted list of items as an image
-* *Waterbug*: Creates a watermarked and attributed image
+* *Quotable*: Converts quoted text into a branded image
+* *Factlist*: Produces a branded image with a list of items.
+* *Waterbug*: Creates a watermarked image with attribution.
 
 Assumptions 
 -------------
 
-TKTK APP NAME is a customizable suite that is deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see [usage guidelines](#).
+**Lunchbox** is a customizable toolset deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see [usage guidelines](#).
 
 The following things are assumed to be true in this documentation.
 
@@ -52,7 +52,7 @@ Quick Start
 Bootstrap the project by cloning this repo and installing the following:
 
 ```
-mkvirtualenv TKTK APP NAME
+mkvirtualenv lunchbox
 pip install -r requirements.txt
 npm install
 ```
@@ -67,7 +67,7 @@ Visit [localhost:8000](http://127.0.0.1:8000/) in your browser to see the app.
 Configuration
 -------------
 
-You can skip configuration if you just want to [deploy the app](#deploy-the-desktop-app) and start using it. Configuration options allow you to tailor the app to match your organization's branding and theme.
+You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it. Configuration options allow you to tailor the app to match your organization's branding and theme.
 
 - define global variables
 - where to place assets
@@ -92,7 +92,7 @@ Compiled binaries for each platform are found in the `electron/` folder after yo
 About
 -------------
 
-This project consolidated [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Waterbug](https://github.com/nprapps/waterbug), and [Factlist](https://github.com/nprapps/factlist) apps into a stand-alone desktop suite of social tools for the newsroom. 
+Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Waterbug](https://github.com/nprapps/waterbug), and [Factlist](https://github.com/nprapps/factlist) apps into a stand-alone desktop suite of social tools for the newsroom. 
 
 It was worked on during the OpenNews Portland Code Convening on July 23-24, 2015.
 
