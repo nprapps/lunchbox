@@ -47,11 +47,6 @@
 
                     <select class="copyright-holder form-control" name="copyright-holder">
                       <option></option>
-                      <option value="internal">Your News Organization</option>
-                      <option value="freelance">Freelance</option>
-                      <option value="ap">AP</option>
-                      <option value="getty">Getty</option>
-                      <option value="thirdParty">Third-Party/Courtesy</option>
                     </select>
                 </div>
 
@@ -81,18 +76,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-6 logos-wrapper">
                         <label for="logo">Logo</label>
-                        <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
-                          <label class="btn btn-primary active">
-                            <input type="radio" name="logo" id="socializr" value="socializr" checked>
-                            Socializr
-                          </label>
-                          <label class="btn btn-primary">
-                            <input type="radio" name="logo" id="npr" value="npr">
-                            NPR
-                          </label>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -163,6 +148,7 @@
 {% block extra_foot_js %}
 {{ JS.push('js/lib/bootstrap.js') }}
 {{ JS.push('js/lib/fileinput.js') }}
+{{ JS.push('js/waterbug-config.js') }}
 {{ JS.push('js/waterbug.js') }}
 {{ JS.render('js/waterbug.min.js') }}
 {% endblock extra_foot_js %}

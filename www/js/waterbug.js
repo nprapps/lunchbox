@@ -1,101 +1,3 @@
-/*
-* CONFIG VARS
-*/
-
-// widths and padding
-var canvasWidth = 1000; // this will be the exported width of the image
-var elementPadding = 40; // padding around the logo and credit text
-
-// logo configuration
-// the name of the logo object should match the value of the corresponding radio button in the HTML.
-var logos = {
-    'socializr': {
-        whitePath: '../img/icon-socializr-white.svg', // path to white logo
-        blackPath: '../img/icon-socializr-black.svg', // path to black logo
-        w: 200, // width of logo
-        h: 67, // height of logo
-    },
-    'npr': {
-        whitePath: '../assets/logo-npr-white.png',
-        blackPath: '../assets/logo-npr-black.png',
-        w: 150,
-        h: 51
-    }
-};
-
-// logo opacity for colors
-var whiteLogoAlpha = '0.8';
-var blackLogoAlpha = '0.6';
-
-// type
-var fontWeight = 'normal'; // font weight for credit
-var fontSize = '20pt'; // font size for credit
-var fontFace = "Helvetica"; // font family for credit
-var fontShadow = 'rgba(0,0,0,0.7)'; // font shadow for credit
-var fontShadowOffsetX = 0; // font shadow offset x
-var fontShadowOffsetY = 0; // font shadow offset y
-var fontShadowBlur = 10; // font shadow blur
-
-// copyright options, see buildCreditString() for more options
-var orgName = 'Your News Organization';
-var freelanceString = 'for ' + orgName;
-var copyrightOptions = {
-    'internal': {
-        showPhotographer: true,
-        showSource: false,
-        photographerRequired: false,
-        sourceRequired: false,
-        source: orgName,
-        display: orgName,        
-    },
-    'freelance': {
-        showPhotographer: true,
-        showSource: false,
-        photographerRequired: true,
-        sourceRequired: false,
-        source: freelanceString,
-        display: 'Freelance' 
-    },
-    'ap': {
-        showPhotographer: true,
-        showSource: false,
-        photographerRequired: false,
-        sourceRequired: false,
-        source: 'AP',
-        display: 'AP' 
-    },
-    'getty': {
-        showPhotographer: true,
-        showSource: false,
-        photographerRequired: false,
-        sourceRequired: false,
-        source: 'Getty Images',
-        display: 'Getty' 
-    },
-    'thirdParty': {
-        showPhotographer: true,
-        showSource: true,
-        photographerRequired: false,
-        sourceRequired: true,
-        source: '',
-        display: 'Third Party/Courtesy' 
-    }
-}
-
-// app load defaults
-var currentCrop = 'twitter'; // default crop size
-var currentLogo = 'socializr'; // default logo slug
-var currentLogoColor = 'white'; // default logo color
-var currentTextColor = 'white'; // default text color
-var defaultImage = '../img/test-kitten.jpg'; // path to image to load as test image
-var defaultLogo = logos[currentLogo]['whitePath'] // path to default logo
-
-/*
-* END CONFIG VARS
-*/
-
-//////////////////////////////
-
 // DOM elements
 var $source;
 var $photographer;
@@ -150,7 +52,6 @@ var onDocumentLoad = function(e) {
     ctx = canvas.getContext('2d');
     $save = $('.save-btn');
     $textColor = $('input[name="textColor"]');
-    $logo = $('input[name="logo"]');
     $crop = $('input[name="crop"]');
     $logoColor = $('input[name="logoColor"]');
     $qualityQuestions = $('.quality-question');
@@ -159,6 +60,7 @@ var onDocumentLoad = function(e) {
     $filename = $('.fileinput-filename');
     $fileinput = $('.fileinput');
     $customFilename = $('.custom-filename');
+    $logosWrapper = $('.logos-wrapper');
 
     img.src = defaultImage;
     img.onload = onImageLoad;
@@ -171,7 +73,6 @@ var onDocumentLoad = function(e) {
     $imageLinkButton.on('click', handleImageLink);
     $save.on('click', onSaveClick);
     $textColor.on('change', onTextColorChange);
-    $logo.on('change', onLogoChange);
     $logoColor.on('change', onLogoColorChange);
     $crop.on('change', onCropChange);
     $canvas.on('mousedown touchstart', onDrag);
@@ -193,6 +94,7 @@ var onDocumentLoad = function(e) {
     // $imageLink.on('paste', handleImageLink);
     $(window).on('resize', resizeCanvas);
     resizeCanvas();
+    buildForm();
 }
 
 var resizeCanvas = function() {
@@ -206,6 +108,35 @@ var resizeCanvas = function() {
     });
     renderCanvas();
 }
+
+var buildForm = function() {
+    var copyrightKeys = Object.keys(copyrightOptions);
+    var logoKeys = Object.keys(logos);
+
+    for (var i = 0; i < copyrightKeys.length; i++) {
+        var key = copyrightKeys[i];
+        var display = copyrightOptions[key]['display'];
+        $copyrightHolder.append('<option value="' + key + '">' + display + '</option>');
+    }
+
+    if (logoKeys.length > 1) {
+        $logosWrapper.append('<div class="btn-group btn-group-justified btn-group-sm logos" data-toggle="buttons"></div>');
+        var $logos = $('.logos');
+        for (var j = 0; j < logoKeys.length; j++) {
+            var key = logoKeys[j];
+            var display = logos[key]['display']
+            $logos.append('<label class="btn btn-primary"><input type="radio" name="logo" id="' + key + '" value="' + key + '">' + display + '</label>');
+
+            if (key === currentLogo) {
+                $('#' + key).attr('checked', true);
+                $('#' + key).parent('.btn').addClass('active');
+            }
+        }
+        $logo = $('input[name="logo"]');
+        $logo.on('change', onLogoChange);
+    }
+}
+
 
 /*
 * Draw the image, then the logo, then the text
