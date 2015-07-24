@@ -1,4 +1,4 @@
-Lunchbox
+![Lunchbox](http://blog.apps.npr.org/lunchbox/img/icon-lunchbox.svg)
 =============
 
 * [What is this?](#what-is-this)
