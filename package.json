@@ -7,6 +7,6 @@
     "universal-jst": "~1.0.5"
   },
   "scripts": {
-    "build": "electron-packager www Portland --platform=all --arch=all --version=0.30.0 --overwrite --out electron/"
+    "build": "electron-packager www Lunchbox --platform=all --arch=all --version=0.30.0 --overwrite --out electron/"
   }
 }
