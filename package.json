@@ -6,6 +6,6 @@
     "less": "~1.7.0"
   },
   "scripts": {
-    "build": "electron-packager www Lunchbox --platform=all --arch=all --version=0.30.1 --icon=www/img/icon-lunchbox-black.svg --overwrite --out electron/"
+    "build": "electron-packager www Lunchbox --platform=all --arch=all --version=0.30.1 --icon=www/img/icon-lunchbox.icns --overwrite --out electron/"
   }
 }
