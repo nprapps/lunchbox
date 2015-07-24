@@ -12,12 +12,12 @@ var logos = {
         h: 80, // height of logo
         display: 'Lunchbox'
     },
-    'npr': {
-        whitePath: '../assets/logo-npr-white.png',
-        blackPath: '../assets/logo-npr-black.png',
+    'socializr': {
+        whitePath: '../img/icon-socializr-white.svg',
+        blackPath: '../img/icon-socializr-black.svg',
         w: 150,
         h: 51,
-        display: 'NPR'
+        display: 'Socializr'
     }
 };
 
