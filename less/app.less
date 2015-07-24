@@ -24,6 +24,14 @@ header {
             padding-top: 44px;
             padding-bottom: 44px;
         }
+        .logo-wrapper {
+            width: 100%;
+            text-align: center;
+            img {
+                height: 150px;
+                width: auto;
+            }
+        }
     }
 
     a { 
@@ -53,7 +61,7 @@ header {
             -webkit-font-smoothing: antialiased;
             opacity: 0.7;
             
-            &.home-link { font-weight: bold; }
+            &.active { font-weight: bold; }
             &:last-child { margin-right: 0; }
             
             &:hover {
@@ -94,13 +102,6 @@ header {
         @media screen and (min-width: 700px){
             font-size: @font-size-h1;
         }
-    }
-
-    img {
-        height: 20px;
-        width: auto;
-        border: 1px solid #eee;
-        margin-right: 5px;
     }
 }
 
