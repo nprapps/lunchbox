@@ -12,7 +12,6 @@ from termcolor import colored
 import app_config
 
 # Other fabfiles
-import assets
 import render
 import utils
 
