@@ -134,6 +134,8 @@ var buildForm = function() {
         }
         $logo = $('input[name="logo"]');
         $logo.on('change', onLogoChange);
+    } else {
+        $logosWrapper.hide();
     }
 }
 
