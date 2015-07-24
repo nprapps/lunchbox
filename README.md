@@ -12,14 +12,20 @@ portland
 What is this?
 -------------
 
-(description of what the tool does and who it's for. Point to user guide for app usage (end-user focused content on github pages)
+TKTK APP NAME is a suite of tools to create images intended for social media sharing. This includes:
 
+* *Quotable*: Creates a branded quoted text as an image
+* *Factlist*: Creates a branded bulleted list of items as an image
+* *Waterbug*: Creates a watermarked and attributed image
+
+TKTK APP NAME is a customizable suite that is deployable as a desktop app. Set-up and customization instructions are included below. For end-users of the tools, see [usage guidelines](#).
 
 Assumptions 
 -------------
 
 (how it's going to be used, presumed expertise)
 
+* 
 
 What's in here?
 -------------
