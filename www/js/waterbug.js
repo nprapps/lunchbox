@@ -150,7 +150,11 @@ var onDocumentLoad = function(e) {
     });
 
     // $imageLink.on('paste', handleImageLink);
+    $(window).on('resize', resizeCanvas);
+    resizeCanvas();
+}
 
+var resizeCanvas = function() {
     var scale = $('.canvas-cell').width() / canvasWidth;
     $canvas.css({
         'webkitTransform': 'scale(' + scale + ')',
