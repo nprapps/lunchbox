@@ -28,7 +28,7 @@ def index():
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context()
-    context['name'] = 'TKTK App Name'
+    context['name'] = 'Lunchbox'
     context['id'] = 'home'
     return make_response(render_template('index.html', **context))
 
