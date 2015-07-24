@@ -32,8 +32,6 @@ The following things are assumed to be true in this documentation.
 What's in here?
 -------------
 
-(how the repo is organized, what each folder contains)
-
 * ``fabfile`` -- [Fabric](http://docs.fabfile.org/en/latest/) commands for automating setup and deployment.
 * ``less`` -- Application styles and [Bootstrap](http://getbootstrap.com/css/) less files.
 * ``templates`` -- HTML ([Jinja2](http://jinja.pocoo.org/docs/)) templates, to be compiled locally.
@@ -72,7 +70,7 @@ Visit [localhost:8000](http://127.0.0.1:8000/) in your browser to see the app.
 Configuration
 -------------
 
-You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it with the application's default branding. Configuration options allow you to tailor the app to match your organization's branding and theme.
+You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it with the application's default branding (or you can [download the Demo](http://blog.apps.npr.org/lunchbox/) ). Configuration options allow you to tailor the app to match your organization's branding and theme.
 
 ### Assets
 
