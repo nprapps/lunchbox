@@ -136,13 +136,14 @@ canvas {
 .poster {
     height: 640px;
     width: 640px;
-    background: #fff;
+    background: @bg-color;
     margin: @line-height;
     position: relative;
     padding: @padding * 2;
     font-size: @base-font-size * 5;
     line-height: 1 !important;
     overflow: hidden;
+    color: @text-color;
 
     &.poster-theme1 {
         .logo-wrapper {
@@ -347,7 +348,7 @@ canvas {
         padding:  @padding @padding * 2 @padding * 2;
         margin: 0;
         font-size: 46px;
-        background: #fff;
+        background: @bg-color;
         background-image: @logo-path;
         background-repeat: no-repeat;
         background-size: @logo-sq-width @logo-sq-height;

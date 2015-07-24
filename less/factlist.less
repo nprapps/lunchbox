@@ -170,7 +170,7 @@ canvas {
 .poster {
     height: 640px;
     width: 640px;
-    background: #fff;
+    background: @bg-color;
     margin: @line-height;
     position: relative;
     padding: @padding * 2;
@@ -180,6 +180,8 @@ canvas {
     color: @text-color;
 
     &.poster-theme1 {
+        background: @bg-color;
+        color: @text-color;
         .logo-wrapper {
             background-image: @logo-path;
             background-repeat: no-repeat;
@@ -360,7 +362,7 @@ canvas {
         padding:  @padding @padding * 2 @padding * 2;
         margin: 0;
         font-size: 46px;
-        background: rgba(255,255,255,0.9);
+        background: @bg-color;
         background-image: @logo-path;
         background-repeat: no-repeat;
         background-size: @logo-sq-width @logo-sq-height;
