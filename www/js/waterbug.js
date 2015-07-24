@@ -37,7 +37,7 @@ var fontShadowOffsetY = 0; // font shadow offset y
 var fontShadowBlur = 10; // font shadow blur
 
 // copyright options, see buildCreditString() for more options
-var orgName = 'NPR';
+var orgName = 'Your News Organization';
 var freelanceString = 'for ' + orgName;
 
 // app load defaults
