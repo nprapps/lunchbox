@@ -7,14 +7,15 @@ var canvasWidth = 1000; // this will be the exported width of the image
 var elementPadding = 40; // padding around the logo and credit text
 
 // app load defaults
-// logo
-var logoDimensions = {
-    // each logo you support may need separate dimensions, define them here
+
+// logo configuration
+// the name of the logo object should match the value of the corresponding radio button in the HTML.
+var logos = {
     'npr': {
-        whitePath: '../assets/logo-npr-white.png',
-        blackPath: '../assets/logo-npr-black.png',
-        w: 150,
-        h: 51
+        whitePath: '../assets/logo-npr-white.png', // path to white logo
+        blackPath: '../assets/logo-npr-black.png', // path to black logo
+        w: 150, // width of logo
+        h: 51 // height of logo
     },
     'music': {
         whitePath: '../assets/logo-music-white.png',
@@ -29,7 +30,7 @@ var currentLogo = 'npr'; // default logo slug
 var currentLogoColor = 'white'; // default logo color
 var currentTextColor = 'white'; // default text color
 var defaultImage = '../assets/test-kitten.jpg'; // path to image to load as test image
-var defaultLogo = logoDimensions['npr']['whitePath'] // path to default logo
+var defaultLogo = logos['npr']['whitePath'] // path to default logo
 
 // type
 var fontWeight = 'normal'; // font weight for credit
@@ -234,8 +235,8 @@ var renderCanvas = function() {
         logo,
         elementPadding,
         currentLogo === 'npr'? elementPadding : elementPadding - 14,
-        logoDimensions[currentLogo]['w'],
-        logoDimensions[currentLogo]['h']
+        logos[currentLogo]['w'],
+        logos[currentLogo]['h']
     );
 
     // reset alpha channel so text is not translucent
@@ -484,9 +485,9 @@ var onImageLoad = function(e) {
 */
 var loadLogo = function() {
     if (currentLogoColor === 'white') {
-        logo.src = logoDimensions[currentLogo]['whitePath'];
+        logo.src = logos[currentLogo]['whitePath'];
     } else {
-        logo.src = logoDimensions[currentLogo]['blackPath'];
+        logo.src = logos[currentLogo]['blackPath'];
     }
 }
 
