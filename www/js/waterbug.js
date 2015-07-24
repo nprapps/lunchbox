@@ -7,12 +7,29 @@ var canvasWidth = 1000; // this will be the exported width of the image
 var elementPadding = 40; // padding around the logo and credit text
 
 // app load defaults
+// logo
+var logoDimensions = {
+    // each logo you support may need separate dimensions, define them here
+    'npr': {
+        whitePath: '../assets/logo-npr-white.png',
+        blackPath: '../assets/logo-npr-black.png',
+        w: 150,
+        h: 51
+    },
+    'music': {
+        whitePath: '../assets/logo-music-white.png',
+        blackPath: '../assets/logo-music-black.png',
+        w: 306,
+        h: 81
+    }
+};
+
 var currentCrop = 'twitter'; // default crop size
 var currentLogo = 'npr'; // default logo slug
 var currentLogoColor = 'white'; // default logo color
 var currentTextColor = 'white'; // default text color
 var defaultImage = '../assets/test-kitten.jpg'; // path to image to load as test image
-var defaultLogo = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png'; // path to default logo
+var defaultLogo = logoDimensions['npr']['whitePath'] // path to default logo
 
 // type
 var fontWeight = 'normal'; // font weight for credit
@@ -22,19 +39,6 @@ var fontShadow = 'rgba(0,0,0,0.7)'; // font shadow for credit
 var fontShadowOffsetX = 0; // font shadow offset x
 var fontShadowOffsetY = 0; // font shadow offset y
 var fontShadowBlur = 10; // font shadow blur
-
-// logo
-var logoDimensions = {
-    // each logo you support may need separate dimensions, define them here
-    'npr': {
-        w: 150,
-        h: 51
-    },
-    'music': {
-        w: 306,
-        h: 81
-    }
-};
 
 // logo opacity for colors
 var whiteLogoAlpha = '0.8';
@@ -479,7 +483,11 @@ var onImageLoad = function(e) {
 * Load the logo based on radio buttons
 */
 var loadLogo = function() {
-    logo.src = '../assets/logo-' + currentLogo + '-' + currentLogoColor + '.png';
+    if (currentLogoColor === 'white') {
+        logo.src = logoDimensions[currentLogo]['whitePath'];
+    } else {
+        logo.src = logoDimensions[currentLogo]['blackPath'];
+    }
 }
 
 /*
