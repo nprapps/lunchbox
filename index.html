@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,38 +16,192 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Lunchbox</h1>
-        <p></p>
-
-        <p class="view"><a href="https://github.com/nprapps/lunchbox">View the Project on GitHub <small>nprapps/lunchbox</small></a></p>
-
+        <h1 class="header">Lunchbox</h1>
+        <p class="header"></p>
 
         <ul>
-          <li><a href="https://github.com/nprapps/lunchbox/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/nprapps/lunchbox/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/nprapps/lunchbox">View On <strong>GitHub</strong></a></li>
+          <li class="download"><a class="buttons" href="https://github.com/nprapps/lunchbox/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/nprapps/lunchbox/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/nprapps/lunchbox">View On GitHub</a></li>
         </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/nprapps">nprapps</a></p>
+
+
       </header>
       <section>
-        <p>Lunchbox is a suite of tools to create images intended for social media sharing. It includes:</p>
+        <h2>
+<a id="what-is-this" class="anchor" href="#what-is-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is this?</h2>
+
+<p><strong>Lunchbox</strong> is a suite of tools to create images intended for social media sharing. It includes:</p>
 
 <ul>
 <li>
-<strong>Quotable</strong>: Converts quoted text into a branded image.</li>
+<em>Quotable</em>: Converts quoted text into a branded image.</li>
 <li>
-<strong>Factlist</strong>: Produces a branded image with a list of items.</li>
+<em>Factlist</em>: Produces a branded image with a list of items.</li>
 <li>
-<strong>Waterbug</strong>: Creates a watermarked image with attribution.</li>
+<em>Waterbug</em>: Creates a watermarked image with attribution.</li>
 </ul>
 
-<p>Lunchbox is a customizable toolset deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see usage guidelines.</p>
+<h2>
+<a id="assumptions-" class="anchor" href="#assumptions-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assumptions </h2>
+
+<p><strong>Lunchbox</strong> is a customizable toolset deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see <a href="#">usage guidelines</a>.</p>
+
+<p>The following things are assumed to be true in this documentation.</p>
+
+<ul>
+<li>You are running OSX.</li>
+<li>You are using Python 2.7. (Probably the version that came OSX.)</li>
+<li>You have <a href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> and <a href="https://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a> installed and working.</li>
+</ul>
+
+<h2>
+<a id="whats-in-here" class="anchor" href="#whats-in-here" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's in here?</h2>
+
+<p>(how the repo is organized, what each folder contains)</p>
+
+<ul>
+<li>
+<code>fabfile</code> -- <a href="http://docs.fabfile.org/en/latest/">Fabric</a> commands for automating setup and deployment.</li>
+<li>
+<code>less</code> -- Application styles and <a href="http://getbootstrap.com/css/">Bootstrap</a> less files.</li>
+<li>
+<code>templates</code> -- HTML (<a href="http://jinja.pocoo.org/docs/">Jinja2</a>) templates, to be compiled locally.</li>
+<li>
+<code>www</code> -- App assets and rendered files.</li>
+<li>
+<code>app.py</code> -- A <a href="http://flask.pocoo.org/">Flask</a> app for rendering the project locally.</li>
+<li>
+<code>app_config.py</code> -- Configuration variables for the Flask app.</li>
+<li>
+<code>package.json</code> -- Node dependencies and scripts for building <a href="https://github.com/atom/electron">Electron</a> app.</li>
+<li>
+<code>render_utils.py</code> -- Helper functions for baking out Flask app.</li>
+<li>
+<code>requirements.txt</code> -- Python requirements.</li>
+<li>
+<code>static.py</code> -- Routes for static files in Flask app.</li>
+</ul>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<p>Bootstrap the project by cloning this repo and installing the following:</p>
+
+<pre><code>mkvirtualenv lunchbox
+pip install -r requirements.txt
+npm install
+</code></pre>
+
+<p>Then run the app:</p>
+
+<pre><code>fab app
+</code></pre>
+
+<p>Visit <a href="http://127.0.0.1:8000/">localhost:8000</a> in your browser to see the app.</p>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>You can skip configuration if you just want to <a href="#deploy-the-desktop-app">deploy Lunchbox</a> and start using it with the application's default branding. Configuration options allow you to tailor the app to match your organization's branding and theme.</p>
+
+<h3>
+<a id="assets" class="anchor" href="#assets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assets</h3>
+
+<p>If you are customizing the branding of the apps, you will probably want to use your organization's web fonts and logos.</p>
+
+<p>For fonts, we provide a Jinja template at <code>templates/_fonts.html</code> using Typekit's <a href="https://github.com/typekit/webfontloader">webfontloader</a> for loading fonts from Google, Typekit, or custom stylesheets. Then, the fonts will be available in the CSS and JavaScript in all of the apps.</p>
+
+<p>For your organization's logos, you can provide SVGs or PNGs. Make sure that there is no whitespace around the logo so that the padding performs properly. You can place them anywhere in the <code>www</code> folder as long as you link them correctly when you <a href="#define-your-global-variables">define your global variables</a>, but we recommend <code>www/img</code>.</p>
+
+<p>For Waterbug, you will want to have a white version and a black version of your logo so that you can choose the appropriate version for light and dark photos.</p>
+
+<h3>
+<a id="define-global-variables" class="anchor" href="#define-global-variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Define global variables</h3>
+
+<p>There are two places where variables are defined. For Quotable and Factlist, all configuration takes places in <code>less/variables.less</code>. You can define font families, establish the default background color/text color and define the logo used on the images. </p>
+
+<p>Importantly, if you use a custom logo, you will also need to explicitly define the width and height of the logo in both square crop and 16x9 crop scenarios. The variables at the top of the file will do this: </p>
+
+<pre><code>@logo-path: url('../path/to/logo.svg');
+@logo-sq-width: 145px;
+@logo-sq-height: 48px;
+@logo-16x9-width: 121px;
+@logo-16x9-height: 40px;
+</code></pre>
+
+<p>Additionally, you can fine-tune various aspects of Quotable and Factlist using the app-specific variables also listed in the file. The defaults should work well out of the box, but your organization's logo or font may require tweaks.</p>
+
+<p>Waterbug has a different configuration system because it cannot be controlled through CSS. To customize Waterbug, go to <code>www/js/waterbug.js</code> and customize the variables at the top of the file. </p>
+
+<p>In this file, you can define the logos used and the sizes with which they render by editing the <code>logos</code> object. Note that each logo's individual object must match the value of its corresponding radio button in <code>templates/waterbug.html</code>:</p>
+
+<pre><code>var logos = {
+    'name-of-logo': {
+        whitePath: '../path/to/logo-white.svg', // path to white logo
+        blackPath: '../path/to/logo-black.svg', // path to black logo
+        w: 200, // width of logo
+        h: 67, // height of logo
+    },
+    'name-of-second-logo': {
+        whitePath: '../path/to/second-logo-white.svg',
+        blackPath: '../path/to/second-logo-white.svg',
+        w: 150,
+        h: 51
+    }
+};
+</code></pre>
+
+<p>Additionally, you can change every property of the font rendering (font face, size, shadow, etc.) as well as the padding around all of the elements in the image. </p>
+
+<h3>
+<a id="multiple-themes" class="anchor" href="#multiple-themes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiple Themes</h3>
+
+<p>For Quotable and Factlist, you can provide up to three themes in addition to the default theme if your news organization requires different branding for different accounts (think <a href="http://twitter.com/npr">NPR</a> vs. <a href="http://twitter.com/nprmusic">NPR Music</a>).</p>
+
+<p>In <code>less/variables.less</code>, you can define themes at the bottom of the file. For each theme, you can change the background color, text color, and logo:</p>
+
+<pre><code>@theme2-bg-color: #41474E;
+@theme2-text-color: #dbe0e6;
+@theme2-logo-path: url('../img/icon-socializr-white.svg');
+@theme2-sq-logo-width: 145px;
+@theme2-sq-logo-height: 48px;
+@theme2-16x9-logo-width: 121px;
+@theme2-16x9-logo-height: 40px;
+</code></pre>
+
+<p>In the form UI, you can change the display of the theme selection buttons in each app's HTML template (<code>templates/quotable.html</code>, <code>templates/factlist.html</code>). Be sure not to change the ID attribute of the button, as these IDs control the JavaScript that adds and removes classes on the image.</p>
+
+<ul>
+<li>editing sharing guidelines</li>
+</ul>
+
+<h2>
+<a id="deploy-the-desktop-app" class="anchor" href="#deploy-the-desktop-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deploy the desktop app</h2>
+
+<p>The project uses <a href="https://github.com/atom/electron">Electron</a> to create desktop apps for OSX, Windows and Linux.</p>
+
+<p>To build an electron app:</p>
+
+<pre><code>fab production build_electron
+</code></pre>
+
+<p>Compiled binaries for each platform are found in the <code>electron/</code> folder after you run this command.</p>
+
+<h2>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h2>
+
+<p>Lunchbox consolidates <a href="https://github.com/nprapps/">NPR</a>’s <a href="https://github.com/nprapps/quotable">Quotable</a>, <a href="https://github.com/nprapps/factlist">Factlist</a> and <a href="https://github.com/nprapps/waterbug">Waterbug</a>, apps into a stand-alone desktop suite of tools for the newsroom. </p>
+
+<p>It was worked on during the <a href="http://opennews.org">OpenNews</a> Portland Code Convening on July 23-24, 2015.</p>
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/nprapps">nprapps</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>
