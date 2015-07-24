@@ -1,4 +1,4 @@
-Lunchbox
+<img src="http://blog.apps.npr.org/lunchbox/img/icon-lunchbox.svg" width="150" alt="Lunchbox">
 =============
 
 * [What is this?](#what-is-this)
@@ -32,15 +32,16 @@ The following things are assumed to be true in this documentation.
 What's in here?
 -------------
 
-(how the repo is organized, what each folder contains)
-
 * ``fabfile`` -- [Fabric](http://docs.fabfile.org/en/latest/) commands for automating setup and deployment.
 * ``less`` -- Application styles and [Bootstrap](http://getbootstrap.com/css/) less files.
 * ``templates`` -- HTML ([Jinja2](http://jinja.pocoo.org/docs/)) templates, to be compiled locally.
 * ``www`` -- App assets and rendered files.
+* ``Lunchbox Setup.exe`` -- Lunchbox Demo installer for Windows.
+* ``Lunchbox.dmg`` -- Lunchbox Demo installer for OSX.
 * ``app.py`` -- A [Flask](http://flask.pocoo.org/) app for rendering the project locally.
 * ``app_config.py`` -- Configuration variables for the Flask app.
 * ``package.json`` -- Node dependencies and scripts for building [Electron](https://github.com/atom/electron) app.
+* ``packager-config.json`` -- Configuration for create installers with [Electron](https://github.com/atom/electron).
 * ``render_utils.py`` -- Helper functions for baking out Flask app.
 * ``requirements.txt`` -- Python requirements.
 * ``static.py`` -- Routes for static files in Flask app.
@@ -69,7 +70,7 @@ Visit [localhost:8000](http://127.0.0.1:8000/) in your browser to see the app.
 Configuration
 -------------
 
-You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it with the application's default branding. Configuration options allow you to tailor the app to match your organization's branding and theme.
+You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it with the application's default branding (or you can [download the Demo](http://blog.apps.npr.org/lunchbox/) ). Configuration options allow you to tailor the app to match your organization's branding and theme.
 
 ### Assets
 
@@ -220,7 +221,7 @@ In the form UI, you can change the display of the theme selection buttons in eac
 Deploy the desktop app
 -------------
 
-The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX, Windows and Linux.
+The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX and Windows.
 
 To build an electron app:
 
