@@ -5,12 +5,12 @@ var elementPadding = 40; // padding around the logo and credit text
 // logo configuration
 // the name of the logo object should match the value of the corresponding radio button in the HTML.
 var logos = {
-    'socializr': {
-        whitePath: '../img/icon-socializr-white.svg', // path to white logo
-        blackPath: '../img/icon-socializr-black.svg', // path to black logo
-        w: 200, // width of logo
-        h: 67, // height of logo
-        display: 'Socializr'
+    'lunchbox': {
+        whitePath: '../img/icon-lunchbox-white.svg', // path to white logo
+        blackPath: '../img/icon-lunchbox-black.svg', // path to black logo
+        w: 150, // width of logo
+        h: 120, // height of logo
+        display: 'Lunchbox'
     },
     'npr': {
         whitePath: '../assets/logo-npr-white.png',
@@ -83,7 +83,7 @@ var copyrightOptions = {
 
 // app load defaults
 var currentCrop = 'twitter'; // default crop size
-var currentLogo = 'socializr'; // default logo slug
+var currentLogo = 'lunchbox'; // default logo slug
 var currentLogoColor = 'white'; // default logo color
 var currentTextColor = 'white'; // default text color
 var defaultImage = '../img/test-kitten.jpg'; // path to image to load as test image
