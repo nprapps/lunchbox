@@ -8,8 +8,8 @@ var logos = {
     'lunchbox': {
         whitePath: '../img/icon-lunchbox-white.svg', // path to white logo
         blackPath: '../img/icon-lunchbox-black.svg', // path to black logo
-        w: 150, // width of logo
-        h: 120, // height of logo
+        w: 100, // width of logo
+        h: 80, // height of logo
         display: 'Lunchbox'
     },
     'npr': {
