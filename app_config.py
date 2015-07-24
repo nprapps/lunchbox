@@ -15,13 +15,13 @@ NAMES
 """
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'portland2'
+PROJECT_SLUG = 'lunchbox'
 
 # Project name to be used in file paths
-PROJECT_FILENAME = 'portland2'
+PROJECT_FILENAME = 'lunchbox'
 
 # The name of the repository containing the source
-REPOSITORY_NAME = 'portland2'
+REPOSITORY_NAME = 'lunchbox'
 GITHUB_USERNAME = 'nprapps'
 REPOSITORY_URL = 'git@github.com:%s/%s.git' % (GITHUB_USERNAME, REPOSITORY_NAME)
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
@@ -42,19 +42,6 @@ S3_BUCKET = None
 S3_BASE_URL = None
 S3_DEPLOY_URL = None
 DEBUG = True
-
-"""
-SERVICES
-"""
-NPR_GOOGLE_ANALYTICS = {
-    'ACCOUNT_ID': 'UA-5828686-4',
-    'DOMAIN': PRODUCTION_S3_BUCKET,
-    'TOPICS': '' # e.g. '[1014,3,1003,1002,1001]'
-}
-
-VIZ_GOOGLE_ANALYTICS = {
-    'ACCOUNT_ID': 'UA-5828686-75'
-}
 
 """
 Utilities
