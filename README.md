@@ -195,6 +195,8 @@ var defaultImage = '../img/test-kitten.jpg'; // path to image to load as test im
 var defaultLogo = logos[currentLogo]['whitePath'] // path to default logo
 ```
 
+At the bottom of the form, you will notice a Sharing Guidelines section. To edit that section, you can just update the list in `templates/waterbug.html`.
+
 ### Multiple Themes
 
 For Quotable and Factlist, you can provide up to three themes in addition to the default theme if your news organization requires different branding for different accounts (think [NPR](http://twitter.com/npr) vs. [NPR Music](http://twitter.com/nprmusic)).
