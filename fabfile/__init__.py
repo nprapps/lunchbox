@@ -177,11 +177,11 @@ def deploy(remote='origin', reload=False):
 def build_electron():
     require('settings', provided_by=[production, staging])
 
-    render.render_all()
+    # render.render_all()
     if not os.path.exists('electron'):
         os.makedirs('electron')
 
-    local('npm run-script build')
+    local('npm run-script pack')
 
 """
 Destruction
