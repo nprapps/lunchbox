@@ -93,9 +93,9 @@ Compiled binaries for each platform are found in the `electron/` folder after yo
 About
 -------------
 
-Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Waterbug](https://github.com/nprapps/waterbug), and [Factlist](https://github.com/nprapps/factlist) apps into a stand-alone desktop suite of social tools for the newsroom. 
+Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Factlist](https://github.com/nprapps/factlist) and [Waterbug](https://github.com/nprapps/waterbug), apps into a stand-alone desktop suite of tools for the newsroom. 
 
-It was worked on during the OpenNews Portland Code Convening on July 23-24, 2015.
+It was worked on during the [OpenNews](http://opennews.org) Portland Code Convening on July 23-24, 2015.
 
 
 
