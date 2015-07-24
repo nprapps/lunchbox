@@ -38,9 +38,12 @@ What's in here?
 * ``less`` -- Application styles and [Bootstrap](http://getbootstrap.com/css/) less files.
 * ``templates`` -- HTML ([Jinja2](http://jinja.pocoo.org/docs/)) templates, to be compiled locally.
 * ``www`` -- App assets and rendered files.
+* ``Lunchbox Setup.exe`` -- Lunchbox Demo installer for Windows.
+* ``Lunchbox.dmg`` -- Lunchbox Demo installer for OSX.
 * ``app.py`` -- A [Flask](http://flask.pocoo.org/) app for rendering the project locally.
 * ``app_config.py`` -- Configuration variables for the Flask app.
 * ``package.json`` -- Node dependencies and scripts for building [Electron](https://github.com/atom/electron) app.
+* ``packager-config.json`` -- Configuration for create installers with [Electron](https://github.com/atom/electron).
 * ``render_utils.py`` -- Helper functions for baking out Flask app.
 * ``requirements.txt`` -- Python requirements.
 * ``static.py`` -- Routes for static files in Flask app.
@@ -218,7 +221,7 @@ In the form UI, you can change the display of the theme selection buttons in eac
 Deploy the desktop app
 -------------
 
-The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX, Windows and Linux.
+The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX and Windows.
 
 To build an electron app:
 
