@@ -7,6 +7,8 @@ routes. While not necessary for most Flask apps, it is required in the
 App Template for static publishing.
 """
 
+from datetime import datetime
+
 import app_config
 import json
 import static
@@ -30,6 +32,7 @@ def index():
     context = make_context()
     context['name'] = 'Lunchbox'
     context['id'] = 'home'
+    context['now'] = datetime.now().strftime('%B %-d, %Y')
     return make_response(render_template('index.html', **context))
 
 @app.route('/factlist/index.html')
