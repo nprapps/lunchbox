@@ -1,148 +1,138 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Lunchbox by nprapps</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Lunchbox</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/nprapps/lunchbox" class="btn">View on GitHub</a>
-      <a href="https://github.com/nprapps/lunchbox/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/nprapps/lunchbox/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
+        <link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/pygment_trac.css" rel="stylesheet" type="text/css" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <title>Lunchbox</title>
+    </head>
 
-    <section class="main-content">
-      <p><strong>Lunchbox</strong> is a suite of tools to create images intended for social media sharing. It includes Quotable, Factlist and Waterbug. To customize Lunchbox for your organization, follow the directions on <a href="https://github.com/nprapps/lunchbox">https://github.com/nprapps/lunchbox</a>. For using Lunchbox, see usage and guidelines below.</p>
+    <body>
+        <div id="container">
 
-<hr>
+            <header>
+                <div class="wrapper">
+                    <h1>Lunchbox</h1>
+                    <h2>Image tools for social media sharing</h2>
+                    
+                    <section class="clearfix">
+                    <a href="https://github.com/ryanpitts/listfilter" id="view-on-github" class="button"><span>View on GitHub</span></a>
+                    <div class="logos">
+                    <a href="http://opennews.org" class="org-logo"><img src="img/opennews-logo.png"></a>
+                    <p><a href="http://opennews.org/code.html">Released for OpenNews Code Convening, July 2015</a></p>
+                    </div>
+                    </section>
+                </div>
+            </header>
 
-<h1>
-<a id="usage-and-guidelines" class="anchor" href="#usage-and-guidelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage and Guidelines</h1>
+<div class="wrapper">
+    <section id="about">
 
-<p>The instructions below presume you have a working copy of Lunchbox on your computer, either generated from <a href="https://github.com/nprapps/lunchbox">Lunchbox's GitHub repo</a> or customized by someone in your organization.</p>
-
-<h2>
-<a id="waterbug" class="anchor" href="#waterbug" aria-hidden="true"><span class="octicon octicon-link"></span></a>Waterbug</h2>
-
-<p>Creates a watermarked image with attribution.</p>
-
-<h3>
-<a id="how-to-use-it" class="anchor" href="#how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it</h3>
-
-<ol>
-<li>Open Lunchbox and select Waterbug.</li>
-<li>Click 'Select file' and chose the source image from your computer. Alternatively, click URL and paste the URL for your image. Your image will replace the default image.</li>
-<li>Select the image copyright holder from the dropdown menu.</li>
-<li>Type in the photographer's full name.</li>
-<li>Type in the source when appropriate (add two examples here)</li>
-<li>Change 'Crop' option if you need a different format. Drag the image within the crop space to adjust what is visible.</li>
-<li>Adjust the text color to provide the most contrast against the image.</li>
-<li>Change the logo if you need alternate branding.</li>
-<li>Adjust the logo color to provide the most contrast against the image.</li>
-<li>Verify that all sharing guidelines are met.</li>
-<li>Click Save image to save to your computer. </li>
-</ol>
-
-<h3>
-<a id="guidelines" class="anchor" href="#guidelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guidelines</h3>
-
-<p>To make photos source and attribution clear to users:</p>
-
-<ul>
-<li>Follow the sharing guidelines of your organization to ensure licensing and copyright rules are properly met.</li>
-<li>Waterbug is meant to create a watermarked image with attribution. If you need to share a list of facts or a quote, use the Factlist or Quotable tools.</li>
-</ul>
-
-<h3>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h3>
-
-<h2>
-<a id="factlist" class="anchor" href="#factlist" aria-hidden="true"><span class="octicon octicon-link"></span></a>Factlist</h2>
-
-<p>Factlist produces a branded image with a list of text bullets.</p>
-
-<h3>
-<a id="how-to-use-it-1" class="anchor" href="#how-to-use-it-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it</h3>
-
-<ol>
-<li>Open Lunchbox and select Factlist.</li>
-<li>Select and replace the sample bullet text with your own (press enter for a new bullet). </li>
-<li>Select and replace the sample headline text with your own</li>
-<li>Adjust font size so the text fills the surrounding space comfortably</li>
-<li>Change theme if you need alternate branding</li>
-<li>Change aspect ratio if you need a different format</li>
-<li>Optional: Hide timestamp.</li>
-<li>Click Save image to save to your computer. </li>
-</ol>
-
-<p></p>
-
-<h3>
-<a id="guidelines-1" class="anchor" href="#guidelines-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guidelines</h3>
-
-<p>To keep facts clear and understandable to users:</p>
-
-<ul>
-<li>Do NOT include links in the image. Save those for the tweet or Facebook post.</li>
-<li>For developing stories, include the timestamp so facts may be compared to future/past versions for updates.</li>
-<li>Factlist is meant to present facts as a bulleted item list. If you need to share a quote, use the Quotable tool.</li>
-</ul>
-
-<h3>
-<a id="examples-1" class="anchor" href="#examples-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h3>
-
-<h2>
-<a id="quotable" class="anchor" href="#quotable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quotable</h2>
-
-<p>Quotable converts quoted text into an image. </p>
-
-<h3>
-<a id="how-to-use-it-2" class="anchor" href="#how-to-use-it-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it</h3>
-
-<ol>
-<li>Open Lunchbox and select Quotable.</li>
-<li>Select and replace the sample quoted text with your own.</li>
-<li>Select and replace the sample attribution text with your own.</li>
-<li>Adjust font size so the text fills the space comfortably.</li>
-<li>Change theme if you need alternate branding.</li>
-<li>Change aspect ratio if you need a different format.</li>
-<li>Optional: Hide quotation marks.</li>
-<li>Add attribution details for more context.</li>
-<li>Click Save image to save to your computer. </li>
-</ol>
-
-<p></p>
-
-<h3>
-<a id="guidelines-2" class="anchor" href="#guidelines-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guidelines</h3>
-
-<p>To make quotes most useful and understandable to users:</p>
-
-<ul>
-<li>Do NOT include links in the image. Save those for the tweet or Facebook post.</li>
-<li>Do NOT attribute a quote to a person if they did not make the statement. Treat the words you create with this tools as journalism—same rules and standards.</li>
-<li>Quotable is meant to present an attributed textual quote. If you need to share a list of facts, use the Factlist tool.</li>
-</ul>
-
-<h3>
-<a id="examples-2" class="anchor" href="#examples-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h3>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/nprapps/lunchbox">Lunchbox</a> is maintained by <a href="https://github.com/nprapps">nprapps</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+<p><em>Lunchbox</em> is a suite of tools to create images intended for social media sharing. It includes Quotable, Factlist and Waterbug. To customize Lunchbox for your organization, follow the directions on <a href="https://github.com/nprapps/lunchbox" alt="Download from Github">https://github.com/nprapps/lunchbox</a>. For using Lunchbox, see usage and guidelines below.</p>
 
     </section>
+</div>
 
-  
-  </body>
+<div class="wrapper">
+    <section id="guidelines">
+
+        <h1>Usage and Guidelines</h1>
+        <p>The instructions below presume you have a working copy of Lunchbox on your computer, either generated from <a href="https://github.com/nprapps/lunchbox">Lunchbox's GitHub repo</a> or customized by someone in your organization.</p>
+
+        <h2>Waterbug</h2>
+        <p>Creates a watermarked image with attribution.</p>
+
+        <h3>How to use it</h3>
+            <ol>
+                <li>Open Lunchbox and select Waterbug.</li>
+                <li>Click 'Select file' and chose the source image from your computer. Alternatively, click URL and paste the URL for your image. Your image will replace the default image.</li>
+                <li>Select the image copyright holder from the dropdown menu.</li>
+                <li>Type in the photographer's full name.</li>
+                <li>Type in the source when appropriate (add two examples here).</li>
+                <li>Change 'Crop' option if you need a different format. Drag the image within the crop space to adjust what is visible.</li>
+                <li>Adjust the text color to provide the most contrast against the image.
+                <li>Change the logo if you need alternate branding.</li>
+                <li>Adjust the logo color to provide the most contrast against the image.
+                <li>Verify that all sharing guidelines are met.</li>
+                <li>Click Save image to save to your computer.</li> 
+            </ol>
+
+        <h3>Guidelines</h3>
+        <p>To make photos source and attribution clear to users:</p>
+            <ul>
+                <li>Follow the sharing guidelines of your organization to ensure licensing and copyright rules are properly met.</li>
+                <li>Waterbug is meant to create a watermarked image with attribution. If you need to share a list of facts or a quote, use the Factlist or Quotable tools.</li>
+            </ul>
+
+        <h3>Examples</h3>
+
+        <h2>Factlist</h2>
+        <p>Factlist produces a branded image with a list of text bullets.</p>
+
+        <h3>How to use it</h3>
+            <ol>
+            <li>Open Lunchbox and select Factlist.</li>
+            <li>Select and replace the sample bullet text with your own (press enter for a new bullet). </li>
+            <li>Select and replace the sample headline text with your own.</li>
+            <li>Adjust font size so the text fills the space comfortably.</li>
+            <li>Change theme if you need alternate branding.</li>
+            <li>Change aspect ratio if you need a different format.</li>
+            <li>Optional: Hide timestamp.</li>
+            <li>Click Save image to save to your computer.</li>
+            </ol>
+
+        <add animated step by step here>
+
+        <h3>Guidelines</h3>
+        <p>To keep facts clear and understandable to users:</p>
+            <ul>
+                <li>Do NOT include links in the image. Save those for the tweet or Facebook post.</li>
+                <li>For developing stories, include the timestamp so facts may be compared to future/past versions for updates.</li>
+                <li>Factlist is meant to present facts as a bulleted item list. If you need to share a quote, use the Quotable tool.</li>
+            </ul>
+
+        <h3>Examples</h3>
+
+
+        <h2>Quotable</h2>
+        <p>Quotable converts quoted text into an image.</p>
+
+        <h3>How to use it</h3>
+            <ol>
+                <li>Open Lunchbox and select Quotable.</li>
+                <li>Select and replace the sample quoted text with your own.</li>
+                <li>Select and replace the sample attribution text with your own.</li>
+                <li>Adjust font size so the text fills the space comfortably.</li>
+                <li>Change theme if you need alternate branding.</li>
+                <li>Change aspect ratio if you need a different format.</li>
+                <li>Optional: Hide quotation marks.</li>
+                <li>Add attribution details for more context.</li>
+                <li>Click Save image to save to your computer.</li>
+            </ol>
+
+        <h3>Guidelines</h3>
+        <p>To make quotes most useful and understandable to users:</p>
+            <ul>
+                <li>Do NOT include links in the image. Save those for the tweet or Facebook post.</li>
+                <li>Do NOT attribute a quote to a person if they did not make the statement. Treat the words you create with this tools as journalism—same rules and standards.</li>
+                <li>Quotable is meant to present an attributed textual quote. If you need to share a list of facts, use the Factlist tool.</li>
+            </ul>
+
+        <h3>Examples</h3>
+    </section>
+</div>
+
+                <footer>
+                    <p>?</p>
+                </footer>
+            </div>
+        </div>
+    </body>
 </html>
-
