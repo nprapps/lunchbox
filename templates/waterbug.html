@@ -13,133 +13,135 @@
             <p class="drag-help">Drag the image to adjust the crop.</p>
         </div>
     </div>
-    <div class="editor">
-        <form autocomplete="off">
-            <ul class="form-header nav nav-pills">
-                <li role="presentation" class="disabled">Image</li>
-                <li role="presentation" class="active"><a href="#image-file" data-toggle="pill">File</a></li>
-                <li role="presentation"><a href="#image-url" data-toggle="pill">URL</a></li>
-            </ul>
+    <div class="form controls">
+        <div class="controls-wrapper">
+            <form autocomplete="off">
 
-            <div class="tab-content">
-                <div class="form-group tab-pane active" id="image-file">
-                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                        <div class="form-control" data-trigger="fileinput"><i class="fa fa-file fileinput-exists"></i> <span class="custom-filename" contentEditable="true"></span> <span class="fileinput-filename"></span></div>
-                        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="imageLoader" name="imageLoader"></span>
-                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                    </div>
-                    <span class="help">Click to edit name</span>
-                </div>
-
-                <div class="form-group tab-pane" id="image-url">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="imageLink" name="imageLink">
-                        <span id="imageLinkButton" class="input-group-addon btn btn-default btn-file">Load image</span>
-                    </div>
-                    <span class="help">Click to edit name</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <h6 class="control-label">Copyright holder <span class="required is-visible">(Required)</span></h6>
-
-                <select class="copyright-holder form-control">
-                  <option></option>
-                  <option value="npr">NPR</option>
-                  <option value="freelance">Freelance</option>
-                  <option value="ap">AP</option>
-                  <option value="getty">Getty</option>
-                  <option value="third-party">Third-Party/Courtesy</option>
-                </select>
-            </div>
-
-            <div class="form-group" style="display: none;">
-                <label class="control-label">Photographer <span class="required">(Required)</span></label>
-                <input type="text" class="form-control" id="photographer" name="photographer">
-            </div>
-
-            <div class="form-group" style="display: none;">
-                <label class="control-label">Source <span class="required">(Required)</span></label>
-                <input type="text" class="form-control" id="source" name="source">
-            </div>
-
-            <div class="row">
-                <div class="form-group hidden-xs hidden-sm col-lg-6">
-                    <h6 class="control-label">Crop</h6>
-                    <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                            <input type="radio" name="crop" id="twitter" value="twitter" checked>
-                            16x9 <i class="fa fa-twitter"></i>
-                        </label>
-                        <label class="btn btn-primary">
-                          <input type="radio" name="crop" id="original" value="original">
-                          Original
-                        </label>
-
-                    </div>
-                </div>
-
-                <div class="form-group col-lg-6">
-                    <h6 class="control-label">Logo</h6>
-
-                    <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
-                      <label class="btn btn-primary active">
-                        <input type="radio" name="logo" id="npr" value="npr" checked>
-                        NPR
-                      </label>
-                      <label class="btn btn-primary">
-                        <input type="radio" name="logo" id="music" value="music">
-                        NPR Music
-                      </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-lg-6 col-lg-push-6">
-                    <h6 class="control-label">Logo color</h6>
-                    <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
-                      <label class="btn btn-primary active">
-                        <input type="radio" name="logoColor" id="whiteLogo" value="white" checked>
-                        White
-                      </label>
-                      <label class="btn btn-primary">
-                        <input type="radio" name="logoColor" id="blackLogo" value="black">
-                        Black
-                      </label>
-                    </div>
-                </div>
-                <div class="form-group col-lg-6 col-lg-pull-6">
-                    <h6 class="control-label">Text color</h6>
-                    <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
-                      <label class="btn btn-primary active">
-                        <input type="radio" name="textColor" id="whiteText" value="white" checked>
-                        White
-                      </label>
-                      <label class="btn btn-primary">
-                        <input type="radio" name="textColor" id="blackText" value="black">
-                        Black
-                      </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <h6 class="form-header">Sharing guidelines</h6>
-                <ul class="guidelines">
-                    <li>Only official NPR accounts can tweet wire images (Getty/AP)</li>
-                    <li>Only tweet AP photos that are published with the story and we must include the story link</li>
-                    <li>We can tweet multiple Getty photos as long as they’re licensed and have been downloaded</li>
-                    <li>We can’t tweet Corbis or Landov images</li>
-                    <li>NPR, freelancer, third party/courtesy photos, PR, Flickr Creative Commons and public domain images are fine to share, just include correct attribution</li>
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="disabled">Image</li>
+                    <li role="presentation" class="active"><a href="#image-file" data-toggle="pill">File</a></li>
+                    <li role="presentation"><a href="#image-url" data-toggle="pill">URL</a></li>
                 </ul>
-            </div>
 
-            <div class="form-group">
-                <p class="help-text visible-xs">To use the image on iOS, tap save to open the watermarked image in a new tab, then long tap the image and select “Save Image” to save the image to your camera roll.</p>
-                <button class="btn btn-primary btn-lg btn-block save-btn" download="download.png" disabled>Save image</button>
-            </div>
+                <div class="tab-content">
+                    <div class="form-group tab-pane active" id="image-file">
+                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                            <div class="form-control" data-trigger="fileinput"><i class="fa fa-file fileinput-exists"></i> <span class="custom-filename" contentEditable="true"></span> <span class="fileinput-filename"></span></div>
+                            <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="imageLoader" name="imageLoader"></span>
+                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                        <span class="help">Click to edit name</span>
+                    </div>
 
-            <p class="sample-credit">Sample image: <a href="https://www.flickr.com/photos/albaraa/7837157812/in/photolist-cWxtYy-fd7sCV-jXK9kw-h2uume-6Vvw1D-9y9KuU-aaTrae-aND34a-7vCfq5-7Fihq9-gCVuVC-4EfCSF-nxVJGT-h2u4Fm-6Rqu9g-aE44a1-dgNZb2-czXySQ-4TF4Mv-8sCrCz-6RHSzX-h2uH1m-6nNG28-aGCMUM-3cgGWd-fd7sZ8-bT696M-h2uH7q-h2roVm-4DxZuy-d254yU-fmVVxa-73Pjgh-fdmK2C-hRzCmf-6Rux4S-phyN4p-p15nDN-arGkAi-85AGFh-d254os-7qjsgt-nQqsTR-fd7vPF-e91zyU-6nnyJr-pK8vLC-pK5kbJ-7qomAQ-8B1prK">Belal Khan/Flickr</a></p>
-        </form>
+                    <div class="form-group tab-pane" id="image-url">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="imageLink" name="imageLink">
+                            <span id="imageLinkButton" class="input-group-addon btn btn-default btn-file">Load image</span>
+                        </div>
+                        <span class="help">Click to edit name</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="copyright-holder">Copyright holder <span class="required is-visible">(Required)</span></label>
+
+                    <select class="copyright-holder form-control" name="copyright-holder">
+                      <option></option>
+                      <option value="npr">NPR</option>
+                      <option value="freelance">Freelance</option>
+                      <option value="ap">AP</option>
+                      <option value="getty">Getty</option>
+                      <option value="third-party">Third-Party/Courtesy</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="photographer">Photographer <span class="required">(Required)</span></label>
+                    <input type="text" class="form-control" id="photographer" name="photographer">
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label class="control-label">Source <span class="required">(Required)</span></label>
+                    <input type="text" class="form-control" id="source" name="source">
+                </div>
+
+                <div class="row">
+                    <div class="form-group hidden-xs hidden-sm col-lg-6">
+                        <label for="crop">Crop</label>
+                        <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="crop" id="twitter" value="twitter" checked>
+                                16x9 <i class="fa fa-twitter"></i>
+                            </label>
+                            <label class="btn btn-primary">
+                              <input type="radio" name="crop" id="original" value="original">
+                              Original
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label for="logo">Logo</label>
+                        <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
+                          <label class="btn btn-primary active">
+                            <input type="radio" name="logo" id="npr" value="npr" checked>
+                            NPR
+                          </label>
+                          <label class="btn btn-primary">
+                            <input type="radio" name="logo" id="music" value="music">
+                            NPR Music
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-lg-push-6">
+                        <label for="logoColor">Logo color</label>
+                        <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
+                          <label class="btn btn-primary active">
+                            <input type="radio" name="logoColor" id="whiteLogo" value="white" checked>
+                            White
+                          </label>
+                          <label class="btn btn-primary">
+                            <input type="radio" name="logoColor" id="blackLogo" value="black">
+                            Black
+                          </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6 col-lg-pull-6">
+                        <label for="textColor">Text color</label>
+                        <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
+                          <label class="btn btn-primary active">
+                            <input type="radio" name="textColor" id="whiteText" value="white" checked>
+                            White
+                          </label>
+                          <label class="btn btn-primary">
+                            <input type="radio" name="textColor" id="blackText" value="black">
+                            Black
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Sharing guidelines</label>
+                    <ul class="guidelines">
+                        <li>Only official NPR accounts can tweet wire images (Getty/AP)</li>
+                        <li>Only tweet AP photos that are published with the story and we must include the story link</li>
+                        <li>We can tweet multiple Getty photos as long as they’re licensed and have been downloaded</li>
+                        <li>We can’t tweet Corbis or Landov images</li>
+                        <li>NPR, freelancer, third party/courtesy photos, PR, Flickr Creative Commons and public domain images are fine to share, just include correct attribution</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <p class="help-text visible-xs">To use the image on iOS, tap save to open the watermarked image in a new tab, then long tap the image and select “Save Image” to save the image to your camera roll.</p>
+                    <button class="btn btn-primary btn-lg btn-block save-btn" download="download.png" disabled>Save image</button>
+                </div>
+
+                <p class="sample-credit">Sample image: <a href="https://www.flickr.com/photos/albaraa/7837157812/in/photolist-cWxtYy-fd7sCV-jXK9kw-h2uume-6Vvw1D-9y9KuU-aaTrae-aND34a-7vCfq5-7Fihq9-gCVuVC-4EfCSF-nxVJGT-h2u4Fm-6Rqu9g-aE44a1-dgNZb2-czXySQ-4TF4Mv-8sCrCz-6RHSzX-h2uH1m-6nNG28-aGCMUM-3cgGWd-fd7sZ8-bT696M-h2uH7q-h2roVm-4DxZuy-d254yU-fmVVxa-73Pjgh-fdmK2C-hRzCmf-6Rux4S-phyN4p-p15nDN-arGkAi-85AGFh-d254os-7qjsgt-nQqsTR-fd7vPF-e91zyU-6nnyJr-pK8vLC-pK5kbJ-7qomAQ-8B1prK">Belal Khan/Flickr</a></p>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

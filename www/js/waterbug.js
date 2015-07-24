@@ -45,7 +45,7 @@ var currentCrop = 'twitter'; // default crop size
 var currentLogo = 'npr'; // default logo slug
 var currentLogoColor = 'white'; // default logo color
 var currentTextColor = 'white'; // default text color
-var defaultImage = '../assets/test-kitten.jpg'; // path to image to load as test image
+var defaultImage = '../img/test-kitten.jpg'; // path to image to load as test image
 var defaultLogo = logos['npr']['whitePath'] // path to default logo
 
 /*
