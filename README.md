@@ -118,10 +118,25 @@ var logos = {
 
 Additionally, you can change every property of the font rendering (font face, size, shadow, etc.) as well as the padding around all of the elements in the image. 
 
-- further customizing the app (for more fine-point customizations, where to change things
-- theming
+### Multiple Themes
+
+For Quotable and Factlist, you can provide up to three themes in addition to the default theme if your news organization requires different branding for different accounts (think [NPR](http://twitter.com/npr) vs. [NPR Music](http://twitter.com/nprmusic)).
+
+In `less/variables.less`, you can define themes at the bottom of the file. For each theme, you can change the background color, text color, and logo:
+
+```
+@theme2-bg-color: #41474E;
+@theme2-text-color: #dbe0e6;
+@theme2-logo-path: url('../img/icon-socializr-white.svg');
+@theme2-sq-logo-width: 145px;
+@theme2-sq-logo-height: 48px;
+@theme2-16x9-logo-width: 121px;
+@theme2-16x9-logo-height: 40px;
+```
+
+In the form UI, you can change the display of the theme selection buttons in each app's HTML template (`templates/quotable.html`, `templates/factlist.html`). Be sure not to change the ID attribute of the button, as these IDs control the JavaScript that adds and removes classes on the image.
+
 - editing sharing guidelines
-- changing desktop app icon
 
 Deploy the desktop app
 -------------
