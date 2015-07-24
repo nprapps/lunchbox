@@ -14,9 +14,7 @@ var mainWindow = null;
 app.on('window-all-closed', function() {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
+  app.quit();
 });
 
 // This method will be called when Electron has finished
@@ -41,10 +39,10 @@ app.on('ready', function() {
 
   // Create the Application's main menu
     var template = [{
-      label: 'Electron',
+      label: 'Lunchbox',
       submenu: [
         {
-          label: 'About Electron',
+          label: 'About Lunchbox',
           selector: 'orderFrontStandardAboutPanel:'
         },
         {
