@@ -18,17 +18,20 @@
     {% block extra_head %}
     {% endblock extra_head %}
 </head>
-<body>
+<body class="{{ id|lower }}">
     <a class="sr-only" href="#content">Skip To Content</a>
 
     {% block outer_content %}
 
     {% block header_content %}
     <header>
-        <div class="home-link">
-            <a href="../index.html">
+        <div class="nav-links">
+            <a href="../index.html" class="home-link">
                 TK TK app name
             </a>
+            {% if name != 'Quotable' %}<a href="../quotable/index.html">Quotable</a>{% endif %}
+            {% if name != 'Factlist' %}<a href="../factlist/index.html">Factlist</a>{% endif %}
+            {% if name != 'Waterbug' %}<a href="../waterbug/index.html">Waterbug</a>{% endif %}
         </div>
 
         <h1>{{ name }}</h1>

@@ -7,36 +7,28 @@
 {% endblock header_content %}
 
 {% block content %}
-<br />
+<div class="container">
 
-<div class="home-screen">
+    <div class="poster-wrapper col-sm-4">
+        <a href="quotable/index.html"><img src="img/icon-quotable.svg" height="150" width="150"alt="Quotable" />
+        <h3>Quotable</h3></a>
+        <p>Shareable image of an interesting&nbsp;quote.</p>
+    </div>
 
-    <div class="container">
+    <div class="poster-wrapper col-sm-4">
+        <a href="factlist/index.html"><img src="img/icon-factlist.svg" height="150" width="150" alt="Factlist" />
+        <h3>Factlist</h3></a>
+        <p>Shareable images of a list of&nbsp;facts.
+            <i>(Example: Breaking news&nbsp;updates)</i></p>
+    </div>
 
-        <div class="poster-wrapper col-sm-4">
-            <a href="quotable/index.html"><img src="img/icon-quotable.svg" height="150" width="150"alt="Quotable" />
-            <h3>Quotable</h3></a>
-            <p>Shareable image of an interesting&nbsp;quote.</p>
-        </div>
-
-        <div class="poster-wrapper col-sm-4">
-            <a href="factlist/index.html"><img src="img/icon-factlist.svg" height="150" width="150" alt="Factlist" />
-            <h3>Factlist</h3></a>
-            <p>Shareable images of a list of&nbsp;facts.
-                <i>(Example: Breaking news&nbsp;updates)</i></p>
-        </div>
-
-        <div class="poster-wrapper col-sm-4">
-            <a href="waterbug/index.html"><img src="img/icon-waterbug.svg" height="150" width="150"alt="Waterbug" />
-            <h3>Waterbug</h3></a>
-            <p>Watermark images for Twitter with a logo and photo&nbsp;credit.</p>
-        </div>
-    
+    <div class="poster-wrapper col-sm-4">
+        <a href="waterbug/index.html"><img src="img/icon-waterbug.svg" height="150" width="150"alt="Waterbug" />
+        <h3>Waterbug</h3></a>
+        <p>Watermark images for Twitter with a logo and photo&nbsp;credit.</p>
     </div>
 
 </div>
-
-
 {% endblock %}
 
 
