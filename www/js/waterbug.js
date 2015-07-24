@@ -154,7 +154,7 @@ var onDocumentLoad = function(e) {
         'OTransform': 'scale(' + scale + ')',
         'transform': 'scale(' + scale + ')'
     });
-
+    console.log('onDocumentLoad');
     renderCanvas();
 }
 
@@ -371,7 +371,7 @@ var onDrag = function(e) {
                     dy = canvas.height - scaledImageHeight;
                     return;
                 }
-
+                console.log('onDrag')
                 renderCanvas();
             }
         } else {
@@ -389,7 +389,7 @@ var onDrag = function(e) {
                     dx = canvas.width - scaledImageWidth;
                     return;
                 }
-
+                console.log('onDrag');
                 renderCanvas();
             }
         }
@@ -474,9 +474,6 @@ var handleImageLink = function(e) {
 * Set dragging status based on image aspect ratio and render canvas
 */
 var onImageLoad = function(e) {
-    // firefox won't render image on first try without this  ¯\_(ツ)_/¯
-    img.src = img.src;
-
     renderCanvas();
     onCropChange();
 }
@@ -539,6 +536,7 @@ var onLogoColorChange = function(e) {
     currentLogoColor = $(this).val();
 
     loadLogo();
+    console.log('onLogoColorChange');
     renderCanvas();
 }
 
@@ -547,7 +545,7 @@ var onLogoColorChange = function(e) {
 */
 var onTextColorChange = function(e) {
     currentTextColor = $(this).val();
-
+    console.log('onTextColorChange');
     renderCanvas();
 }
 
@@ -558,6 +556,7 @@ var onLogoChange = function(e) {
     currentLogo = $(this).val();
 
     loadLogo();
+    console.log('onLogoChange');
     renderCanvas();
 }
 
@@ -575,7 +574,7 @@ var onCropChange = function() {
         $canvas.removeClass('is-draggable shallow');
         $dragHelp.hide();
     }
-
+    console.log('onCropChange')
     renderCanvas();
 }
 
@@ -611,7 +610,7 @@ var onCopyrightChange = function() {
             .slideUp()
             .parents('.form-group').removeClass('has-warning required');
     }
-
+    console.log('onCopyrightChange');
     renderCanvas();
 }
 
