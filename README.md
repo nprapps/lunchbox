@@ -73,11 +73,12 @@ Configuration
 - how to format assets
 - further customizing the app (for more fine-point customizations, where to change things
 - theming
+- changing desktop app icon
 
 Deploy the desktop app
 -------------
 
-(on using Electron)
+The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX, Windows and Linux.
 
 To build an electron app:
 
@@ -85,7 +86,7 @@ To build an electron app:
 fab production build_electron
 ```
 
-Compiled binaries are found in the `electron/` folder after you run this command.
+Compiled binaries for each platform are found in the `electron/` folder after you run this command.
 
 About
 -------------
