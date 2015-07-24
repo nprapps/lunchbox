@@ -19,34 +19,40 @@ header {
     padding: 25px @grid-gutter-width / 2;
     color: @gray-lighter;
 
-    a {
-        color: @gray-lighter;
+    a { 
+        color: @gray-lighter; 
+
+        &:hover {
+            color: @gray;
+            text-decoration: none;
+        }
     }
 
-    a:hover {
-        color: @gray;
-        text-decoration: none;
-    }
-
-    .icon-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: 30px 15px 0 15px;
-        min-height: 89px;
-        border-style: solid;
-        border-color: @gray-lighter;
-        border-width: 0 1px 0 0;
-        font-size: 35px;
-    }
-
-    .header-wrapper {
+    .home-link {
         margin: 0 0 11px 0;
         padding: 0;
         
         @media screen and (min-width: 700px){
             margin: 0 auto;
             padding: 0 @grid-gutter-width / 2;
+        }
+
+        a {
+            display: block;
+            line-height: 32px;
+            margin-right: - @grid-gutter-width / 2;
+            font-size: 16px;
+            text-transform: lowercase;
+            -webkit-font-smoothing: antialiased;
+
+            &:hover {
+                color: #eee;
+                opacity: 0.7;
+            }
+
+            @media screen and (min-width: 700px){
+                float: right;
+            }
         }
     }
 
@@ -79,24 +85,6 @@ header {
         width: auto;
         border: 1px solid #eee;
         margin-right: 5px;
-    }
-
-    a.toolkit-link {
-        display: block;
-        line-height: 32px;
-        margin-right: - @grid-gutter-width / 2;
-        font-size: 16px;
-        text-transform: lowercase;
-        -webkit-font-smoothing: antialiased;
-
-        &:hover {
-            color: #eee;
-            opacity: 0.7;
-        }
-
-        @media screen and (min-width: 700px){
-            float: right;
-        }
     }
 }
 
