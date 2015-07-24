@@ -39,6 +39,48 @@ var fontShadowBlur = 10; // font shadow blur
 // copyright options, see buildCreditString() for more options
 var orgName = 'Your News Organization';
 var freelanceString = 'for ' + orgName;
+var copyrightOptions = {
+    'internal': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: false,
+        sourceRequired: false,
+        source: orgName,
+        display: orgName,        
+    },
+    'freelance': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: true,
+        sourceRequired: false,
+        source: freelanceString,
+        display: 'Freelance' 
+    },
+    'ap': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: false,
+        sourceRequired: false,
+        source: 'AP',
+        display: 'AP' 
+    },
+    'getty': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: false,
+        sourceRequired: false,
+        source: 'Getty Images',
+        display: 'Getty' 
+    },
+    'thirdParty': {
+        showPhotographer: true,
+        showSource: true,
+        photographerRequired: false,
+        sourceRequired: true,
+        source: '',
+        display: 'Third Party/Courtesy' 
+    }
+}
 
 // app load defaults
 var currentCrop = 'twitter'; // default crop size
@@ -279,38 +321,29 @@ var buildCreditString = function() {
     var creditString;
     var val = $copyrightHolder.val();
 
-    if (val === 'npr') {
-        if ($photographer.val() === '') {
-            creditString = orgName;
+    if ($photographer.val() !== '') {
+        if (copyrightOptions[val]['source']) {
+            creditString = $photographer.val() + '/' + copyrightOptions[val]['source'];
         } else {
-            creditString = $photographer.val() + '/' + orgName;
+            creditString = $photographer.val() + '/' + $source.val();
         }
-    } else if (val === 'freelance') {
-        creditString = $photographer.val() + ' ' + freelanceString;
+    } else {
+        if (copyrightOptions[val]['source']) {
+            creditString = copyrightOptions[val]['source'];
+        } else {
+            creditString = $source.val();
+        }
+    }
+
+    if (copyrightOptions[val]['photographerRequired']) {
         if ($photographer.val() !== '') {
             $photographer.parents('.form-group').removeClass('has-warning');
         } else {
             $photographer.parents('.form-group').addClass('has-warning');
         }
-    } else if (val === 'ap') {
-        if ($photographer.val() !== '') {
-            creditString = $photographer.val() + '/AP';
-        } else {
-            creditString = 'AP';
-        }
-    } else if (val === 'getty') {
-        if ($photographer.val() !== '') {
-            creditString = $photographer.val() + '/Getty Images';
-        } else {
-            creditString = 'Getty Images';
-        }
-    } else {
-        if ($photographer.val() !== '') {
-            creditString = $photographer.val() + '/' + $source.val();
-        } else {
-            creditString = $source.val();
-        }
+    }
 
+    if (copyrightOptions[val]['sourceRequired']) {
         if ($source.val() !== '') {
             $source.parents('.form-group').removeClass('has-warning');
         } else {
@@ -591,30 +624,58 @@ var onCopyrightChange = function() {
     $photographer.parents('.form-group').removeClass('has-warning');
     $source.parents('.form-group').removeClass('has-warning');
 
-    if (currentCopyright === 'npr') {
-        $photographer.parents('.form-group').removeClass('required').slideDown();
-        $source.parents('.form-group').slideUp();
-    } else if (currentCopyright === 'freelance') {
-        $photographer.parents('.form-group').slideDown();
-        $source.parents('.form-group').slideUp();
-        $photographer.parents('.form-group').addClass('has-warning required');
-    } else if (currentCopyright === 'ap' || currentCopyright === 'getty') {
-        $photographer.parents('.form-group').removeClass('required').slideDown();
-        $source.parents('.form-group')
-            .slideUp()
-            .removeClass('has-warning required');
+    if (copyrightOptions[currentCopyright]) {
+        if (copyrightOptions[currentCopyright]['showPhotographer']) {
+            $photographer.parents('.form-group').slideDown();
+            if (copyrightOptions[currentCopyright]['photographerRequired']) {
+                $photographer.parents('.form-group').addClass('has-warning required');
+            } else {
+                $photographer.parents('.form-group').removeClass('required')
+            }
+        } else {
+            $photographer.parents('.form-group').slideUp();
+        }
 
-    } else if (currentCopyright === 'third-party') {
-        $photographer.parents('.form-group').removeClass('required').slideDown();
-        $source.parents('.form-group').slideDown();
-        $source.parents('.form-group').addClass('has-warning required');
+        if (copyrightOptions[currentCopyright]['showSource']) {
+            $source.parents('.form-group').slideDown();
+            if (copyrightOptions[currentCopyright]['sourceRequired']) {
+                $source.parents('.form-group').addClass('has-warning required');
+            } else {
+                $source.parents('.form-group').removeClass('required')
+            }
+        } else {
+            $source.parents('.form-group').slideUp();
+        }
     } else {
-        credit = '';
         $photographer.parents('.form-group').slideUp();
-        $source.parents('.form-group')
-            .slideUp()
-            .parents('.form-group').removeClass('has-warning required');
+        $source.parents('.form-group').slideUp();
+        credit = '';
     }
+
+    // if (currentCopyright === 'npr') {
+    //     $photographer.parents('.form-group').removeClass('required').slideDown();
+    //     $source.parents('.form-group').slideUp();
+    // } else if (currentCopyright === 'freelance') {
+    //     $photographer.parents('.form-group').slideDown();
+    //     $source.parents('.form-group').slideUp();
+    //     $photographer.parents('.form-group').addClass('has-warning required');
+    // } else if (currentCopyright === 'ap' || currentCopyright === 'getty') {
+    //     $photographer.parents('.form-group').removeClass('required').slideDown();
+    //     $source.parents('.form-group')
+    //         .slideUp()
+    //         .removeClass('has-warning required');
+
+    // } else if (currentCopyright === 'third-party') {
+    //     $photographer.parents('.form-group').removeClass('required').slideDown();
+    //     $source.parents('.form-group').slideDown();
+    //     $source.parents('.form-group').addClass('has-warning required');
+    // } else {
+    //     credit = '';
+    //     $photographer.parents('.form-group').slideUp();
+    //     $source.parents('.form-group')
+    //         .slideUp()
+    //         .parents('.form-group').removeClass('has-warning required');
+    // }
     renderCanvas();
 }
 
