@@ -42,7 +42,6 @@ def production():
     """
     env.settings = 'production'
     app_config.configure_targets(env.settings)
-    env.hosts = app_config.SERVERS
 
 @task
 def staging():
