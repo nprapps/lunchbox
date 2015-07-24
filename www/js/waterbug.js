@@ -6,8 +6,6 @@
 var canvasWidth = 1000; // this will be the exported width of the image
 var elementPadding = 40; // padding around the logo and credit text
 
-// app load defaults
-
 // logo configuration
 // the name of the logo object should match the value of the corresponding radio button in the HTML.
 var logos = {
@@ -15,7 +13,7 @@ var logos = {
         whitePath: '../assets/logo-npr-white.png', // path to white logo
         blackPath: '../assets/logo-npr-black.png', // path to black logo
         w: 150, // width of logo
-        h: 51 // height of logo
+        h: 51, // height of logo
     },
     'music': {
         whitePath: '../assets/logo-music-white.png',
@@ -25,12 +23,9 @@ var logos = {
     }
 };
 
-var currentCrop = 'twitter'; // default crop size
-var currentLogo = 'npr'; // default logo slug
-var currentLogoColor = 'white'; // default logo color
-var currentTextColor = 'white'; // default text color
-var defaultImage = '../assets/test-kitten.jpg'; // path to image to load as test image
-var defaultLogo = logos['npr']['whitePath'] // path to default logo
+// logo opacity for colors
+var whiteLogoAlpha = '0.8';
+var blackLogoAlpha = '0.6';
 
 // type
 var fontWeight = 'normal'; // font weight for credit
@@ -41,13 +36,17 @@ var fontShadowOffsetX = 0; // font shadow offset x
 var fontShadowOffsetY = 0; // font shadow offset y
 var fontShadowBlur = 10; // font shadow blur
 
-// logo opacity for colors
-var whiteLogoAlpha = '0.8';
-var blackLogoAlpha = '0.6';
-
 // copyright options, see buildCreditString() for more options
 var orgName = 'NPR';
 var freelanceString = 'for ' + orgName;
+
+// app load defaults
+var currentCrop = 'twitter'; // default crop size
+var currentLogo = 'npr'; // default logo slug
+var currentLogoColor = 'white'; // default logo color
+var currentTextColor = 'white'; // default text color
+var defaultImage = '../assets/test-kitten.jpg'; // path to image to load as test image
+var defaultLogo = logos['npr']['whitePath'] // path to default logo
 
 /*
 * END CONFIG VARS
