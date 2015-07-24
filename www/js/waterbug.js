@@ -9,17 +9,17 @@ var elementPadding = 40; // padding around the logo and credit text
 // logo configuration
 // the name of the logo object should match the value of the corresponding radio button in the HTML.
 var logos = {
-    'npr': {
-        whitePath: '../assets/logo-npr-white.png', // path to white logo
-        blackPath: '../assets/logo-npr-black.png', // path to black logo
-        w: 150, // width of logo
-        h: 51, // height of logo
+    'socializr': {
+        whitePath: '../img/icon-socializr-white.svg', // path to white logo
+        blackPath: '../img/icon-socializr-black.svg', // path to black logo
+        w: 200, // width of logo
+        h: 67, // height of logo
     },
-    'music': {
-        whitePath: '../assets/logo-music-white.png',
-        blackPath: '../assets/logo-music-black.png',
-        w: 306,
-        h: 81
+    'npr': {
+        whitePath: '../assets/logo-npr-white.png',
+        blackPath: '../assets/logo-npr-black.png',
+        w: 150,
+        h: 51
     }
 };
 
@@ -42,11 +42,11 @@ var freelanceString = 'for ' + orgName;
 
 // app load defaults
 var currentCrop = 'twitter'; // default crop size
-var currentLogo = 'npr'; // default logo slug
+var currentLogo = 'socializr'; // default logo slug
 var currentLogoColor = 'white'; // default logo color
 var currentTextColor = 'white'; // default text color
 var defaultImage = '../img/test-kitten.jpg'; // path to image to load as test image
-var defaultLogo = logos['npr']['whitePath'] // path to default logo
+var defaultLogo = logos[currentLogo]['whitePath'] // path to default logo
 
 /*
 * END CONFIG VARS
