@@ -18,13 +18,16 @@ TKTK APP NAME is a suite of tools to create images intended for social media sha
 * *Factlist*: Creates a branded bulleted list of items as an image
 * *Waterbug*: Creates a watermarked and attributed image
 
-TKTK APP NAME is a customizable suite that is deployable as a desktop app. Set-up and customization instructions are included below. For end-users of the tools, see [usage guidelines](#).
-
 Assumptions 
 -------------
 
-(how it's going to be used, presumed expertise)
+TKTK APP NAME is a customizable suite that is deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see [usage guidelines](#).
 
+The following things are assumed to be true in this documentation.
+
+* You are running OSX.
+* You are using Python 2.7. (Probably the version that came OSX.)
+* You have [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper) installed and working.
 
 What's in here?
 -------------
