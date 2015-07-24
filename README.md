@@ -67,7 +67,7 @@ Visit [localhost:8000](http://127.0.0.1:8000/) in your browser to see the app.
 Configuration
 -------------
 
-You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it. Configuration options allow you to tailor the app to match your organization's branding and theme.
+You can skip configuration if you just want to [deploy Lunchbox](#deploy-the-desktop-app) and start using it with the application's default branding. Configuration options allow you to tailor the app to match your organization's branding and theme.
 
 ### Assets
 
