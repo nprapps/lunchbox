@@ -18,8 +18,14 @@ What is this?
 Assumptions 
 -------------
 
-(how it's going to be used, presumed expertise)
+Building this app as a developer runs under the following assumptions:
 
+* You are running OSX.
+* You are using Python 2.7. (Probably the version that came OSX.)
+* You have [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper) installed and working.
+* You have node.js installed (on OSX, `brew install node`).
+
+For more details on the technology stack used, see our [development environment blog post](http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html).
 
 What's in here?
 -------------
@@ -27,22 +33,20 @@ What's in here?
 (how the repo is organized, what each folder contains)
 
 * ``fabfile`` -- [Fabric](http://docs.fabfile.org/en/latest/) commands for automating setup and deployment.
-* ``less`` -- [Bootstrap](http://getbootstrap.com/css/) and compressed app styles.
+* ``less`` -- App stylesheets and Bootstrap.
 * ``templates`` -- HTML ([Jinja2](http://jinja.pocoo.org/docs/)) templates, to be compiled locally.
 * ``www`` -- App assets and rendered files.
 * ``app.py`` -- A [Flask](http://flask.pocoo.org/) app for rendering the project locally.
-* ``app_config.py`` -- .
-* ``package.json`` -- .
-* ``render_utils.py`` -- .
+* ``app_config.py`` -- Configuration variables for the app.
+* ``package.json`` -- Node requirements and scripts for building the electron app.
+* ``render_utils.py`` -- Utilities for rendering the Flask app into flat files.
 * ``requirements.txt`` -- Python requirements.
-* ``static.py`` -- .
+* ``static.py`` -- Static file routes for the Flask app.
 
 
 Quick Start
 -------------
-(Bootstrap the project)
-
-The install process is just like any other app template-based project:
+Clone the repo and install requirements.
 
 ```
 mkvirtualenv portland
@@ -50,12 +54,19 @@ pip install -r requirements.txt
 npm install
 ```
 
-Run the project
+Run the project locally:
 
 ```
 fab app
 ```
 
+Then, open a browser window and go to [127.0.0.1:8000](http://127.0.0.1:8000).
+
+Build the electron app:
+
+```
+fab production build_electron
+```
 
 Configuration
 -------------
