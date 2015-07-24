@@ -6,8 +6,8 @@ portland
 * [What's in here?](#what-is-in-here)
 * [Quick start](#quick-start)
 * [Configuration](#configuration)
-* [Run the project](#run-the-project)
-* [Moar](#moar)
+* [Deploy the desktop app](#deploy-the-desktop-app)
+* [About](#about)
 
 What is this?
 -------------
@@ -26,6 +26,17 @@ What's in here?
 
 (how the repo is organized, what each folder contains)
 
+* ``fabfile`` -- [Fabric](http://docs.fabfile.org/en/latest/) commands for automating setup and deployment.
+* ``less`` -- [Bootstrap](http://getbootstrap.com/css/) and compressed app styles.
+* ``templates`` -- HTML ([Jinja2](http://jinja.pocoo.org/docs/)) templates, to be compiled locally.
+* ``www`` -- App assets and rendered files.
+* ``app.py`` -- A [Flask](http://flask.pocoo.org/) app for rendering the project locally.
+* ``app_config.py`` -- .
+* ``package.json`` -- .
+* ``render_utils.py`` -- .
+* ``requirements.txt`` -- Python requirements.
+* ``static.py`` -- .
+
 
 Quick Start
 -------------
@@ -40,7 +51,7 @@ npm install
 ```
 
 Run the project
- 
+
 ```
 fab app
 ```
@@ -55,7 +66,7 @@ Configuration
 - further customizing the app (for more fine-point customizations, where to change things
 - theming
 
-Run the project
+Deploy the desktop app
 -------------
 
 (on using Electron)
@@ -68,7 +79,7 @@ fab production build_electron
 
 Compiled binaries are found in the `electron/` folder after you run this command.
 
-Moar
+About
 -------------
 
 This project consolidated [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Waterbug](https://github.com/nprapps/waterbug), and [Factlist](https://github.com/nprapps/factlist) apps into a stand-alone desktop suite of social tools for the newsroom. 
