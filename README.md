@@ -83,7 +83,11 @@ For Waterbug, you will want to have a white version and a black version of your 
 
 ### Define global variables
 
-There are two places where variables are defined. For Quotable and Factlist, all configuration takes places in `less/variables.less`. You can define font families, establish the default background color/text color and define the logo used on the images. 
+There are two places where variables are defined, one place for Quotable and Factlist and one place for Waterbug. 
+
+#### Quotable/Factlist
+
+For Quotable and Factlist, all configuration takes places in `less/variables.less`. You can define font families, establish the default background color/text color and define the logo used on the images. 
 
 Importantly, if you use a custom logo, you will also need to explicitly define the width and height of the logo in both square crop and 16x9 crop scenarios. The variables at the top of the file will do this: 
 
@@ -97,9 +101,11 @@ Importantly, if you use a custom logo, you will also need to explicitly define t
 
 Additionally, you can fine-tune various aspects of Quotable and Factlist using the app-specific variables also listed in the file. The defaults should work well out of the box, but your organization's logo or font may require tweaks.
 
-Waterbug has a different configuration system because it cannot be controlled through CSS. To customize Waterbug, go to `www/js/waterbug.js` and customize the variables at the top of the file. 
+#### Waterbug
 
-In this file, you can define the logos used and the sizes with which they render by editing the `logos` object. Note that each logo's individual object must match the value of its corresponding radio button in `templates/waterbug.html`:
+Waterbug has a different configuration system because it cannot be controlled through CSS. To customize Waterbug, go to `www/js/waterbug-config.js` and customize the variables at the top of the file. 
+
+In this file, you can define the logos used and the sizes with which they render by editing the `logos` object.
 
 ```
 var logos = {
@@ -108,17 +114,86 @@ var logos = {
         blackPath: '../path/to/logo-black.svg', // path to black logo
         w: 200, // width of logo
         h: 67, // height of logo
+        display: 'Name of logo' // how the button toggle will appear in the UI
     },
     'name-of-second-logo': {
         whitePath: '../path/to/second-logo-white.svg',
         blackPath: '../path/to/second-logo-white.svg',
         w: 150,
-        h: 51
+        h: 51,
+        display: 'Name of second logo'
     }
 };
 ```
 
-Additionally, you can change every property of the font rendering (font face, size, shadow, etc.) as well as the padding around all of the elements in the image. 
+If you have more than one logo, the UI will automatically add toggle buttons so that you can switch between logos on the fly.
+
+Additionally, You can change every property of the font rendering (font face, size, shadow, etc.) as well as the padding around all of the elements (`elementPadding`) in the image and the export width of the image (`canvasWidth`).
+
+You will want to configure the copyright options for Waterbug based on the photo providers your news organization can use. This is defined in an large object that contains an object for each copyright option. The boolean values control the behavior of the form:
+
+```
+// copyright options
+var orgName = 'Your News Organization';
+var freelanceString = 'for ' + orgName;
+
+var copyrightOptions = {
+    'internal': {
+        showPhotographer: true, // show the photographer input box
+        showSource: false, // show the source input box
+        photographerRequired: false, // require a photographer
+        sourceRequired: false, // require a source
+        source: orgName, // How the source should appear on the image, e.g. 'NPR'
+        display: orgName, // How the option will appear in the dropdown menu
+    },
+    'freelance': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: true,
+        sourceRequired: false,
+        source: freelanceString,
+        display: 'Freelance' 
+    },
+    'ap': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: false,
+        sourceRequired: false,
+        source: 'AP',
+        display: 'AP' 
+    },
+    'getty': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: false,
+        sourceRequired: false,
+        source: 'Getty Images',
+        display: 'Getty' 
+    },
+    'thirdParty': {
+        showPhotographer: true,
+        showSource: true,
+        photographerRequired: false,
+        sourceRequired: true,
+        source: '',
+        display: 'Third Party/Courtesy' 
+    }
+}
+```
+
+The app will automatically add all of your copyright options to the dropdown menu. Also, it will perform form validation based on the boolean values above.
+
+Finally, you can configure the application defaults. Ensure that the logo and image paths point to existing files:
+
+```
+// app load defaults
+var currentCrop = 'twitter'; // default crop size
+var currentLogo = 'lunchbox'; // default logo slug
+var currentLogoColor = 'white'; // default logo color
+var currentTextColor = 'white'; // default text color
+var defaultImage = '../img/test-kitten.jpg'; // path to image to load as test image
+var defaultLogo = logos[currentLogo]['whitePath'] // path to default logo
+```
 
 ### Multiple Themes
 

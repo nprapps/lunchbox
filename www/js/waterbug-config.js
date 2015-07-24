@@ -40,12 +40,12 @@ var freelanceString = 'for ' + orgName;
 
 var copyrightOptions = {
     'internal': {
-        showPhotographer: true,
-        showSource: false,
-        photographerRequired: false,
-        sourceRequired: false,
-        source: orgName,
-        display: orgName,        
+        showPhotographer: true, // show the photographer input box
+        showSource: false, // show the source input box
+        photographerRequired: false, // require a photographer
+        sourceRequired: false, // require a source
+        source: orgName, // How the source should appear on the image, e.g. 'NPR'
+        display: orgName, // How the option will appear in the dropdown menu   
     },
     'freelance': {
         showPhotographer: true,
