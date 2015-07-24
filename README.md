@@ -25,7 +25,6 @@ Assumptions
 
 (how it's going to be used, presumed expertise)
 
-* 
 
 What's in here?
 -------------
