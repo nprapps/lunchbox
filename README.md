@@ -90,7 +90,7 @@ There are two places where variables are defined, one place for Quotable and Fac
 
 For Quotable and Factlist, all configuration takes places in `less/variables.less`. You can define font families, establish the default background color/text color and define the logo used on the images. 
 
-Importantly, if you use a custom logo, you will also need to explicitly define the width and height of the logo in both square crop and 16x9 crop scenarios. The variables at the top of the file will do this: 
+Importantly, if you use a custom logo, you will also need to explicitly define the width and height of the logo in both square crop and 16:9 crop scenarios. The variables at the top of the file will do this: 
 
 ```
 @logo-path: url('../path/to/logo.svg');
