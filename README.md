@@ -229,7 +229,7 @@ Once you have the prerequisites, build an electron app by running:
 fab production build_electron
 ```
 
-Compiled binaries for each platform are found in the `electron/` folder after you run this command.
+Installers for Windows and Mac OSX can be found in the root level folder after this runs.
 
 About
 -------------
