@@ -481,7 +481,7 @@ var onSaveClick = function(e) {
         imageFilename = filename[filename.length - 1].split('.')[0];
     }
 
-    link.download =  'twitterbug-' + imageFilename + '.png';
+    link.download =  'waterbug-' + imageFilename + '.png';
 
     /// convert canvas content to data-uri for link. When download
     /// attribute is set the content pointed to by link will be
