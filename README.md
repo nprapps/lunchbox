@@ -223,7 +223,9 @@ Deploy the desktop app
 
 The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX and Windows.
 
-To build an electron app:
+To ensure you will be able to properly build the applications, read the prerequisites section for [electron-builder](https://github.com/loopline-systems/electron-builder#pre-requisites). Specifically, run `brew install wine makensis` to get the proper libraries for building application installers.
+
+Once you have the prerequisites, build an electron app by running:
 
 ```
 fab production build_electron
