@@ -216,20 +216,20 @@ In `less/variables.less`, you can define themes at the bottom of the file. For e
 
 In the form UI, you can change the display of the theme selection buttons in each app's HTML template (`templates/quotable.html`, `templates/factlist.html`). Be sure not to change the ID attribute of the button, as these IDs control the JavaScript that adds and removes classes on the image.
 
-- editing sharing guidelines
-
 Deploy the desktop app
 -------------
 
 The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX and Windows.
 
-To build an electron app:
+To ensure you will be able to properly build the applications, read the prerequisites section for [electron-builder](https://github.com/loopline-systems/electron-builder#pre-requisites). Specifically, run `brew install wine makensis` to get the proper libraries for building application installers.
+
+Once you have the prerequisites, build an electron app by running:
 
 ```
 fab production build_electron
 ```
 
-Compiled binaries for each platform are found in the `electron/` folder after you run this command.
+Installers for Windows and Mac OSX can be found in the root level folder after this runs.
 
 About
 -------------
