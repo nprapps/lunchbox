@@ -216,8 +216,6 @@ In `less/variables.less`, you can define themes at the bottom of the file. For e
 
 In the form UI, you can change the display of the theme selection buttons in each app's HTML template (`templates/quotable.html`, `templates/factlist.html`). Be sure not to change the ID attribute of the button, as these IDs control the JavaScript that adds and removes classes on the image.
 
-- editing sharing guidelines
-
 Deploy the desktop app
 -------------
 
