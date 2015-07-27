@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="150px" height="51px" viewBox="0 0 150 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>logo-npr-white</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="logo-npr-white" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+            <g id="Page-1" sketch:type="MSShapeGroup">
+                <g id="logo-music-white">
+                    <g id="Page-1">
+                        <g id="npr_music_line_rev">
+                            <path d="M0,49 L49,49 L49,0 L0,0 L0,49 L0,49 Z M49,49 L99,49 L99,0 L49,0 L49,49 L49,49 Z M99,49 L148,49 L148,0 L99,0 L99,49 L99,49 Z" id="Stroke-12" stroke="#FFFFFF" stroke-width="2"></path>
+                            <path d="M30,37 L30,22.4 C30,20.2 29.3,18.7 28.5,17.7 C27.7,16.7 26.2,16.2 24.3,16.2 C23.4,16.2 22.9,16.4 21.9,16.9 C20.9,17.4 20,18 20,18.7 L20,37 L14,37 L14,12 L17.4,12 L18.5,14.2 C20.1,12.3 22.5,11.3 25.6,11.3 C28.6,11.3 31.3,12.2 33,14 C34.7,15.8 35.9,18.3 35.9,21.5 L35.9,37 L30,37" id="Fill-13" fill="#FFFFFF"></path>
+                            <path d="M74,37.6 C77.9,37.6 80.9,36.5 83.1,34.2 C85.3,32 86.4,28.7 86.4,24.6 C86.4,15.7 82.5,11.2 74.4,11.2 C72.2,11.2 70,11.9 69,13.3 L69,12 L63,12 L63,47 L69,47 L69,36.4 C70,37.2 72.1,37.6 74,37.6 L74,37.6 L74,37.6 Z M72.6,16.3 C75.3,16.3 77.2,16.9 78.4,18.1 C79.6,19.3 80.1,21.4 80.1,24.4 C80.1,27.2 79.5,29.3 78.3,30.6 C77.1,31.9 75.3,32.6 72.5,32.6 C71.1,32.6 69.9,32.2 68.9,31.3 L68.9,17.9 C70,16.8 71.2,16.3 72.6,16.3 L72.6,16.3 L72.6,16.3 Z" id="Fill-14" fill="#FFFFFF"></path>
+                            <path d="M130.5,17.2 C129.4,16.5 128.3,16.2 127,16.2 C125.6,16.2 124,16.8 123,18.1 C121.9,19.3 121,20.9 121,22.7 L121,37 L115,37 L115,12 L121,12 L121,14 C123,12.1 125.2,11.1 128,11.1 C130,11.1 131.8,11.4 132.8,12 L130.5,17.2" id="Fill-15" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
