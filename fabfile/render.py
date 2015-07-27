@@ -49,16 +49,6 @@ def less():
             raise
 
 @task
-def jst():
-    """
-    Render Underscore templates to a JST package.
-    """
-    try:
-        local('node_modules/universal-jst/bin/jst.js --template underscore jst www/js/templates.js')
-    except:
-        print 'It looks like "jst" isn\'t installed. Try running: "npm install"'
-
-@task
 def app_config_js():
     """
     Render app_config.js to file.
@@ -79,7 +69,6 @@ def render_all():
     from flask import g
 
     less()
-    jst()
     app_config_js()
 
     compiled_includes = {}
