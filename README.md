@@ -50,10 +50,9 @@ What's in here?
 Quick Start
 -------------
 
-Bootstrap the project by cloning this repo and installing the following:
+Bootstrap the project by forking this repo and installing the following:
 
 ```
-git clone https://github.com/nprapps/lunchbox.git
 mkvirtualenv lunchbox
 cd lunchbox
 pip install -r requirements.txt
