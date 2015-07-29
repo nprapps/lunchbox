@@ -32,12 +32,12 @@ DEV_CONTACT = 'EDIT THIS IN APP_CONFIG.PY'
 DEPLOYMENT
 """
 PRODUCTION_S3_BUCKET = 'apps.npr.org'
-
 STAGING_S3_BUCKET = 'stage-apps.npr.org'
-
-ASSETS_S3_BUCKET = 'assets.apps.npr.org'
-
 DEFAULT_MAX_AGE = 20
+
+FILE_SERVER_USER = 'ubuntu'
+FILE_SERVER = 'tools.apps.npr.org'
+FILE_SERVER_PATH = '~/www'
 
 # These variables will be set at runtime. See configure_targets() below
 S3_BUCKET = None
@@ -71,22 +71,39 @@ def configure_targets(deployment_target):
     global S3_DEPLOY_URL
     global DEBUG
     global DEPLOYMENT_TARGET
+    global ASSETS_MAX_AGE
 
+
+    if deployment_target == 'electron':
+        S3_BUCKET = None
+        S3_BASE_URL = None
+        S3_DEPLOY_URL = None
+        DEBUG = False
+        ASSETS_MAX_AGE = 0
+    if deployment_target == 'fileserver':
+        S3_BUCKET = None
+        S3_BASE_URL = None
+        S3_DEPLOY_URL = None
+        DEBUG = False
+        ASSETS_MAX_AGE = 0
     if deployment_target == 'production':
         S3_BUCKET = PRODUCTION_S3_BUCKET
         S3_BASE_URL = 'http://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         S3_DEPLOY_URL = 's3://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         DEBUG = False
+        ASSETS_MAX_AGE = 86400
     elif deployment_target == 'staging':
         S3_BUCKET = STAGING_S3_BUCKET
         S3_BASE_URL = 'http://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         S3_DEPLOY_URL = 's3://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         DEBUG = True
+        ASSETS_MAX_AGE = 20
     else:
         S3_BUCKET = None
         S3_BASE_URL = 'http://127.0.0.1:8000'
         S3_DEPLOY_URL = None
         DEBUG = True
+        ASSETS_MAX_AGE = 20
 
     DEPLOYMENT_TARGET = deployment_target
 

@@ -12,6 +12,7 @@ from termcolor import colored
 import app_config
 
 # Other fabfiles
+import flat
 import render
 import utils
 
@@ -35,6 +36,22 @@ An environment points to both a server and an S3
 bucket.
 """
 @task
+def electron():
+    """
+    Run as though building electron app.
+    """
+    env.settings = 'electron'
+    app_config.configure_targets(env.settings)
+
+@task
+def fileserver():
+    """
+    Run as though building electron app.
+    """
+    env.settings = 'fileserver'
+    app_config.configure_targets(env.settings)
+
+@task
 def production():
     """
     Run as though on production.
@@ -49,7 +66,6 @@ def staging():
     """
     env.settings = 'staging'
     app_config.configure_targets(env.settings)
-    env.hosts = app_config.SERVERS
 
 """
 Branches
@@ -120,68 +136,43 @@ def deploy(remote='origin', reload=False):
     """
     Deploy the latest app to S3 and, if configured, to our servers.
     """
-    require('settings', provided_by=[production, staging])
-
-    if app_config.DEPLOY_TO_SERVERS:
-        require('branch', provided_by=[stable, master, branch])
-
-        if (app_config.DEPLOYMENT_TARGET == 'production' and env.branch != 'stable'):
-            utils.confirm(
-                colored("You are trying to deploy the '%s' branch to production.\nYou should really only deploy a stable branch.\nDo you know what you're doing?" % env.branch, "red")
-            )
-
-        servers.checkout_latest(remote)
-
-        servers.fabcast('text.update')
-        servers.fabcast('assets.sync')
-        servers.fabcast('data.update')
-
-        if app_config.DEPLOY_CRONTAB:
-            servers.install_crontab()
-
-        if app_config.DEPLOY_SERVICES:
-            servers.deploy_confs()
-
-    update()
-    render.render_all()
-
-    # Clear files that should never be deployed
-    local('rm -rf www/live-data')
-
-    flat.deploy_folder(
-        app_config.S3_BUCKET,
-        'www',
-        app_config.PROJECT_SLUG,
-        headers={
-            'Cache-Control': 'max-age=%i' % app_config.DEFAULT_MAX_AGE
-        },
-        ignore=['www/assets/*', 'www/live-data/*']
-    )
-
-    flat.deploy_folder(
-        app_config.S3_BUCKET,
-        'www/assets',
-        '%s/assets' % app_config.PROJECT_SLUG,
-        headers={
-            'Cache-Control': 'max-age=%i' % app_config.ASSETS_MAX_AGE
-        }
-    )
-
-    if reload:
-        reset_browsers()
-
-    if not check_timestamp():
-        reset_browsers()
-
-@task
-def build_electron():
-    require('settings', provided_by=[production, staging])
+    require('settings', provided_by=[production, staging, electron])
 
     render.render_all()
-    if not os.path.exists('electron'):
-        os.makedirs('electron')
 
-    local('npm run-script pack')
+    if env.settings == 'electron':
+        if not os.path.exists('electron'):
+            os.makedirs('electron')
+
+        local('npm run-script pack')
+
+    if env.settings == 'fileserver':
+        local('rsync -vr www/ %s@%s:%s/%s' % (
+            app_config.FILE_SERVER_USER,
+            app_config.FILE_SERVER,
+            app_config.FILE_SERVER_PATH,
+            app_config.PROJECT_SLUG
+        ))
+
+    else:
+        flat.deploy_folder(
+            app_config.S3_BUCKET,
+            'www',
+            app_config.PROJECT_SLUG,
+            headers={
+                'Cache-Control': 'max-age=%i' % app_config.DEFAULT_MAX_AGE
+            },
+            ignore=['www/img/*', 'www/live-data/*']
+        )
+
+        flat.deploy_folder(
+            app_config.S3_BUCKET,
+            'www/img',
+            '%s/img' % app_config.PROJECT_SLUG,
+            headers={
+                'Cache-Control': 'max-age=%i' % app_config.ASSETS_MAX_AGE
+            }
+        )
 
 """
 Destruction
