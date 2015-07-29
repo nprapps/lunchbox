@@ -154,7 +154,7 @@ def deploy(remote='origin', reload=False):
             app_config.PROJECT_SLUG
         ))
 
-    else:
+    if env.settings == 'production' or env.settings == 'master':
         flat.deploy_folder(
             app_config.S3_BUCKET,
             'www',
