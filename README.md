@@ -226,10 +226,44 @@ To ensure you will be able to properly build the applications, read the prerequi
 Once you have the prerequisites, build an electron app by running:
 
 ```
-fab production build_electron
+fab electron master deploy
 ```
 
 Installers for Windows and Mac OSX can be found in the root level folder after this runs.
+
+Deploy to Amazon S3
+-------------------
+
+While Lunchbox was designed to be deployed as a desktop app, it may make more sense for your news organization to deploy to Amazon S3 or a file server. 
+
+For Amazon S3, ensure that you have your AWS Access Key ID and Secret Access Key stored as environment variables as such:
+
+```
+export AWS_ACCESS_KEY_ID="YOURACCESSKEYID"
+export AWS_SECRET_ACCESS_KEY="YOURSECRETACCESSKEY"
+```
+
+Then, in `app_config.py`, change your staging and production S3 targets:
+
+```
+PRODUCTION_S3_BUCKET = 'your.bucket.org'
+STAGING_S3_BUCKET = 'stage-your.bucket.org'
+```
+
+With these variables set, you can run `fab [production/staging] master deploy` to deploy Lunchbox to your S3 bucket. 
+
+Deploy to other file server
+---------------------------
+
+For other file servers, you can change the following app_config variables:
+
+```
+FILE_SERVER_USER = 'ubuntu' # set this to the user you use to SSH onto the server
+FILE_SERVER = 'your.fileserver.org' # set this to either the hostname or IP address of your file server
+FILE_SERVER_PATH = '~/www' # set this to the path that your server serves files to the web from
+```
+
+Then, you can run `fab fileserver master deploy`. This will `rsync` the rendered files to `FILE_SERVER_PATH/lunchbox`.
 
 About
 -------------
@@ -237,8 +271,3 @@ About
 Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Factlist](https://github.com/nprapps/factlist) and [Waterbug](https://github.com/nprapps/waterbug), apps into a stand-alone desktop suite of tools for the newsroom. 
 
 It was worked on during the [OpenNews](http://opennews.org) Portland Code Convening on July 23-24, 2015.
-
-
-
-
-
