@@ -118,7 +118,7 @@ var logos = {
     },
     'name-of-second-logo': {
         whitePath: '../path/to/second-logo-white.svg',
-        blackPath: '../path/to/second-logo-white.svg',
+        blackPath: '../path/to/second-logo-black.svg',
         w: 150,
         h: 51,
         display: 'Name of second logo'
