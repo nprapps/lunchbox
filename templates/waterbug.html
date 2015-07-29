@@ -135,12 +135,12 @@
 {% endblock %}
 
 {% block jquery %}
-{% if not DEPLOYMENT_TARGET %}
-{{ JS.push('js/lib/jquery.js') }}
-{% else %}
+{% if DEPLOYMENT_TARGET == 'electron' %}
 <script type="text/javascript">
     window.$ = window.jQuery = require('../js/lib/jquery.js')
 </script>
+{% else %}
+{{ JS.push('js/lib/jquery.js') }}
 {% endif %}
 {% endblock jquery %}
 
