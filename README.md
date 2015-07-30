@@ -270,3 +270,7 @@ About
 Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Factlist](https://github.com/nprapps/factlist) and [Waterbug](https://github.com/nprapps/waterbug), apps into a stand-alone desktop suite of tools for the newsroom. 
 
 It was worked on during the [OpenNews](http://opennews.org) Portland Code Convening on July 23-24, 2015.
+
+Additional contributors:
+
+- [Jason Emory Parker](https://github.com/postandcourier)
