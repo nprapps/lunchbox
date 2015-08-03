@@ -78,6 +78,14 @@ var copyrightOptions = {
         sourceRequired: true,
         source: '',
         display: 'Third Party/Courtesy'
+    },
+    'creativeCommons': {
+        showPhotographer: true,
+        showSource: false,
+        photographerRequired: false,
+        sourceRequired: true,
+        source: 'Creative Commons',
+        display: 'Creative Commons'
     }
 }
 
