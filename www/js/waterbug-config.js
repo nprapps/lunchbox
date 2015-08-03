@@ -1,5 +1,5 @@
 // widths and padding
-var canvasWidth = 1000; // this will be the exported width of the image
+var canvasWidth = 1024; // this will be the exported width of the image
 var elementPadding = 40; // padding around the logo and credit text
 
 // logo configuration
@@ -45,7 +45,7 @@ var copyrightOptions = {
         photographerRequired: false, // require a photographer
         sourceRequired: false, // require a source
         source: orgName, // How the source should appear on the image, e.g. 'NPR'
-        display: orgName, // How the option will appear in the dropdown menu   
+        display: orgName, // How the option will appear in the dropdown menu
     },
     'freelance': {
         showPhotographer: true,
@@ -53,7 +53,7 @@ var copyrightOptions = {
         photographerRequired: true,
         sourceRequired: false,
         source: freelanceString,
-        display: 'Freelance' 
+        display: 'Freelance'
     },
     'ap': {
         showPhotographer: true,
@@ -61,7 +61,7 @@ var copyrightOptions = {
         photographerRequired: false,
         sourceRequired: false,
         source: 'AP',
-        display: 'AP' 
+        display: 'AP'
     },
     'getty': {
         showPhotographer: true,
@@ -69,7 +69,7 @@ var copyrightOptions = {
         photographerRequired: false,
         sourceRequired: false,
         source: 'Getty Images',
-        display: 'Getty' 
+        display: 'Getty'
     },
     'thirdParty': {
         showPhotographer: true,
@@ -77,7 +77,7 @@ var copyrightOptions = {
         photographerRequired: false,
         sourceRequired: true,
         source: '',
-        display: 'Third Party/Courtesy' 
+        display: 'Third Party/Courtesy'
     }
 }
 

@@ -149,7 +149,7 @@ var renderCanvas = function() {
 
     // if we're cropping, use the aspect ratio for the height
     if (currentCrop !== 'original') {
-        canvas.height = canvasWidth / (16/9);
+        canvas.height = canvasWidth / (16/8);
     }
 
     // clear the canvas
