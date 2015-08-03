@@ -6,18 +6,18 @@ var elementPadding = 40; // padding around the logo and credit text
 // the name of the logo object should match the value of the corresponding radio button in the HTML.
 var logos = {
     'lunchbox': {
-        whitePath: '../img/icon-lunchbox-white.svg', // path to white logo
-        blackPath: '../img/icon-lunchbox-black.svg', // path to black logo
-        w: 100, // width of logo
-        h: 80, // height of logo
-        display: 'Lunchbox'
+        whitePath: '../img/tt-logo-white.png', // path to white logo
+        blackPath: '../img/tt-logo-black.png', // path to black logo
+        w: 200, // width of logo
+        h: 22, // height of logo
+        display: 'Texas Tribune'
     },
     'socializr': {
-        whitePath: '../img/icon-socializr-white.svg',
-        blackPath: '../img/icon-socializr-black.svg',
-        w: 150,
-        h: 51,
-        display: 'Socializr'
+        whitePath: '../img/tribtalk-logo-white.png',
+        blackPath: '../img/tribtalk-logo-black.png',
+        w: 100,
+        h: 100,
+        display: 'TribTalk'
     }
 };
 
@@ -35,7 +35,7 @@ var fontShadowOffsetY = 0; // font shadow offset y
 var fontShadowBlur = 10; // font shadow blur
 
 // copyright options
-var orgName = 'Your News Organization';
+var orgName = 'The Texas Tribune';
 var freelanceString = 'for ' + orgName;
 
 var copyrightOptions = {
