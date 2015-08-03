@@ -25,7 +25,7 @@ canvas {
     display: table;
     width: 100%;
     max-width: 1200px;
-    min-width: 640px;
+    min-width: 612px;
     margin: 0 auto;
 
     .poster-wrapper,
@@ -35,7 +35,7 @@ canvas {
     }
 
     .poster-wrapper {
-        width: 640px;
+        width: 612px;
     }
 
     @media screen and (max-width: @screen-sm-max){
@@ -145,7 +145,7 @@ canvas {
         -webkit-box-shadow: none;
         box-shadow: none;
     }
-    
+
     label {
         display: block;
         font-weight: normal;
@@ -164,8 +164,6 @@ canvas {
 }
 
 .poster {
-    height: 640px;
-    width: 640px;
     background: @bg-color;
     margin: @line-height;
     position: relative;
@@ -191,6 +189,9 @@ canvas {
                 height: @logo-16x9-height + @padding;
             }
         }
+        .timestamp {
+            color: @theme1-timestamp-color;
+        }
     }
 
     &.poster-theme2 {
@@ -211,6 +212,9 @@ canvas {
                 height: @theme2-16x9-logo-height + @padding;
             }
         }
+        .timestamp {
+            color: @theme2-timestamp-color;
+        }
     }
 
 
@@ -230,7 +234,10 @@ canvas {
                 background-size: @theme3-16x9-logo-width @theme3-16x9-logo-height;
                 width: @theme3-16x9-logo-width + @padding;
                 height: @theme3-16x9-logo-height + @padding;
-            }          
+            }
+        }
+        .timestamp {
+            color: @theme3-timestamp-color;
         }
     }
 
@@ -252,12 +259,21 @@ canvas {
                 height: @theme4-16x9-logo-height + @padding;
             }
         }
+        .timestamp {
+            color: @theme4-timestamp-color;
+        }
+    }
+
+    &.square {
+      height: 612px;
+      width: 612px;
     }
 
 
     &.sixteen-by-nine {
-        height: 360px;
+        height: 300px;
         padding: @padding;
+        width: 600px;
 
         .quote& {
             .left-quote {
@@ -292,7 +308,7 @@ canvas {
         margin-bottom: 1em;
         overflow: hidden;
     }
-    
+
     .kicker {
         white-space: nowrap;
     }
@@ -339,7 +355,6 @@ canvas {
 
     p.timestamp {
         font-size: @base-font-size;
-        color: @timestamp-color;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         font-weight: normal;
