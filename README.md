@@ -274,3 +274,4 @@ It was worked on during the [OpenNews](http://opennews.org) Portland Code Conven
 Additional contributors:
 
 - [Jason Emory Parker](https://github.com/postandcourier)
+- [Ben Chartoff](https://github.com/bchartoff)
