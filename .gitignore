@@ -44,6 +44,8 @@ www/factlist
 www/quotable
 www/waterbug
 
+*.ai
+
 
 # Local data
 data/gdoc*.csv
