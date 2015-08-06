@@ -126,7 +126,7 @@ var buildForm = function() {
             var key = logoKeys[j];
             var display = logos[key]['display']
             $logos.append('<label class="btn btn-primary"><input type="radio" name="logo" id="' + key + '" value="' + key + '">' + display + '</label>');
-
+            disableLogo();
             if (key === currentLogo) {
                 $('#' + key).attr('checked', true);
                 $('#' + key).parent('.btn').addClass('active');
@@ -457,6 +457,25 @@ var loadLogo = function() {
         logo.src = logos[currentLogo]['whitePath'];
     } else {
         logo.src = logos[currentLogo]['blackPath'];
+    }
+    disableLogo();
+}
+
+/*
+* If image paths not defined for the logo, grey it out
+*/
+var disableLogo = function(){
+    var whiteLogo = logos[currentLogo]['whitePath']
+    var blackLogo = logos[currentLogo]['blackPath']
+    if(typeof(whiteLogo) == "undefined"){
+        $("#whiteLogo").parent().addClass("disabled")
+    }else{
+        $("#whiteLogo").parent().removeClass("disabled")
+    }
+    if(typeof(blackLogo) == "undefined"){
+        $("#blackLogo").parent().addClass("disabled")
+    }else{
+        $("#blackLogo").parent().removeClass("disabled")
     }
 }
 
