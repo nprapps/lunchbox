@@ -77,15 +77,13 @@ function saveImage() {
 
     // don't print placeholder text if source is empty
     if ($source.text() === '') {
-        alert("A source is required.");
-        return;
+        $source.removeClass('medium-editor-placeholder');
     }
 
     // make sure source begins with em dash
-    if (!$source.text().match(/^[\u2014]/g)) {
+    if (!$source.text().match(/^[\u2014]/g) && $source.text() !== '') {
         $source.html('&mdash;&thinsp;' + $source.text());
     }
-
     $('canvas').remove();
     processText();
 
@@ -109,6 +107,10 @@ function saveImage() {
         $('#download').trigger('click');
       }
     });
+
+    setTimeout(function() {
+        $source.addClass('medium-editor-placeholder');
+    }, 1000);
 }
 
 function adjustFontSize(size) {
