@@ -1,5 +1,5 @@
 {
-  "name": "app-template",
+  "name": "lunchbox",
   "version": "1.0.0",
   "dependencies": {
     "electron-packager": "~5.0.1",
