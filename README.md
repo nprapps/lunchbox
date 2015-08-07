@@ -272,6 +272,7 @@ There are a number of known issues with Lunchbox, most of them documented in the
 - Firefox compatibility with SVG: Firefox is not capable of rendering SVG logos with Quotable or Factlist. This is part of the reason we suggest a desktop app deployment: Electron runs Chromium.
 - Versioning/releasing updates to the desktop app is not nearly as good as it should be.
 - There is no process yet for signing the desktop apps so that they are easy to open in modern operating systems without workarounds.
+- Loading an image URL in Waterbug doesn't work locally in the Flask app. It will work once deployed.
 
 About
 -------------
