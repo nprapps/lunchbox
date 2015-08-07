@@ -50,10 +50,9 @@ What's in here?
 Quick Start
 -------------
 
-Bootstrap the project by cloning this repo and installing the following:
+Bootstrap the project by forking this repo and installing the following:
 
 ```
-git clone https://github.com/nprapps/lunchbox.git
 mkvirtualenv lunchbox
 cd lunchbox
 pip install -r requirements.txt
@@ -119,7 +118,7 @@ var logos = {
     },
     'name-of-second-logo': {
         whitePath: '../path/to/second-logo-white.svg',
-        blackPath: '../path/to/second-logo-white.svg',
+        blackPath: '../path/to/second-logo-black.svg',
         w: 150,
         h: 51,
         display: 'Name of second logo'
@@ -265,6 +264,16 @@ FILE_SERVER_PATH = '~/www' # set this to the path that your server serves files 
 
 Then, you can run `fab fileserver master deploy`. This will `rsync` the rendered files to `FILE_SERVER_PATH/lunchbox`.
 
+Known Issues
+------------
+
+There are a number of known issues with Lunchbox, most of them documented in the Github issues of this project.
+
+- Firefox compatibility with SVG: Firefox is not capable of rendering SVG logos with Quotable or Factlist. This is part of the reason we suggest a desktop app deployment: Electron runs Chromium.
+- Versioning/releasing updates to the desktop app is not nearly as good as it should be.
+- There is no process yet for signing the desktop apps so that they are easy to open in modern operating systems without workarounds.
+- Loading an image URL in Waterbug doesn't work locally in the Flask app. It will work once deployed.
+
 About
 -------------
 
@@ -272,7 +281,8 @@ Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://
 
 It was worked on during the [OpenNews](http://opennews.org) Portland Code Convening on July 23-24, 2015.
 
+Additional contributors:
 
-
-
-
+- [Jason Emory Parker](https://github.com/postandcourier)
+- [Ben Chartoff](https://github.com/bchartoff)
+- [Chris Barna](https://github.com/ctbarna)
