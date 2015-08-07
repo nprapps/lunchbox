@@ -264,6 +264,15 @@ FILE_SERVER_PATH = '~/www' # set this to the path that your server serves files 
 
 Then, you can run `fab fileserver master deploy`. This will `rsync` the rendered files to `FILE_SERVER_PATH/lunchbox`.
 
+Known Issues
+-------------
+
+There are a number of known issues with Lunchbox, most of them documented in the Github issues of this project.
+
+- Firefox compatibility with SVG: Firefox is not capable of rendering SVG logos with Quotable or Factlist. This is part of the reason we suggest a desktop app deployment: Electron runs Chromium.
+- Versioning/releasing updates to the desktop app is not nearly as good as it should be.
+- There is no process yet for signing the desktop apps so that they are easy to open in modern operating systems without workarounds.
+
 About
 -------------
 
