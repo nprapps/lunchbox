@@ -109,7 +109,10 @@ function saveImage() {
     });
 
     setTimeout(function() {
-        $source.addClass('medium-editor-placeholder');
+        if ($source.text() === '') {
+            $source.addClass('medium-editor-placeholder');
+            $source.css('height', '33px');
+        }
     }, 1000);
 }
 
