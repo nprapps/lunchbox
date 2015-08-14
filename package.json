@@ -8,8 +8,8 @@
   },
   "scripts": {
     "clean": "npm run clean:osx && npm run clean:win",
-    "clean:osx": "rm Lunchbox.dmg",
-    "clean:win": "rm \"Lunchbox Setup.exe\"",
+    "clean:osx": "rm -f Lunchbox.dmg",
+    "clean:win": "rm -f \"Lunchbox Setup.exe\"",
 
   	"build": "npm run clean && npm run build:osx && npm run build:win",
     "build:osx": "electron-packager www Lunchbox --platform=darwin --arch=x64 --version=0.30.3 --icon=www/img/icon-lunchbox.icns --overwrite --out electron",
