@@ -1,5 +1,5 @@
 {
-  "name": "app-template",
+  "name": "lunchbox",
   "version": "1.0.0",
   "dependencies": {
     "electron-packager": "~5.0.1",
@@ -8,12 +8,12 @@
   },
   "scripts": {
     "clean": "npm run clean:osx && npm run clean:win",
-    "clean:osx": "rm Lunchbox.dmg",
-    "clean:win": "rm \"Lunchbox Setup.exe\"",
+    "clean:osx": "rm -f Lunchbox.dmg",
+    "clean:win": "rm -f \"Lunchbox Setup.exe\"",
 
   	"build": "npm run clean && npm run build:osx && npm run build:win",
-    "build:osx": "electron-packager www Lunchbox --platform=darwin --arch=x64 --version=0.30.1 --icon=www/img/icon-lunchbox.icns --overwrite --out electron",
-    "build:win": "electron-packager www Lunchbox --platform=win32 --arch=ia32 --version=0.30.1 --icon=www/img/icon-lunchbox.ico --overwrite --out electron",
+    "build:osx": "electron-packager www Lunchbox --platform=darwin --arch=x64 --version=0.30.3 --icon=www/img/icon-lunchbox.icns --overwrite --out electron",
+    "build:win": "electron-packager www Lunchbox --platform=win32 --arch=ia32 --version=0.30.3 --icon=www/img/icon-lunchbox.ico --overwrite --out electron",
 
     "pack": "npm run build && npm run pack:osx && npm run pack:win",
     "pack:osx": "electron-builder electron/Lunchbox-darwin-x64/Lunchbox.app --platform=osx --config=packager-config.json",
