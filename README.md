@@ -271,3 +271,4 @@ Additional contributors:
 - [Jason Emory Parker](https://github.com/postandcourier)
 - [Ben Chartoff](https://github.com/bchartoff)
 - [Chris Barna](https://github.com/ctbarna)
+- [David Ryan](https://github.com/dryanmedia)
