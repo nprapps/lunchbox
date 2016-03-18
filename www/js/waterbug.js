@@ -7,8 +7,6 @@ var $logo;
 var $crop;
 var $logoColor;
 var $imageLoader;
-var $imageLink;
-var $imageLinkButton;
 var $canvas;
 var canvas;
 var $qualityQuestions;
@@ -47,8 +45,6 @@ var onDocumentLoad = function(e) {
     $canvas = $('#imageCanvas');
     canvas = $canvas[0];
     $imageLoader = $('#imageLoader');
-    $imageLink = $('#imageLink');
-    $imageLinkButton = $('#imageLinkButton');
     ctx = canvas.getContext('2d');
     $save = $('.save-btn');
     $textColor = $('input[name="textColor"]');
@@ -70,7 +66,6 @@ var onDocumentLoad = function(e) {
     $photographer.on('keyup', renderCanvas);
     $source.on('keyup', renderCanvas);
     $imageLoader.on('change', handleImage);
-    $imageLinkButton.on('click', handleImageLink);
     $save.on('click', onSaveClick);
     $textColor.on('change', onTextColorChange);
     $logoColor.on('change', onLogoColorChange);
@@ -85,13 +80,6 @@ var onDocumentLoad = function(e) {
         return false;
     });
 
-    $imageLink.keypress(function(e) {
-        if (e.keyCode == 13) {
-            handleImageLink();
-        }
-    });
-
-    // $imageLink.on('paste', handleImageLink);
     $(window).on('resize', resizeCanvas);
     resizeCanvas();
     buildForm();
@@ -391,54 +379,8 @@ var handleImage = function(e) {
         img.src = image;
         $customFilename.text(imageFilename);
         $customFilename.parents('.form-group').addClass('has-file');
-        $imageLink.val('');
-        $imageLink.parents('.form-group').removeClass('has-file');
     }
     reader.readAsDataURL(e.target.files[0]);
-}
-
-
-/*
-* Load a remote  image
-*/
-var handleImageLink = function(e) {
-    var requestStatus =
-    // Test if image URL returns a 200
-    $.ajax({
-        url: $imageLink.val(),
-        success: function(data, status, xhr) {
-            var responseType = xhr.getResponseHeader('content-type').toLowerCase();
-
-            // if content type is jpeg, gif or png, load the image into the canvas
-            if (MIME_TYPES.indexOf(responseType) >= 0) {
-                // reset dy value
-                dy = 0;
-                dx = 0;
-
-                $fileinput.fileinput('clear');
-                $imageLink.parents('.form-group').addClass('has-file').removeClass('has-error');
-                $imageLink.parents('.input-group').next().text('Click to edit name');
-
-                img.src = $imageLink.val();
-                img.crossOrigin = "anonymous"
-
-                var filename = $imageLink.val().split('/');
-                imageFilename = filename[filename.length - 1].split('.')[0];
-
-                $imageLink.val(imageFilename);
-
-            // otherwise, display an error
-            } else {
-                $imageLink.parents('.form-group').addClass('has-error');
-                $imageLink.parents('.input-group').next().text('Not a valid image URL');
-                return;
-            }
-        },
-        error: function(data) {
-            $imageLink.parents('.form-group').addClass('has-error');
-            $imageLink.parents('.input-group').next().text('Not a valid image URL');
-        }
-    });
 }
 
 /*
@@ -493,11 +435,6 @@ var onSaveClick = function(e) {
     /// the key here is to set the download attribute of the a tag
     if ($customFilename.text()) {
         imageFilename = $customFilename.text();
-    }
-
-    if ($imageLink.val() !== "") {
-        var filename = $imageLink.val().split('/');
-        imageFilename = filename[filename.length - 1].split('.')[0];
     }
 
     link.download =  'waterbug-' + imageFilename + '.png';
