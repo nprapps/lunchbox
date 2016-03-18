@@ -18,7 +18,7 @@ What is this?
 * *Factlist*: Produces a branded image with a list of items.
 * *Waterbug*: Creates a watermarked image with attribution.
 
-Assumptions 
+Assumptions
 -------------
 
 **Lunchbox** is a customizable toolset deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see [usage guidelines](http://blog.apps.npr.org/lunchbox).
@@ -83,13 +83,13 @@ For Waterbug, you will want to have a white version and a black version of your 
 
 ### Define global variables
 
-There are two places where variables are defined, one place for Quotable and Factlist and one place for Waterbug. 
+There are two places where variables are defined, one place for Quotable and Factlist and one place for Waterbug.
 
 #### Quotable/Factlist
 
-For Quotable and Factlist, all configuration takes places in `less/variables.less`. You can define font families, establish the default background color/text color and define the logo used on the images. 
+For Quotable and Factlist, all configuration takes places in `less/variables.less`. You can define font families, establish the default background color/text color and define the logo used on the images.
 
-Importantly, if you use a custom logo, you will also need to explicitly define the width and height of the logo in both square crop and 16:9 crop scenarios. The variables at the top of the file will do this: 
+Importantly, if you use a custom logo, you will also need to explicitly define the width and height of the logo in both square crop and 16:9 crop scenarios. The variables at the top of the file will do this:
 
 ```
 @logo-path: url('../path/to/logo.svg');
@@ -103,7 +103,7 @@ Additionally, you can fine-tune various aspects of Quotable and Factlist using t
 
 #### Waterbug
 
-Waterbug has a different configuration system because it cannot be controlled through CSS. To customize Waterbug, go to `www/js/waterbug-config.js` and customize the variables at the top of the file. 
+Waterbug has a different configuration system because it cannot be controlled through CSS. To customize Waterbug, go to `www/js/waterbug-config.js` and customize the variables at the top of the file.
 
 In this file, you can define the logos used and the sizes with which they render by editing the `logos` object.
 
@@ -152,7 +152,7 @@ var copyrightOptions = {
         photographerRequired: true,
         sourceRequired: false,
         source: freelanceString,
-        display: 'Freelance' 
+        display: 'Freelance'
     },
     'ap': {
         showPhotographer: true,
@@ -160,7 +160,7 @@ var copyrightOptions = {
         photographerRequired: false,
         sourceRequired: false,
         source: 'AP',
-        display: 'AP' 
+        display: 'AP'
     },
     'getty': {
         showPhotographer: true,
@@ -168,7 +168,7 @@ var copyrightOptions = {
         photographerRequired: false,
         sourceRequired: false,
         source: 'Getty Images',
-        display: 'Getty' 
+        display: 'Getty'
     },
     'thirdParty': {
         showPhotographer: true,
@@ -176,7 +176,7 @@ var copyrightOptions = {
         photographerRequired: false,
         sourceRequired: true,
         source: '',
-        display: 'Third Party/Courtesy' 
+        display: 'Third Party/Courtesy'
     }
 }
 ```
@@ -215,25 +215,13 @@ In `less/variables.less`, you can define themes at the bottom of the file. For e
 
 In the form UI, you can change the display of the theme selection buttons in each app's HTML template (`templates/quotable.html`, `templates/factlist.html`). Be sure not to change the ID attribute of the button, as these IDs control the JavaScript that adds and removes classes on the image.
 
-Deploy the desktop app
--------------
+Deployment
+===============
+We support two separate deployment options: Amazon S3 and any fileserver that you can SSH into.
 
-The project uses [Electron](https://github.com/atom/electron) to create desktop apps for OSX and Windows.
-
-To ensure you will be able to properly build the applications, read the prerequisites section for [electron-builder](https://github.com/loopline-systems/electron-builder#pre-requisites). Specifically, run `brew install wine makensis` to get the proper libraries for building application installers.
-
-Once you have the prerequisites, build an electron app by running:
-
-```
-fab electron master deploy
-```
-
-Installers for Windows and Mac OSX can be found in the root level folder after this runs.
 
 Deploy to Amazon S3
 -------------------
-
-While Lunchbox was designed to be deployed as a desktop app, it may make more sense for your news organization to deploy to Amazon S3 or a file server. 
 
 For Amazon S3, ensure that you have your AWS Access Key ID and Secret Access Key stored as environment variables as such:
 
@@ -249,7 +237,8 @@ PRODUCTION_S3_BUCKET = 'your.bucket.org'
 STAGING_S3_BUCKET = 'stage-your.bucket.org'
 ```
 
-With these variables set, you can run `fab [production/staging] master deploy` to deploy Lunchbox to your S3 bucket. 
+With these variables set, you can run `fab [production/staging] master deploy` to deploy Lunchbox to your S3 bucket.
+
 
 Deploy to other file server
 ---------------------------
@@ -264,20 +253,16 @@ FILE_SERVER_PATH = '~/www' # set this to the path that your server serves files 
 
 Then, you can run `fab fileserver master deploy`. This will `rsync` the rendered files to `FILE_SERVER_PATH/lunchbox`.
 
+
 Known Issues
 -------------
 
-There are a number of known issues with Lunchbox, most of them documented in the Github issues of this project.
-
-- Firefox compatibility with SVG: Firefox is not capable of rendering SVG logos with Quotable or Factlist. This is part of the reason we suggest a desktop app deployment: Electron runs Chromium.
-- Versioning/releasing updates to the desktop app is not nearly as good as it should be.
-- There is no process yet for signing the desktop apps so that they are easy to open in modern operating systems without workarounds.
-- Loading an image URL in Waterbug doesn't work locally in the Flask app. It will work once deployed.
+- Firefox compatibility with SVG: Firefox is not capable of rendering SVG logos with Quotable or Factlist.
 
 About
 -------------
 
-Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Factlist](https://github.com/nprapps/factlist) and [Waterbug](https://github.com/nprapps/waterbug), apps into a stand-alone desktop suite of tools for the newsroom. 
+Lunchbox consolidates [NPR](https://github.com/nprapps/)’s [Quotable](https://github.com/nprapps/quotable), [Factlist](https://github.com/nprapps/factlist) and [Waterbug](https://github.com/nprapps/waterbug), apps into a suite of tools for the newsroom.
 
 It was worked on during the [OpenNews](http://opennews.org) Portland Code Convening on July 23-24, 2015.
 
