@@ -21,7 +21,7 @@ What is this?
 Assumptions
 -------------
 
-**Lunchbox** is a customizable toolset deployable as a desktop app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see [usage guidelines](http://blog.apps.npr.org/lunchbox).
+**Lunchbox** is a customizable toolset deployable as a web app. The following instructions are meant for developers setting up and customizing the app for their organization. For end-users of the tools, see [usage guidelines](http://blog.apps.npr.org/lunchbox).
 
 The following things are assumed to be true in this documentation.
 
