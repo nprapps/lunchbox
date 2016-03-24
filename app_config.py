@@ -15,7 +15,7 @@ NAMES
 """
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'lunchbox-test'
+PROJECT_SLUG = 'lunchbox'
 
 # Project name to be used in file paths
 PROJECT_FILENAME = 'lunchbox'
@@ -36,7 +36,7 @@ STAGING_S3_BUCKET = 'stage-apps.npr.org'
 DEFAULT_MAX_AGE = 20
 
 FILE_SERVER_USER = 'ubuntu'
-FILE_SERVER = 'tools.apps.npr.org'
+FILE_SERVER = 'http://10.53.17.49/'
 FILE_SERVER_PATH = '~/www'
 
 # These variables will be set at runtime. See configure_targets() below
