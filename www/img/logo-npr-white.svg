@@ -1,23 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="150px" height="51px" viewBox="0 0 150 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
-    <title>logo-npr-white</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="logo-npr-white" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
-            <g id="Page-1" sketch:type="MSShapeGroup">
-                <g id="logo-music-white">
-                    <g id="Page-1">
-                        <g id="npr_music_line_rev">
-                            <path d="M0,49 L49,49 L49,0 L0,0 L0,49 L0,49 Z M49,49 L99,49 L99,0 L49,0 L49,49 L49,49 Z M99,49 L148,49 L148,0 L99,0 L99,49 L99,49 Z" id="Stroke-12" stroke="#FFFFFF" stroke-width="2"></path>
-                            <path d="M30,37 L30,22.4 C30,20.2 29.3,18.7 28.5,17.7 C27.7,16.7 26.2,16.2 24.3,16.2 C23.4,16.2 22.9,16.4 21.9,16.9 C20.9,17.4 20,18 20,18.7 L20,37 L14,37 L14,12 L17.4,12 L18.5,14.2 C20.1,12.3 22.5,11.3 25.6,11.3 C28.6,11.3 31.3,12.2 33,14 C34.7,15.8 35.9,18.3 35.9,21.5 L35.9,37 L30,37" id="Fill-13" fill="#FFFFFF"></path>
-                            <path d="M74,37.6 C77.9,37.6 80.9,36.5 83.1,34.2 C85.3,32 86.4,28.7 86.4,24.6 C86.4,15.7 82.5,11.2 74.4,11.2 C72.2,11.2 70,11.9 69,13.3 L69,12 L63,12 L63,47 L69,47 L69,36.4 C70,37.2 72.1,37.6 74,37.6 L74,37.6 L74,37.6 Z M72.6,16.3 C75.3,16.3 77.2,16.9 78.4,18.1 C79.6,19.3 80.1,21.4 80.1,24.4 C80.1,27.2 79.5,29.3 78.3,30.6 C77.1,31.9 75.3,32.6 72.5,32.6 C71.1,32.6 69.9,32.2 68.9,31.3 L68.9,17.9 C70,16.8 71.2,16.3 72.6,16.3 L72.6,16.3 L72.6,16.3 Z" id="Fill-14" fill="#FFFFFF"></path>
-                            <path d="M130.5,17.2 C129.4,16.5 128.3,16.2 127,16.2 C125.6,16.2 124,16.8 123,18.1 C121.9,19.3 121,20.9 121,22.7 L121,37 L115,37 L115,12 L121,12 L121,14 C123,12.1 125.2,11.1 128,11.1 C130,11.1 131.8,11.4 132.8,12 L130.5,17.2" id="Fill-15" fill="#FFFFFF"></path>
-                        </g>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="150px" height="51px"
+	 viewBox="-230 371 150 51" style="enable-background:new -230 371 150 51;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:2;}
+	.st1{fill:#FFFFFF;}
+</style>
+<title>logo-npr-white</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1_2_" sketch:type="MSPage">
+	<g id="logo-npr-white" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
+		<g id="Page-1_1_" sketch:type="MSShapeGroup">
+			<g id="logo-music-white">
+				<g id="Page-1">
+					<g id="npr_music_line_rev">
+						<path id="Stroke-12" class="st0" d="M-230,420h49v-49h-49V420L-230,420z M-181,420h50v-49h-50V420L-181,420z M-131,420h49v-49
+							h-49V420L-131,420z"/>
+						<path id="Fill-13" class="st1" d="M-200,408v-14.6c0-2.2-0.7-3.7-1.5-4.7s-2.3-1.5-4.2-1.5c-0.9,0-1.4,0.2-2.4,0.7
+							s-1.9,1.1-1.9,1.8V408h-6v-25h3.4l1.1,2.2c1.6-1.9,4-2.9,7.1-2.9c3,0,5.7,0.9,7.4,2.7s2.9,4.3,2.9,7.5V408H-200"/>
+						<path id="Fill-14" class="st1" d="M-156,408.6c3.9,0,6.9-1.1,9.1-3.4c2.2-2.2,3.3-5.5,3.3-9.6c0-8.9-3.9-13.4-12-13.4
+							c-2.2,0-4.4,0.7-5.4,2.1V383h-6v35h6v-10.6C-160,408.2-157.9,408.6-156,408.6L-156,408.6L-156,408.6z M-157.4,387.3
+							c2.7,0,4.6,0.6,5.8,1.8c1.2,1.2,1.7,3.3,1.7,6.3c0,2.8-0.6,4.9-1.8,6.2c-1.2,1.3-3,2-5.8,2c-1.4,0-2.6-0.4-3.6-1.3v-13.4
+							C-160,387.8-158.8,387.3-157.4,387.3L-157.4,387.3L-157.4,387.3z"/>
+						<path id="Fill-15" class="st1" d="M-99.5,388.2c-1.1-0.7-2.2-1-3.5-1c-1.4,0-3,0.6-4,1.9c-1.1,1.2-2,2.8-2,4.6V408h-6v-25h6v2
+							c2-1.9,4.2-2.9,7-2.9c2,0,3.8,0.3,4.8,0.9L-99.5,388.2"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
 </svg>
