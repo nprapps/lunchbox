@@ -244,7 +244,11 @@ var buildCreditString = function() {
 
     if ($photographer.val() !== '') {
         if (copyrightOptions[val]['source']) {
-            creditString = $photographer.val() + '/' + copyrightOptions[val]['source'];
+            if (val === 'freelance') {
+                creditString = $photographer.val() + ' ' + copyrightOptions[val]['source'];
+            } else {
+                creditString = $photographer.val() + '/' + copyrightOptions[val]['source'];
+            }
         } else {
             creditString = $photographer.val() + '/' + $source.val();
         }
