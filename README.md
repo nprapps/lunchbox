@@ -272,3 +272,4 @@ Additional contributors:
 - [Ben Chartoff](https://github.com/bchartoff)
 - [Chris Barna](https://github.com/ctbarna)
 - [David Ryan](https://github.com/dryanmedia)
+- [Davis Shaver](https://github.com/davisshaver)
