@@ -231,6 +231,31 @@ canvas {
         }
     }
 
+    &.poster-theme5 {
+        &.sixteen-by-nine:after {
+          content: "";
+          position: absolute;
+          bottom: @padding;
+          left: @padding;
+          background-image: @theme5-secondary-logo-path;
+          background-repeat: no-repeat;
+          background-size: 283px 42px;
+          height: 42px;
+          width: 283px;
+        }
+        &:not(.sixteen-by-nine):after {
+          content: "";
+          position: absolute;
+          bottom: @padding + 10;
+          left: @padding;
+          background-image: @theme5-secondary-logo-path;
+          background-repeat: no-repeat;
+          background-size: 324px 48px;
+          height: 48px;
+          width: 324px;
+        }
+    }
+
     &.sixteen-by-nine {
         height: 360px;
         padding: @padding;
