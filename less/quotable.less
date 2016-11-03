@@ -244,27 +244,16 @@ canvas {
                 height: @theme5-sq-logo-height + @padding;
             }
         }
-        &.sixteen-by-nine:after {
-          content: "";
-          position: absolute;
-          bottom: @padding;
-          left: @padding;
-          background-image: @theme5-secondary-logo-path;
-          background-repeat: no-repeat;
-          background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
-          height: @theme5-sq-logo-height;
-          width: @theme5-sq-logo-width;
-        }
-        &:not(.sixteen-by-nine):after {
-          content: "";
-          position: absolute;
-          bottom: @padding;
-          left: @padding;
-          background-image: @theme5-secondary-logo-path;
-          background-repeat: no-repeat;
-          background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
-          height: @theme5-sq-logo-height;
-          width: @theme5-sq-logo-width;
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: @padding + 1;
+            left: @padding;
+            background-image: @theme5-secondary-logo-path;
+            background-repeat: no-repeat;
+            background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+            height: @theme5-sq-logo-height;
+            width: @theme5-sq-logo-width;
         }
     }
 
