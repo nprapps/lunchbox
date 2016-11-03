@@ -232,6 +232,18 @@ canvas {
     }
 
     &.poster-theme5 {
+        .logo-wrapper {
+            background-image: @theme5-logo-path;
+            background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+            width: @theme5-sq-logo-width + @padding;
+            height: @theme5-sq-logo-height + @padding;
+            padding: 0;
+            .sixteen-by-nine& {
+                background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+                width: @theme5-sq-logo-width + @padding;
+                height: @theme5-sq-logo-height + @padding;
+            }
+        }
         &.sixteen-by-nine:after {
           content: "";
           position: absolute;
@@ -239,20 +251,20 @@ canvas {
           left: @padding;
           background-image: @theme5-secondary-logo-path;
           background-repeat: no-repeat;
-          background-size: 283px 42px;
-          height: 42px;
-          width: 283px;
+          background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+          height: @theme5-sq-logo-height;
+          width: @theme5-sq-logo-width;
         }
         &:not(.sixteen-by-nine):after {
           content: "";
           position: absolute;
-          bottom: @padding + 10;
+          bottom: @padding;
           left: @padding;
           background-image: @theme5-secondary-logo-path;
           background-repeat: no-repeat;
-          background-size: 324px 48px;
-          height: 48px;
-          width: 324px;
+          background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+          height: @theme5-sq-logo-height;
+          width: @theme5-sq-logo-width;
         }
     }
 
