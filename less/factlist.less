@@ -262,12 +262,13 @@ canvas {
             height: @theme5-sq-logo-height + @padding;
             padding: 0;
             .sixteen-by-nine& {
-                background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
-                width: @theme5-sq-logo-width + @padding;
-                height: @theme5-sq-logo-height + @padding;
+                background-size: @theme5-16x9-logo-width @theme5-16x9-logo-height;
+                width: @theme5-16x9-logo-width + @padding;
+                height: @theme5-16x9-logo-height + @padding - 4;
+                padding-bottom: 0;
             }
         }
-        &:after {
+        &:not(.sixteen-by-nine):after {
             content: "";
             position: absolute;
             bottom: @padding + 1;
@@ -277,6 +278,17 @@ canvas {
             background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
             height: @theme5-sq-logo-height;
             width: @theme5-sq-logo-width;
+        }
+        &.sixteen-by-nine:after {
+            content: "";
+            position: absolute;
+            bottom: @padding - 5;
+            left: @padding;
+            background-image: @theme5-secondary-logo-path;
+            background-repeat: no-repeat;
+            background-size: @theme5-16x9-logo-width - 14 @theme5-16x9-logo-height - 2;
+            height: @theme5-16x9-logo-height;
+            width: @theme5-16x9-logo-width;
         }
     }
 
