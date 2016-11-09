@@ -258,6 +258,7 @@ canvas {
         .logo-wrapper {
             background-image: @theme5-logo-path;
             background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+            background-repeat: no-repeat;
             width: @theme5-sq-logo-width + @padding;
             height: @theme5-sq-logo-height + @padding;
             padding: 0;
@@ -282,11 +283,11 @@ canvas {
         &.sixteen-by-nine:after {
             content: "";
             position: absolute;
-            bottom: @padding - 5;
+            bottom: @padding - 2;
             left: @padding;
             background-image: @theme5-secondary-logo-path;
             background-repeat: no-repeat;
-            background-size: @theme5-16x9-logo-width - 14 @theme5-16x9-logo-height - 2;
+            background-size: @theme5-16x9-logo-width @theme5-16x9-logo-height;
             height: @theme5-16x9-logo-height;
             width: @theme5-16x9-logo-width;
         }
