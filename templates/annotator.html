@@ -1,0 +1,84 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/annotator.less') }}
+{{ CSS.render('css/annotator.min.css') }}
+{% endblock extra_css %}
+
+{% block content %}
+<div class="content">
+    <div class="poster-wrapper">
+        <div class="poster quote poster-news sixteen-by-nine">
+            <h2 class="kicker-wrapper"><span class="kicker">Donald Trump On Gun Violence</span></h2>
+            <blockquote class="quote">
+                <p>Well, let me just tell you before we go any further in Chicago, which has the toughest gun laws in the United States, probably you could say by far, they have more gun violence than any other city. So we have the toughest laws and you have tremendous gun violence.</p>
+            </blockquote>
+            <div class="annotation">
+                <p>Chicago has been an epicenter of gun violence and according to FBI data, homicides in that city account for a substantial proportin of a rise in new violent crime. Scholars say that violence there is largely concentrated in a few neighborhoods.</p>
+                <div class="annotation-author">
+                    <span class="author">Danielle Kurtzleben</span> <span class="title">NPR Political Reporter</span>
+                </div>
+                <div class="logo-wrapper"></div>
+            </div>
+            <p class="show-credit">Quoted on September 18, 2015 at the Republican Presidential Debate</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="form controls col-md-12">
+                <div class="controls-wrapper">
+                    <div class="form-group">
+                        <label for="kicker">
+                            Headline
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" data-html="true" title="e.g. <em>What we know about the Nepal Earthquake, Presidential dog facts</em>"></i>
+                        </label>
+                        <input id="kicker" class="form-control" name="kicker" type="text" value="What We Know">
+                    </div>
+                    <div class="form-group">
+                        <label for="show">Annotation Author <span class="help">(e.g. Domenico Montanaro)</span></label>
+                        <input id="show" class="form-control" name="fontsize" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="show">Annotation Title <span class="help">(e.g. NPR Political Editor & Digital Audience)</span></label>
+                        <input id="show" class="form-control" name="fontsize" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="show">Attribution <span class="help">(e.g. Quoted on September 18, 2015 at the Republican Presidential debate)</span></label>
+                        <input id="show" class="form-control" name="fontsize" type="text">
+                    </div>
+                    <div class="form-group">
+                        <button id="save" class="btn btn-lg btn-primary">Save image</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="warning">If your list is too long or headline is too wide, you will not be able to save the image file.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fontsize">Font size</label>
+                        <input id="fontsize" name="fontsize" type="range" min="24" max="66" value="32">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jquery %}
+{% if DEPLOYMENT_TARGET == 'electron' %}
+<script type="text/javascript">
+    window.$ = window.jQuery = require('../js/lib/jquery.js')
+</script>
+{% else %}
+{{ JS.push('js/lib/jquery.js') }}
+{% endif %}
+{% endblock jquery %}
+
+{% block extra_foot_js %}
+{{ JS.push('js/lib/dom-to-image.js') }}
+{{ JS.push('js/lib/filesaver.js') }}
+{{ JS.push('js/lib/medium-editor.min.js') }}
+{{ JS.push('js/utils.js') }}
+{{ JS.push('js/annotator.js') }}
+{{ JS.render('js/annotator.min.js') }}
+{% endblock extra_foot_js %}

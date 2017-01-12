@@ -56,6 +56,13 @@ def waterbug():
     context['id'] = context['name']
     return make_response(render_template('waterbug.html', **context))
 
+@app.route('/annotator/index.html')
+def annotator():
+    context = make_context()
+    context['name'] = 'Annotator'
+    context['id'] = context['name']
+    return make_response(render_template('annotator.html', **context))
+
 app.register_blueprint(static.static)
 
 # Enable Werkzeug debug pages
