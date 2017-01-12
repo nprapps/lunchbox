@@ -26,7 +26,7 @@ canvas {
     width: 100%;
     max-width: 1200px;
     min-width: 640px;
-    margin: 0 auto;
+    margin: 20px auto 0;
 
     .poster-wrapper,
     .container {
@@ -36,6 +36,7 @@ canvas {
 
     .poster-wrapper {
         width: 640px;
+        padding: @line-height;
     }
 
     @media screen and (max-width: @screen-sm-max){
@@ -137,7 +138,7 @@ canvas {
     height: 640px;
     width: 640px;
     background: @bg-color;
-    margin: @line-height;
+    // margin: @line-height;
     position: relative;
     padding: @padding * 2;
     font-size: @base-font-size * 5;
