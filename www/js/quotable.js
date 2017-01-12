@@ -67,11 +67,11 @@ var onDocumentLoad = function() {
 var setupInitialState = function() {
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
-        adjustFontSize(quote.size);
+        UTILS.adjustFontSize(quote.size);
     }
     $('blockquote p').text(quote.quote);
     $source.html('&mdash;&thinsp;' + quote.source);
-    processText();
+    UTILS.processText();
 }
 
 var setupMediumEditors = function() {
@@ -109,43 +109,15 @@ var saveImage = function() {
         $source.html('&mdash;&thinsp;' + $source.text());
     }
 
-    $('canvas').remove();
-    processText();
+    UTILS.processText();
 
     var quote = $('blockquote').text().split(' ', 5);
-    var filename = convertToSlug(quote.join(' '));
+    var filename = UTILS.convertToSlug(quote.join(' '));
 
     domtoimage.toBlob(document.querySelector('.poster'))
         .then(function(blob) {
             window.saveAs(blob, 'quote-' + filename + '.png');
         });
-}
-
-var onCanvasRender = function(canvas) {
-    document.body.appendChild(canvas);
-    window.oCanvas = document.getElementsByTagName("canvas");
-    window.oCanvas = window.oCanvas[0];
-    var strDataURI = window.oCanvas.toDataURL();
-
-    var quote = $('blockquote').text().split(' ', 5);
-    var filename = convertToSlug(quote.join(' '));
-
-    var a = $("<a>").attr("href", strDataURI).attr("download", "quote-" + filename + ".png").appendTo("body");
-
-    a[0].click();
-
-    a.remove();
-
-    $('#download').attr('href', strDataURI).attr('target', '_blank');
-    $('#download').trigger('click');
-}
-
-function adjustFontSize(size) {
-    var fontSize = size.toString() + 'px';
-    $poster.css('font-size', fontSize);
-    if ($fontSize.val() !== size){
-        $fontSize.val(size);
-    };
 }
 
 var onThemeButtonClick = function() {
@@ -164,10 +136,10 @@ var onAspectRatioButtonClick =  function() {
         .addClass($(this).attr('id'));
 
     if ($poster.hasClass('sixteen-by-nine')) {
-        adjustFontSize(32);
+        UTILS.adjustFontSize(32);
         $fontSize.val(32);
     } else {
-        adjustFontSize(90);
+        UTILS.adjustFontSize(90);
         $fontSize.val(90);
     }
 }
@@ -178,38 +150,12 @@ var onQuoteButtonClick = function() {
 }
 
 var onFontSizeChange = function() {
-    adjustFontSize($(this).val());
+    UTILS.adjustFontSize($(this).val());
 }
 
 var onAttributionKeyup = function() {
     var inputText = $(this).val();
     $showCredit.text(inputText);
-}
-
-// Change straight quotes to curly and double hyphens to em-dashes.
-function smarten(a) {
-  a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
-  a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
-  a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
-  a = a.replace(/"/g, "\u201d");                            // closing doubles
-  a = a.replace(/--/g, "\u2014");                           // em-dashes
-  a = a.replace(/ \u2014 /g, "\u2009\u2014\u2009");         // full spaces wrapping em dash
-  return a;
-}
-
-function convertToSlug(text) {
-    return text
-        .toLowerCase()
-        .replace(/[^\w ]+/g,'')
-        .replace(/ +/g,'-');
-}
-
-function processText() {
-    $text = $('.poster blockquote p, .source');
-    $text.each(function() {
-        var rawText = $.trim($(this).html());
-        $(this).html(smarten(rawText)).find('br').remove();
-    });
 }
 
 $(onDocumentLoad);

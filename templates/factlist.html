@@ -82,9 +82,11 @@
 
 {% block extra_foot_js %}
 {{ JS.push('js/lib/bootstrap.js') }}
-{{ JS.push('js/lib/html2canvas.js') }}
+{{ JS.push('js/lib/dom-to-image.js') }}
+{{ JS.push('js/lib/filesaver.js') }}
 {{ JS.push('js/lib/medium-editor.min.js') }}
 {{ JS.push('js/lib/moment.js') }}
+{{ JS.push('js/utils.js') }}
 {{ JS.push('js/factlist.js') }}
 {{ JS.render('js/factlist.min.js') }}
 {% endblock extra_foot_js %}

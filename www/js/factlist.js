@@ -36,7 +36,7 @@ var onDocumentLoad = function() {
     $themeButtons.on('click', onThemeClick);
     $aspectRatioButtons.on('click', onAspectRatioClick);
     $timestampToggleButtons.on('click', onTimestampToggleClick);
-    $fontSize.on('change', adjustFontSize);
+    $fontSize.on('change', onFontSizeChange);
     $kickerInput.on('keyup', onKickerKeyup);
 
     setupInitialState();
@@ -45,8 +45,8 @@ var onDocumentLoad = function() {
 
 
 var setupInitialState = function() {
-    adjustFontSize(null, 32);
-    processText();
+    UTILS.adjustFontSize(32);
+    UTILS.processText();
     updateTimestamp();
     timestampInterval = setInterval(updateTimestamp, 1000);
     $('[data-toggle="tooltip"]').tooltip();
@@ -101,29 +101,15 @@ var saveImage = function() {
           return;
     }
 
-    $('canvas').remove();
-    processText();
+    UTILS.processText();
 
     var headline = $kicker.text().split(' ', 9);
-    var filename = convertToSlug(headline.join(' '));
+    var filename = UTILS.convertToSlug(headline.join(' '));
 
     domtoimage.toBlob(document.querySelector('.poster'))
         .then(function(blob) {
-            window.saveAs(blob, 'quote-' + filename + '.png');
+            window.saveAs(blob, 'factlist-' + filename + '.png');
         });
-}
-
-/*
- * Adjust the poster font size
- */
-var adjustFontSize = function(e, size) {
-    var newSize = size||$(this).val();
-
-    var fontSize = newSize.toString() + 'px';
-    $poster.css('font-size', fontSize);
-    if ($fontSize.val() !== newSize){
-        $fontSize.val(newSize);
-    };
 }
 
 /*
@@ -147,11 +133,11 @@ var onAspectRatioClick = function(e) {
     if ($poster.hasClass('sixteen-by-nine')) {
         $fontSize.attr('min', 24);
         $fontSize.val(24);
-        adjustFontSize(null, 32);
+        UTILS.adjustFontSize(32);
     } else {
         $fontSize.attr('min', 32);
         $fontSize.val(42);
-        adjustFontSize(null, 42);
+        UTILS.adjustFontSize(42);
     }
 }
 
@@ -168,46 +154,16 @@ var onTimestampToggleClick = function(e) {
     }
 }
 
+var onFontSizeChange = function() {
+    UTILS.adjustFontSize($(this).val());
+}
+
 /*
  * Update the kicker text
  */
 var onKickerKeyup = function(e) {
     var inputText = $(this).val();
     $kicker.text(inputText);
-}
-
-/*
- * Change straight quotes to curly and double hyphens to em-dashes.
- */
-var smarten = function(a) {
-  a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
-  a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
-  a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
-  a = a.replace(/"/g, "\u201d");                            // closing doubles
-  a = a.replace(/--/g, "\u2014");                           // em-dashes
-  a = a.replace(/ \u2014 /g, "\u2009\u2014\u2009");         // full spaces wrapping em dash
-  return a;
-}
-
-/*
- * Convert a string to slug format
- */
-var convertToSlug = function(text) {
-    return text
-        .toLowerCase()
-        .replace(/[^\w ]+/g,'')
-        .replace(/ +/g,'-');
-}
-
-/*
- * Cleanup whitespace and smart quotes on text inputs
- */
-var processText = function() {
-    $text = $('.poster blockquote p, .source');
-    $text.each(function() {
-        var rawText = $.trim($(this).html());
-        $(this).html(smarten(rawText)).find('br').remove();
-    });
 }
 
 $(onDocumentLoad);
