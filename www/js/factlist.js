@@ -39,47 +39,32 @@ var onDocumentLoad = function() {
     $fontSize.on('change', adjustFontSize);
     $kickerInput.on('keyup', onKickerKeyup);
 
+    setupInitialState();
+    setupMediumEditor();
+}
+
+
+var setupInitialState = function() {
     adjustFontSize(null, 32);
     processText();
     updateTimestamp();
     timestampInterval = setInterval(updateTimestamp, 1000);
-    setupMediumEditor();
-    
     $('[data-toggle="tooltip"]').tooltip();
 }
 
 /*
- * Change straight quotes to curly and double hyphens to em-dashes.
+ * Bind a medium editor to the poster blockquote
  */
-var smarten = function(a) {
-  a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
-  a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
-  a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
-  a = a.replace(/"/g, "\u201d");                            // closing doubles
-  a = a.replace(/--/g, "\u2014");                           // em-dashes
-  a = a.replace(/ \u2014 /g, "\u2009\u2014\u2009");         // full spaces wrapping em dash
-  return a;
-}
+var setupMediumEditor = function(){
+    var quoteEl = document.querySelectorAll('.poster blockquote');
 
-/*
- * Convert a string to slug format
- */
-var convertToSlug = function(text) {
-    return text
-        .toLowerCase()
-        .replace(/[^\w ]+/g,'')
-        .replace(/ +/g,'-');
-}
-
-/*
- * Cleanup whitespace and smart quotes on text inputs
- */
-var processText = function() {
-    $text = $('.poster blockquote p, .source');
-    $text.each(function() {
-        var rawText = $.trim($(this).html());
-        $(this).html(smarten(rawText)).find('br').remove();
+    var quoteEditor = new MediumEditor(quoteEl, {
+        toolbar: false,
+        spellcheck: false,
+        placeholder: ''
     });
+
+    $factList.focus();
 }
 
 /*
@@ -119,27 +104,13 @@ var saveImage = function() {
     $('canvas').remove();
     processText();
 
-    html2canvas($poster, {
-      letterRendering: true,
-      onrendered: function(canvas) {
-        document.body.appendChild(canvas);
-        window.oCanvas = document.getElementsByTagName("canvas");
-        window.oCanvas = window.oCanvas[0];
-        var strDataURI = window.oCanvas.toDataURL();
+    var headline = $kicker.text().split(' ', 9);
+    var filename = convertToSlug(headline.join(' '));
 
-        var headline = $kicker.text().split(' ', 9);
-        var filename = convertToSlug(headline.join(' '));
-
-        var a = $("<a>").attr("href", strDataURI).attr("download", "factlist-" + filename + ".png").appendTo("body");
-
-        a[0].click();
-
-        a.remove();
-
-        $('#download').attr('href', strDataURI).attr('target', '_blank');
-        $('#download').trigger('click');
-      }
-    });
+    domtoimage.toBlob(document.querySelector('.poster'))
+        .then(function(blob) {
+            window.saveAs(blob, 'quote-' + filename + '.png');
+        });
 }
 
 /*
@@ -206,17 +177,37 @@ var onKickerKeyup = function(e) {
 }
 
 /*
- * Bind a medium editor to the poster blockquote
+ * Change straight quotes to curly and double hyphens to em-dashes.
  */
-var setupMediumEditor = function(){
-    var quoteEl = document.querySelectorAll('.poster blockquote');
+var smarten = function(a) {
+  a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
+  a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
+  a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
+  a = a.replace(/"/g, "\u201d");                            // closing doubles
+  a = a.replace(/--/g, "\u2014");                           // em-dashes
+  a = a.replace(/ \u2014 /g, "\u2009\u2014\u2009");         // full spaces wrapping em dash
+  return a;
+}
 
-    var quoteEditor = new MediumEditor(quoteEl, {
-        disableToolbar: true,
-        placeholder: ''
+/*
+ * Convert a string to slug format
+ */
+var convertToSlug = function(text) {
+    return text
+        .toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-');
+}
+
+/*
+ * Cleanup whitespace and smart quotes on text inputs
+ */
+var processText = function() {
+    $text = $('.poster blockquote p, .source');
+    $text.each(function() {
+        var rawText = $.trim($(this).html());
+        $(this).html(smarten(rawText)).find('br').remove();
     });
-
-    $factList.focus();
 }
 
 $(onDocumentLoad);

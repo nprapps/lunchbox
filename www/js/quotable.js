@@ -40,7 +40,7 @@ var quotes = [
     }
 ];
 
-var onDocumentReady = function() {
+var onDocumentLoad = function() {
     $text = $('.poster blockquote p, .source');
     $save = $('#save');
     $poster = $('.poster');
@@ -91,7 +91,7 @@ var setupMediumEditors = function() {
     });
 }
 
-function saveImage() {
+var saveImage = function() {
     // first check if the quote actually fits
     if (($source.offset().top + $source.height()) > $logoWrapper.offset().top) {
         alert("Your quote doesn't quite fit. Shorten the text or choose a smaller font-size.");
@@ -212,4 +212,4 @@ function processText() {
     });
 }
 
-$(onDocumentReady);
+$(onDocumentLoad);
