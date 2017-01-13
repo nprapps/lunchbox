@@ -51,13 +51,13 @@ var setupMediumEditors = function(){
     var quoteEditor = new MediumEditor(quoteEl, {
         toolbar: false,
         spellcheck: false,
-        placeholder: ''
+        placeholder: 'Quote here'
     });
 
     var annotationEditor = new MediumEditor(annotationEl, {
         toolbar: false,
         spellcheck: false,
-        placeholder: ''
+        placeholder: 'Annotation here'
     });
 
     $quotation.focus();
