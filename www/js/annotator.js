@@ -2,7 +2,10 @@ var $text = null;
 var $quotation = null;
 var $annotation = null;
 var $annotationAuthor = null;
+var $annotationAuthorInput = null;
 var $authorTitle = null;
+//var annotationTitle = null;
+var $annotationTitleInput = null;
 var $save = null;
 var $poster = null;
 var $fontSize = null;
@@ -10,6 +13,8 @@ var $kicker = null;
 var $kickerInput = null;
 var $source = null;
 var $logoWrapper = null;
+var showCredit = null;
+var $attributionInput = null;
 
 /*
  * Run on page load.
@@ -19,17 +24,26 @@ var onDocumentLoad = function() {
     $quotation = $('.poster blockquote');
     $annotation = $('.poster .annotation');
     $annotationAuthor = $('.annotation-author .author');
+    $annotationAuthorInput = $('#annotation-author');
     $authorTitle = $('.annotation-author .title');
+    //$annotationTitle = $('.annotation-title .title');
+    $annotationTitleInput = $('#annotation-title');
     $save = $('#save');
     $poster = $('.poster');
     $fontSize = $('#fontsize');
     $kicker = $('.kicker');
     $kickerInput = $('#kicker');
     $logoWrapper = $('.logo-wrapper');
+    $showCredit = $('.show-credit');
+    $attributionInput = $('#attribution');
 
     $save.on('click', saveImage);
     $fontSize.on('change', onFontSizeChange);
     $kickerInput.on('keyup', onKickerKeyup);
+    $annotationAuthorInput.on('keyup', onAnnotationAuthorKeyup);
+    $annotationTitleInput.on('keyup', onAnnotationTitleKeyup);
+    $attributionInput.on('keyup', onAttributionKeyup);
+
 
     setupInitialState();
     setupMediumEditors();
@@ -110,4 +124,18 @@ var onKickerKeyup = function(e) {
     $kicker.text(inputText);
 }
 
+var onAnnotationAuthorKeyup = function(){
+  var inputText = $(this).val();
+  $annotationAuthor.text(inputText);
+}
+
+var onAnnotationTitleKeyup = function(){
+  var inputText = $(this).val();
+  $authorTitle.text(inputText);
+}
+
+var onAttributionKeyup = function(){
+  var inputText = $(this).val();
+  $showCredit.text(inputText);
+}
 $(onDocumentLoad);
