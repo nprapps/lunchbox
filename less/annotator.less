@@ -39,67 +39,8 @@ canvas {
         padding: 0 @line-height @line-height;
     }
 
-    @media screen and (max-width: @screen-sm-max){
-        display: block;
-
-        .poster-wrapper,
-        .container {
-            display: block;
-        }
-    }
-
-    @media screen and (max-width: @screen-xs-max){
-        .controls-wrapper {
-            font-size: 250%;
-            .btn {
-                font-size: 100%;
-                height: 88px;
-                min-width: 88px;
-            }
-        }
-
-        #fontsize {
-            display: block;
-            width: 90%;
-        }
-    }
-
-    .touch & {
-        input[type="range"]{
-            background: #fff;
-            width: 100%;
-            height: 88px;
-            -webkit-appearance: none;
-            border-radius: 8px;
-            -moz-border-radius: 8px;
-            -wekkit-border-radius: 8px;
-            border: 1px solid #ddd;
-        }
 
 
-        input[type="range"]::-webkit-slider-thumb{
-           -webkit-appearance:none !important;
-           width:88px;
-           height:88px;
-           -webkit-appearance: none;
-            border-radius: 8px;
-            -moz-border-radius: 8px;
-            -wekkit-border-radius: 8px;
-            border:none;
-            background: #aaa;
-         }
-
-         @media screen and (min-width: @screen-sm){
-            input[type="range"]{
-                height: 44px;
-            }
-
-            input[type="range"]::-webkit-slider-thumb {
-                width:44px;
-                height:44px;
-            }
-         }
-    }
 }
 
 .controls-wrapper {
@@ -214,79 +155,6 @@ canvas {
     line-height: 1 !important;
     overflow: hidden;
     color: @text-color;
-
-    &.poster-theme1 {
-        background: @bg-color;
-        color: @text-color;
-        .logo-wrapper {
-            background-image: @logo-path;
-            background-repeat: no-repeat;
-            background-size: @logo-16x9-width @logo-16x9-height;
-            width: @logo-16x9-width;
-            height: @logo-16x9-height;
-        }
-    }
-
-    &.poster-theme2 {
-        background: @theme2-bg-color;
-        color: @theme2-text-color;
-        .logo-wrapper {
-            background: @theme2-bg-color;
-            color: @theme2-text-color;
-            background-image: @theme2-logo-path;
-            background-repeat: no-repeat;
-            background-size: @theme2-sq-logo-width @theme2-sq-logo-height;
-            width: @theme2-sq-logo-width + @padding;
-            height: @theme2-sq-logo-height + @padding;
-
-            .sixteen-by-nine& {
-                background-size: @theme2-16x9-logo-width @theme2-16x9-logo-height;
-                width: @theme2-16x9-logo-width + @padding;
-                height: @theme2-16x9-logo-height + @padding;
-            }
-        }
-    }
-
-
-    &.poster-theme3 {
-        background: @theme3-bg-color;
-        color: @theme3-text-color;
-        .logo-wrapper {
-            background: @theme3-bg-color;
-            color: @theme3-text-color;
-            background-image: @theme3-logo-path;
-            background-repeat: no-repeat;
-            background-size: @theme3-sq-logo-width @theme3-sq-logo-height;
-            width: @theme3-sq-logo-width + @padding;
-            height: @theme3-sq-logo-height + @padding;
-
-            .sixteen-by-nine& {
-                background-size: @theme3-16x9-logo-width @theme3-16x9-logo-height;
-                width: @theme3-16x9-logo-width + @padding;
-                height: @theme3-16x9-logo-height + @padding;
-            }
-        }
-    }
-
-    &.poster-theme4 {
-        background: @theme4-bg-color;
-        color: @theme4-text-color;
-        .logo-wrapper {
-            background: @theme4-bg-color;
-            color: @theme4-text-color;
-            background-image: @theme4-logo-path;
-            background-repeat: no-repeat;
-            background-size: @theme4-sq-logo-width @theme4-sq-logo-height;
-            width: @theme4-sq-logo-width + @padding;
-            height: @theme4-sq-logo-height + @padding;
-
-            .sixteen-by-nine& {
-                background-size: @theme4-16x9-logo-width @theme4-16x9-logo-height;
-                width: @theme4-16x9-logo-width + @padding;
-                height: @theme4-16x9-logo-height + @padding;
-            }
-        }
-    }
 
 
     &.sixteen-by-nine {
