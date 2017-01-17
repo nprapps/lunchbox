@@ -78,13 +78,15 @@ var setupMediumEditors = function(){
     var quoteEditor = new MediumEditor(quoteEl, {
         toolbar: false,
         spellcheck: false,
-        placeholder: 'Quote here'
+        placeholder: 'Quote here',
+        cleanPastedHTML: true
     });
 
     var annotationEditor = new MediumEditor(annotationEl, {
         toolbar: false,
         spellcheck: false,
-        placeholder: 'Annotation here'
+        placeholder: 'Annotation here',
+        cleanPastedHTML: true
     });
 
     $quotation.focus();
