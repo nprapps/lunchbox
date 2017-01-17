@@ -20,6 +20,8 @@ var $quoteFontSizeIncrease = null;
 var $annotationFontSizeDecrease = null;
 var $annotationFontSizeIncrease = null;
 
+var FONT_SIZE_CHANGE_FACTOR = 1
+
 /*
  * Run on page load.
  */
@@ -162,10 +164,10 @@ var onFontSizeChangeClick = function() {
     }
 
     if (operator === 'decrease') {
-        var newSize = currentSize - 2;
+        var newSize = currentSize - FONT_SIZE_CHANGE_FACTOR;
     }
     else {
-        var newSize = currentSize + 2;
+        var newSize = currentSize + FONT_SIZE_CHANGE_FACTOR;
     }
     $poster.find('.' + adjustTarget + ' p' ).css('font-size', newSize + 'px');
     $currentSize.text(newSize.toString() + 'px');
