@@ -169,6 +169,26 @@ canvas {
             display: inline-block;
             border: 1px solid #ccc;
         }
+
+        .increase, .decrease {
+            position: relative;
+            padding: 5px 10px;
+
+            border: 1px solid #6d8ac4;
+            font-size: 12px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #6d8ac4;
+
+            &:hover {
+                background-color: #3551A0;
+            }
+        }
+
+        .decrease {
+            padding: 5px 12px;
+        }
     }
 
     .help {
