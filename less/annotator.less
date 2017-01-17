@@ -160,20 +160,25 @@ canvas {
     }
 
     .font-size-adjust {
+        position: relative;
 
         .current-size {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            padding: 5px 10px;
             font-size: 12px;
             color: #444;
             background-color: #ddd;
-            padding: 5px 10px;
-            display: inline-block;
             border: 1px solid #ccc;
         }
 
         .increase, .decrease {
             position: relative;
+            display: inline-block;
             padding: 5px 10px;
-
             border: 1px solid #6d8ac4;
             font-size: 12px;
             color: #fff;
@@ -188,6 +193,7 @@ canvas {
 
         .decrease {
             padding: 5px 12px;
+            margin-left: 60px;
         }
     }
 
@@ -333,8 +339,8 @@ canvas {
     }
 
     blockquote {
-        padding: 0 0 0 1em;
-        margin: @line-height * 2 0;
+        padding: 0;
+        margin: 40px 0 0 0;
         border-left: none;
         font-size: inherit;
         line-height: 100%;
@@ -352,8 +358,9 @@ canvas {
             font-size: inherit;
             font-weight: inherit;
             margin: 0;
-            margin-left: -1em;
-            line-height: 150%;
+            line-height: 1.8;
+            color: #333;
+            font-size: 16px;
         }
 
         &:last-child {
@@ -369,13 +376,20 @@ canvas {
         padding: 1em;
         margin: 0 0 3em;
         position: relative;
-        line-height: 150%;
+        line-height: 1.5;
 
         .annotation-author {
-            margin-top: 25px;
+            margin-top: 15px;
             font-size: 13px;
 
             .author { font-weight: bold; }
+        }
+
+        .annotation {
+            p {
+                color: #222222;
+                font-size: 16px;
+            }
         }
     }
 

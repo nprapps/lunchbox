@@ -62,7 +62,7 @@ var onDocumentLoad = function() {
 
 
 var setupInitialState = function() {
-    UTILS.adjustFontSize(16);
+    //UTILS.adjustFontSize(16);
     UTILS.processText();
 }
 
@@ -167,7 +167,7 @@ var onFontSizeChangeClick = function() {
     else {
         var newSize = currentSize + 2;
     }
-    $poster.find('.' + adjustTarget).css('font-size', newSize + 'px');
+    $poster.find('.' + adjustTarget + ' p' ).css('font-size', newSize + 'px');
     $currentSize.text(newSize.toString() + 'px');
 }
 
