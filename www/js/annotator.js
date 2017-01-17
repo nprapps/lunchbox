@@ -15,6 +15,10 @@ var $source = null;
 var $logoWrapper = null;
 var showCredit = null;
 var $attributionInput = null;
+var $quoteFontSizeDecrease = null;
+var $quoteFontSizeIncrease = null;
+var $annotationFontSizeDecrease = null;
+var $annotationFontSizeIncrease = null;
 
 /*
  * Run on page load.
@@ -36,6 +40,10 @@ var onDocumentLoad = function() {
     $logoWrapper = $('.logo-wrapper');
     $showCredit = $('.show-credit');
     $attributionInput = $('#attribution');
+    $quoteFontSizeDecrease = $('.font-size-adjust.quote .decrease');
+    $quoteFontSizeIncrease = $('.font-size-adjust.quote .increase');
+    $annotationFontSizeDecrease = $('.font-size-adjust.annotation .decrease');
+    $annotationFontSizeIncrease = $('.font-size-adjust.annotation .increase');
 
     $save.on('click', saveImage);
     $fontSize.on('change', onFontSizeChange);
@@ -43,7 +51,10 @@ var onDocumentLoad = function() {
     $annotationAuthorInput.on('keyup', onAnnotationAuthorKeyup);
     $annotationTitleInput.on('keyup', onAnnotationTitleKeyup);
     $attributionInput.on('keyup', onAttributionKeyup);
-
+    $quoteFontSizeDecrease.on('click', onFontSizeChangeClick);
+    $quoteFontSizeIncrease.on('click', onFontSizeChangeClick);
+    $annotationFontSizeDecrease.on('click', onFontSizeChangeClick);
+    $annotationFontSizeIncrease.on('click', onFontSizeChangeClick);
 
     setupInitialState();
     setupMediumEditors();
@@ -138,4 +149,26 @@ var onAttributionKeyup = function(){
   var inputText = $(this).val();
   $showCredit.text(inputText);
 }
+
+var onFontSizeChangeClick = function() {
+    var $currentSize = $(this).siblings().filter('.current-size');
+    var currentSize = parseInt($currentSize.text().split('px')[0]);
+    var operator = $(this).attr('class');
+
+    if ($(this).parent().hasClass('annotation')) {
+        var adjustTarget = 'annotation';
+    } else {
+        var adjustTarget = 'quote';
+    }
+
+    if (operator === 'decrease') {
+        var newSize = currentSize - 2;
+    }
+    else {
+        var newSize = currentSize + 2;
+    }
+    $poster.find('.' + adjustTarget).css('font-size', newSize + 'px');
+    $currentSize.text(newSize.toString() + 'px');
+}
+
 $(onDocumentLoad);
