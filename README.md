@@ -223,7 +223,9 @@ We support two separate deployment options: Amazon S3 and any fileserver that yo
 Deploy to Amazon S3
 -------------------
 
-For Amazon S3, ensure that you have your AWS Access Key ID and Secret Access Key stored as environment variables as such:
+For Amazon S3, ensure that you've installed the AWS command-line interface (if you're using brew, you can use `brew install awscli`), and set up a new S3 bucket.
+
+Store your AWS Access Key ID and Secret Access Key as environment variables by running the following in Terminal:
 
 ```
 export AWS_ACCESS_KEY_ID="YOURACCESSKEYID"
@@ -237,8 +239,9 @@ PRODUCTION_S3_BUCKET = 'your.bucket.org'
 STAGING_S3_BUCKET = 'stage-your.bucket.org'
 ```
 
-With these variables set, you can run `fab [production/staging] master deploy` to deploy Lunchbox to your S3 bucket.
+Note: The placeholder is the name of your bucket and not its url. For a simple S3 bucket with no custom DNS named `lunchbox-s3`, you would use `lunchbox-s3` instead of `s3.amazonaws.com/lunchbox-s3`, for instance.
 
+With these variables set, you can run `fab [production/staging] master deploy` to deploy Lunchbox to your S3 bucket.
 
 Deploy to other file server
 ---------------------------
