@@ -243,10 +243,11 @@ var buildCreditString = function() {
     var val = $copyrightHolder.val();
 
     if ($photographer.val() !== '') {
+        var d = copyrightOptions[val]['delimiter'] || '/'
         if (copyrightOptions[val]['source']) {
-            creditString = $photographer.val() + '/' + copyrightOptions[val]['source'];
+            creditString = $photographer.val() + d + copyrightOptions[val]['source'];
         } else {
-            creditString = $photographer.val() + '/' + $source.val();
+            creditString = $photographer.val() + d + $source.val();
         }
     } else {
         if (copyrightOptions[val]['source']) {
