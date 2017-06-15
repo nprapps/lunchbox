@@ -257,6 +257,10 @@ var buildCreditString = function() {
         }
     }
 
+    if (copyrightOptions[val]['prefix']) {
+      creditString = copyrightOptions[val]['prefix'] + creditString;
+    }
+
     if (copyrightOptions[val]['photographerRequired']) {
         if ($photographer.val() !== '') {
             $photographer.parents('.form-group').removeClass('has-warning');
