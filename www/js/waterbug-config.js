@@ -1,6 +1,34 @@
 // widths and padding
-var canvasWidth = 1000; // this will be the exported width of the image
 var elementPadding = 40; // padding around the logo and credit text
+
+// Crop options
+var currentCrop = 'cinema'; // default crop size
+var cropOptions = {
+    'cinema': {
+        display: '16:9',
+        width: 1000,
+        height: Math.round(1000 / (16/9))
+    },
+    'twitter': {
+        display: '2:1 <i class="fa fa-twitter"></i>',
+        width: 1024,
+        height: 1024/2
+    },
+    'facebook': {
+        display: '<i class="fa fa-facebook"></i>',
+        width: 1200,
+        height: 630
+    },
+    'instagram': {
+        display: '1:1 <i class="fa fa-instagram"></i>',
+        width: 1080,
+        height: 1080
+    },
+    'original': {
+        display: 'Original',
+        width: 1000
+    }
+}
 
 // logo configuration
 // the name of the logo object should match the value of the corresponding radio button in the HTML.
@@ -83,7 +111,6 @@ var copyrightOptions = {
 }
 
 // app load defaults
-var currentCrop = 'twitter'; // default crop size
 var currentLogo = 'lunchbox'; // default logo slug
 var currentLogoColor = 'white'; // default logo color
 var currentTextColor = 'white'; // default text color

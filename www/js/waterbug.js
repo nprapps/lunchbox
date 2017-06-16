@@ -33,7 +33,7 @@ var currentCopyright;
 var credit = 'Belal Khan/Flickr'
 var shallowImage = false;
 var scale = 1;
-
+var canvasWidth;
 
 // JS objects
 var ctx;
@@ -50,7 +50,6 @@ var onDocumentLoad = function(e) {
     ctx = canvas.getContext('2d');
     $save = $('.save-btn');
     $textColor = $('input[name="textColor"]');
-    $crop = $('input[name="crop"]');
     $logoColor = $('input[name="logoColor"]');
     $qualityQuestions = $('.quality-question');
     $copyrightHolder = $('.copyright-holder');
@@ -60,6 +59,8 @@ var onDocumentLoad = function(e) {
     $customFilename = $('.custom-filename');
     $logosWrapper = $('.logos-wrapper');
     $cell = $('.canvas-cell');
+
+    canvasWidth = cropOptions[currentCrop].width;
 
     img.src = defaultImage;
     img.onload = onImageLoad;
@@ -72,7 +73,6 @@ var onDocumentLoad = function(e) {
     $save.on('click', onSaveClick);
     $textColor.on('change', onTextColorChange);
     $logoColor.on('change', onLogoColorChange);
-    $crop.on('change', onCropChange);
     $canvas.on('mousedown touchstart', onDrag);
     $copyrightHolder.on('change', onCopyrightChange);
     $customFilename.on('click', function(e) {
@@ -84,8 +84,8 @@ var onDocumentLoad = function(e) {
     });
 
     $(window).on('resize', resizeCanvas);
-    resizeCanvas();
     buildForm();
+    resizeCanvas();
 }
 
 var resizeCanvas = function() {
@@ -103,6 +103,7 @@ var resizeCanvas = function() {
 var buildForm = function() {
     var copyrightKeys = Object.keys(copyrightOptions);
     var logoKeys = Object.keys(logos);
+    var cropKeys = Object.keys(cropOptions);
 
     for (var i = 0; i < copyrightKeys.length; i++) {
         var key = copyrightKeys[i];
@@ -128,6 +129,22 @@ var buildForm = function() {
     } else {
         $logosWrapper.hide();
     }
+
+    var $crops = $('.crops');
+    for (var i = 0; i < cropKeys.length; i++) {
+        var key = cropKeys[i];
+        var display = cropOptions[key]['display']
+        var tooltip = ''
+        if (cropOptions[key].height) tooltip = cropOptions[key].width+'x'+cropOptions[key].height;
+        $crops.append('<label class="btn btn-primary" title="'+tooltip+'"><input type="radio" name="crop" id="' + key + '" value="' + key + '">' + display + '</label>');
+        if (key === currentCrop) {
+            $('#' + key).attr('checked', true);
+            $('#' + key).parent('.btn').addClass('active');
+        }
+    }
+
+    $crop = $('input[name="crop"]');
+    $crop.on('change', onCropChange);
 }
 
 
@@ -135,33 +152,20 @@ var buildForm = function() {
 * Draw the image, then the logo, then the text
 */
 var renderCanvas = function() {
-    // canvas is always the same width
-    canvas.width = canvasWidth;
+    // Set the canvas width
+    console.log('crop: ' + currentCrop);
+    canvas.width = cropOptions[currentCrop].width;
 
     // clear the canvas
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    // if we're cropping, use the aspect ratio for the height
-    if (currentCrop === 'twitter') {
-        canvas.height = canvasWidth / (16/9);
-    } else if (currentCrop === 'instagram') {
-        canvas.height = canvasWidth;
-    }
-
     // determine height of canvas and scaled image, then draw the image
     var imageAspect = img.width / img.height;
 
-    if (currentCrop === 'original') {
-        canvas.height = canvasWidth / imageAspect;
-        scaledImageHeight = canvas.height;
-        ctx.drawImage(
-            img,
-            0,
-            0,
-            canvasWidth,
-            scaledImageHeight
-        );
-    } else {
+    // Set the canvas height
+    if (cropOptions[currentCrop].height) {
+        canvas.height = cropOptions[currentCrop].height;
+
         if (img.width / img.height > canvas.width / canvas.height) {
             shallowImage = true;
 
@@ -194,6 +198,16 @@ var renderCanvas = function() {
                 scaledImageHeight
             );
         }
+    } else {
+        canvas.height = canvas.width / imageAspect;
+        scaledImageHeight = canvas.height;
+        ctx.drawImage(
+            img,
+            0,
+            0,
+            canvasWidth,
+            scaledImageHeight
+        );
     }
 
     // set alpha channel, draw the logo
@@ -400,7 +414,6 @@ var handleImage = function(e) {
 * Set dragging status based on image aspect ratio and render canvas
 */
 var onImageLoad = function(e) {
-    renderCanvas();
     onCropChange();
 }
 
@@ -508,11 +521,12 @@ var onLogoChange = function(e) {
 */
 var onCropChange = function() {
     currentCrop = $crop.filter(':checked').val();
+    canvasWidth = cropOptions[currentCrop].width;
 
     dy = 0;
     dx = 0;
 
-    renderCanvas();
+    resizeCanvas();
 
     $canvas.removeClass('is-draggable shallow');
     if (currentCrop !== 'original') {
