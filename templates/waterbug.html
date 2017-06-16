@@ -10,8 +10,8 @@
     <div class="canvas-wrapper">
         <div class="canvas-cell">
             <canvas id="imageCanvas" class="is-draggable"></canvas>
-            <p class="drag-help">Drag the image to adjust the crop.</p>
         </div>
+        <p class="drag-help">Drag the image to adjust the crop.</p>
     </div>
     <div class="form controls">
         <div class="controls-wrapper">
@@ -60,7 +60,11 @@
                         <div class="btn-group btn-group-justified btn-group-sm" data-toggle="buttons">
                             <label class="btn btn-primary active">
                                 <input type="radio" name="crop" id="twitter" value="twitter" checked>
-                                16x9 <i class="fa fa-twitter"></i>
+                                16:9 <i class="fa fa-twitter"></i>
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="crop" id="instagram" value="instagram">
+                                1:1 <i class="fa fa-instagram"></i>
                             </label>
                             <label class="btn btn-primary">
                               <input type="radio" name="crop" id="original" value="original">
@@ -105,10 +109,9 @@
                 <div class="form-group">
                     <label>Sharing guidelines</label>
                     <ul class="guidelines">
-                        <li>Only official accounts can tweet wire images (Getty/AP)</li>
-                        <li>Only tweet AP photos that are published with the story and we must include the story link</li>
-                        <li>We can tweet multiple Getty photos as long as they’re licensed and have been downloaded</li>
-                        <li>Freelancer, third party/courtesy photos, PR, Flickr Creative Commons and public domain images are fine to share, just include correct attribution</li>
+                        <li>Only official Vox accounts can share wire images (Getty/AP)</li>
+                        <li>We can tweet multiple Getty images as long as they're licensed and have been downloaded</li>
+                        <li>Freelancer, third party/courtesy photos, PR, Flickr Creative Commons and public domain images are fine to share, just include correct credit</li>
                     </ul>
                 </div>
 

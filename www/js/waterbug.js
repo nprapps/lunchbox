@@ -15,6 +15,7 @@ var $dragHelp;
 var $filename;
 var $fileinput;
 var $customFilename;
+var $cell;
 
 // Constants
 var IS_MOBILE = Modernizr.touch && Modernizr.mq('screen and max-width(700px)');
@@ -31,6 +32,7 @@ var imageFilename = 'image';
 var currentCopyright;
 var credit = 'Belal Khan/Flickr'
 var shallowImage = false;
+var scale = 1;
 
 
 // JS objects
@@ -57,6 +59,7 @@ var onDocumentLoad = function(e) {
     $fileinput = $('.fileinput');
     $customFilename = $('.custom-filename');
     $logosWrapper = $('.logos-wrapper');
+    $cell = $('.canvas-cell');
 
     img.src = defaultImage;
     img.onload = onImageLoad;
@@ -86,7 +89,7 @@ var onDocumentLoad = function(e) {
 }
 
 var resizeCanvas = function() {
-    var scale = $('.canvas-cell').width() / canvasWidth;
+    scale = $cell.width() / canvasWidth;
     $canvas.css({
         'webkitTransform': 'scale(' + scale + ')',
         'MozTransform': 'scale(' + scale + ')',
@@ -135,13 +138,15 @@ var renderCanvas = function() {
     // canvas is always the same width
     canvas.width = canvasWidth;
 
-    // if we're cropping, use the aspect ratio for the height
-    if (currentCrop !== 'original') {
-        canvas.height = canvasWidth / (16/9);
-    }
-
     // clear the canvas
     ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // if we're cropping, use the aspect ratio for the height
+    if (currentCrop === 'twitter') {
+        canvas.height = canvasWidth / (16/9);
+    } else if (currentCrop === 'instagram') {
+        canvas.height = canvasWidth;
+    }
 
     // determine height of canvas and scaled image, then draw the image
     var imageAspect = img.width / img.height;
@@ -231,6 +236,9 @@ var renderCanvas = function() {
         canvas.width - (creditWidth.width + elementPadding),
         canvas.height - elementPadding
     );
+
+    // update container height
+    $cell.height(canvas.height * scale);
 
     validateForm();
 }
@@ -429,8 +437,8 @@ var disableLogo = function(){
 /*
 * Download the image on save click
 */
-var onSaveClick = function(e) {
-    e.preventDefault();
+var onSaveClick = function(eve) {
+    eve.preventDefault();
 
     /// create an "off-screen" anchor tag
     var link = document.createElement('a'),
@@ -442,13 +450,15 @@ var onSaveClick = function(e) {
         imageFilename = $customFilename.text();
     }
 
-    link.download =  'waterbug-' + imageFilename + '.png';
+    link.download =  ['waterbug', currentCrop, imageFilename, '.jpg'].join('-');
 
     /// convert canvas content to data-uri for link. When download
     /// attribute is set the content pointed to by link will be
     /// pushed as "download" in HTML5 capable browsers
-    link.href = canvas.toDataURL();
+    link.href = canvas.toDataURL('image/jpeg');
     link.target = "_blank";
+
+    console.log("Image download size: "+(link.href.length/1024).toFixed(2)+'KB');
 
     /// create a "fake" click-event to trigger the download
     if (document.createEvent) {
@@ -499,15 +509,19 @@ var onLogoChange = function(e) {
 var onCropChange = function() {
     currentCrop = $crop.filter(':checked').val();
 
+    dy = 0;
+    dx = 0;
+
+    renderCanvas();
+
+    $canvas.removeClass('is-draggable shallow');
     if (currentCrop !== 'original') {
         var dragClass = shallowImage ? 'is-draggable shallow' : 'is-draggable';
         $canvas.addClass(dragClass);
         $dragHelp.show();
     } else {
-        $canvas.removeClass('is-draggable shallow');
         $dragHelp.hide();
     }
-    renderCanvas();
 }
 
 /*
@@ -545,31 +559,6 @@ var onCopyrightChange = function() {
         $source.parents('.form-group').slideUp();
         credit = '';
     }
-
-    // if (currentCopyright === 'npr') {
-    //     $photographer.parents('.form-group').removeClass('required').slideDown();
-    //     $source.parents('.form-group').slideUp();
-    // } else if (currentCopyright === 'freelance') {
-    //     $photographer.parents('.form-group').slideDown();
-    //     $source.parents('.form-group').slideUp();
-    //     $photographer.parents('.form-group').addClass('has-warning required');
-    // } else if (currentCopyright === 'ap' || currentCopyright === 'getty') {
-    //     $photographer.parents('.form-group').removeClass('required').slideDown();
-    //     $source.parents('.form-group')
-    //         .slideUp()
-    //         .removeClass('has-warning required');
-
-    // } else if (currentCopyright === 'third-party') {
-    //     $photographer.parents('.form-group').removeClass('required').slideDown();
-    //     $source.parents('.form-group').slideDown();
-    //     $source.parents('.form-group').addClass('has-warning required');
-    // } else {
-    //     credit = '';
-    //     $photographer.parents('.form-group').slideUp();
-    //     $source.parents('.form-group')
-    //         .slideUp()
-    //         .parents('.form-group').removeClass('has-warning required');
-    // }
     renderCanvas();
 }
 
