@@ -13,6 +13,9 @@ import os
 """
 NAMES
 """
+# Change the name of the app that shows up everywhere
+PROJECT_NAME = 'Lunchbox'
+
 # Project name to be used in urls
 # Use dashes, not underscores!
 PROJECT_SLUG = 'lunchbox-test'
