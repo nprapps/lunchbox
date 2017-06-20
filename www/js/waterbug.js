@@ -34,6 +34,10 @@ var credit = 'Belal Khan/Flickr'
 var shallowImage = false;
 var scale = 1;
 var canvasWidth;
+var currentLogoColor = 'white';
+var currentLogoPosition = 'tl';
+var currentTextColor = 'white';
+var currentTextPosition = 'br';
 
 // JS objects
 var ctx;
@@ -51,6 +55,8 @@ var onDocumentLoad = function(e) {
     $save = $('.save-btn');
     $textColor = $('input[name="textColor"]');
     $logoColor = $('input[name="logoColor"]');
+    $textPosition = $('input[name="textPosition"]');
+    $logoPosition = $('input[name="logoPosition"]');
     $qualityQuestions = $('.quality-question');
     $copyrightHolder = $('.copyright-holder');
     $dragHelp = $('.drag-help');
@@ -73,6 +79,8 @@ var onDocumentLoad = function(e) {
     $save.on('click', onSaveClick);
     $textColor.on('change', onTextColorChange);
     $logoColor.on('change', onLogoColorChange);
+    $textPosition.on('change', onTextPositionChange);
+    $logoPosition.on('change', onLogoPositionChange);
     $canvas.on('mousedown touchstart', onDrag);
     $copyrightHolder.on('change', onCopyrightChange);
     $customFilename.on('click', function(e) {
@@ -216,10 +224,13 @@ var renderCanvas = function() {
     } else {
         ctx.globalAlpha = blackLogoAlpha;
     }
+
+    var logoXY = calcPosition(currentLogoPosition, logos[currentLogo]['w'], logos[currentLogo]['h']);
+
     ctx.drawImage(
         logo,
-        elementPadding,
-        currentLogo === 'npr'? elementPadding : elementPadding - 14,
+        logoXY[0],
+        logoXY[1],
         logos[currentLogo]['w'],
         logos[currentLogo]['h']
     );
@@ -245,10 +256,14 @@ var renderCanvas = function() {
     }
 
     var creditWidth = ctx.measureText(credit);
+
+    console.log('creditWidth', parseInt(fontSize));
+
+    var textXY = calcPosition(currentTextPosition, creditWidth.width, parseInt(fontSize), true);
     ctx.fillText(
         credit,
-        canvas.width - (creditWidth.width + elementPadding),
-        canvas.height - elementPadding
+        textXY[0],
+        textXY[1]
     );
 
     // update container height
@@ -256,6 +271,32 @@ var renderCanvas = function() {
 
     validateForm();
 }
+
+var calcPosition = function(pos, width, height, measureFromBottom) {
+    var x, y;
+
+    if ( measureFromBottom ) {
+        if ( pos[0] === 'b' ) {
+            y = canvas.height - elementPadding;
+        } else {
+            y = elementPadding + height;
+        }
+    } else {
+        if ( pos[0] === 'b' ) {
+            y = canvas.height - (height + elementPadding);
+        } else {
+            y = elementPadding;
+        }
+    }
+
+    if ( pos[1] === 'r' ) {
+        x = canvas.width - (width + elementPadding);
+    } else {
+        x = elementPadding;
+    }
+
+    return [x, y];
+};
 
 /*
 * Build the proper format for the credit based on current copyright
@@ -499,10 +540,27 @@ var onLogoColorChange = function(e) {
 }
 
 /*
+* Handle logo radio button clicks
+*/
+var onLogoPositionChange = function(e) {
+    currentLogoPosition = $(this).val();
+
+    renderCanvas();
+}
+
+/*
 * Handle text color radio button clicks
 */
 var onTextColorChange = function(e) {
     currentTextColor = $(this).val();
+    renderCanvas();
+}
+
+/*
+* Handle text color radio button clicks
+*/
+var onTextPositionChange = function(e) {
+    currentTextPosition = $(this).val();
     renderCanvas();
 }
 
