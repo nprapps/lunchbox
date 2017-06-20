@@ -31,6 +31,9 @@ REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME
 
 DEV_CONTACT = 'EDIT THIS IN APP_CONFIG.PY'
 
+# URL for the favicon
+FAVICON = 'http://media.npr.org/favicon.ico'
+
 """
 DEPLOYMENT
 """
