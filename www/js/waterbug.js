@@ -64,6 +64,7 @@ var onDocumentLoad = function(e) {
     $fileinput = $('.fileinput');
     $customFilename = $('.custom-filename');
     $logosWrapper = $('.logos-wrapper');
+    $cropsWrapper = $('.crops-wrapper');
     $cell = $('.canvas-cell');
 
     canvasWidth = cropOptions[currentCrop].width;
@@ -136,6 +137,9 @@ var buildForm = function() {
         $logo.on('change', onLogoChange);
     } else {
         $logosWrapper.hide();
+        if ( cropKeys.length > 2 ) {
+            $cropsWrapper.removeClass('col-lg-6').addClass('col-lg-12');
+        }
     }
 
     var $crops = $('.crops');
@@ -161,7 +165,6 @@ var buildForm = function() {
 */
 var renderCanvas = function() {
     // Set the canvas width
-    console.log('crop: ' + currentCrop);
     canvas.width = cropOptions[currentCrop].width;
 
     // clear the canvas
@@ -256,8 +259,6 @@ var renderCanvas = function() {
     }
 
     var creditWidth = ctx.measureText(credit);
-
-    console.log('creditWidth', parseInt(fontSize));
 
     var textXY = calcPosition(currentTextPosition, creditWidth.width, parseInt(fontSize), true);
     ctx.fillText(
