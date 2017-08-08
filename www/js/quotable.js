@@ -88,8 +88,9 @@ function saveImage() {
 
     $('canvas').remove();
     processText();
-
+  
     html2canvas($poster, {
+      scale: 2,
       onrendered: function(canvas) {
         document.body.appendChild(canvas);
         window.oCanvas = document.getElementsByTagName("canvas");
@@ -152,9 +153,9 @@ $(function() {
     $aspectRatioButtons.on('click', function() {
         $aspectRatioButtons.removeClass().addClass('btn btn-primary');
         $(this).addClass('active');
-        $poster.removeClass('square sixteen-by-nine').addClass($(this).attr('id'));
+        $poster.removeClass('square sixteen-by-nine facebook-ratio').addClass($(this).attr('id'));
 
-        if ($poster.hasClass('sixteen-by-nine')) {
+        if ($poster.hasClass('sixteen-by-nine') || $poster.hasClass('facebook-ratio')) {
             adjustFontSize(32);
             $fontSize.val(32);
         } else {
