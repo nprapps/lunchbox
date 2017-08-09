@@ -9,6 +9,8 @@ var $show = null;
 var $source = null;
 var $quote = null;
 var $logoWrapper = null;
+var $highlightButtons = null;
+var $resetHighlight = null;
 
 var quotes = [
     {
@@ -142,6 +144,8 @@ $(function() {
     $showCredit = $('.show-credit');
     $quote = $('#quote');
     $logoWrapper = $('.logo-wrapper');
+    $highlightButtons = $('#highlight .btn');
+    $resetHighlight = $('#reset-highlight');
 
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
@@ -179,6 +183,13 @@ $(function() {
         $poster.toggleClass('quote');
     });
 
+    var highlight = "highlight-off";
+    $highlightButtons.on('click', function() {
+        $highlightButtons.removeClass().addClass('btn btn-primary');
+        $(this).addClass('active');
+        highlight = $(this).attr('id');
+    });
+
     $fontSize.on('change', function() {
         adjustFontSize($(this).val());
     });
@@ -204,7 +215,7 @@ $(function() {
     });
 
     $(window).on('mouseup', function(){
-      if(getSelectionText().length > 0){
+      if(getSelectionText().length > 0 && highlight === 'highlight-on'){
         var selectedText = getSelectionText(),
             text = $(selectedDiv).text(),
             textArray = text.split(selectedText);
@@ -213,6 +224,12 @@ $(function() {
         $(selectedDiv).html(textArray.join(''));
         $(selectedDiv).blur();
       }
+    });
+
+    $resetHighlight.on('click', function(){
+      $.each($text, function(i, d){
+        $(d).html($(d).html().replace(/<span>/g, '').replace(/<\/span>/g, ''));
+      })
     });
 
 
