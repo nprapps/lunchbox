@@ -119,6 +119,17 @@ function adjustFontSize(size) {
     };
 }
 
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+      console.log();
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+
 $(function() {
     $text = $('.poster blockquote p, .source');
     $save = $('#save');
@@ -183,6 +194,26 @@ $(function() {
     //     console.log($(this)[0].selectionStart);
     //     process_text();
     // });
+    var selectedDiv;
+    $('.poster blockquote p').on('mousedown', function(){
+      selectedDiv = this;
+    });
+
+    $('.poster .source').on('mousedown', function(){
+      selectedDiv = this;
+    });
+
+    $(window).on('mouseup', function(){
+      if(getSelectionText().length > 0){
+        var selectedText = getSelectionText(),
+            text = $(selectedDiv).text(),
+            textArray = text.split(selectedText);
+
+        textArray.splice(1, 0, '<span>'+selectedText.split(' ').join('</span><span> </span><span>')+'</span>');
+        $(selectedDiv).html(textArray.join(''));
+        $(selectedDiv).blur();
+      }
+    });
 
 
     var quoteEl = document.querySelectorAll('.poster blockquote');
