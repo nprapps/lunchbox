@@ -8,7 +8,7 @@
 {% block content %}
 <div class="content">
     <div class="poster-wrapper">
-        <div class="poster quote poster-news">
+        <div class="poster quote poster-news sixteen-by-nine">
             <span class="left-quote">&ldquo;</span>
             <blockquote><p></p></blockquote>
 
@@ -24,7 +24,7 @@
                 <div class="controls-wrapper">
                     <div class="form-group">
                         <label for="fontsize">Font size</label>
-                        <input id="fontsize" name="fontsize" type="range" min="24" max="120" value="90">
+                        <input id="fontsize" name="fontsize" type="range" min="24" max="120" value="32">
                     </div>
                     <div class="form-group">
                         <label for="theme">Theme</label>
@@ -38,8 +38,8 @@
                     <div class="form-group">
                         <label for="aspect-ratio">Aspect ratio</label>
                         <div id="aspect-ratio" class="btn-group">
-                            <button id="sixteen-by-nine" class="btn btn-primary">16:9 <i class="fa fa-twitter"></i></button>
-                            <button id="square" class="btn btn-primary active">Square</button>
+                            <button id="sixteen-by-nine" class="btn btn-primary active">16:9 <i class="fa fa-twitter"></i></button>
+                            <button id="square" class="btn btn-primary">Square</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -50,8 +50,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="show">Attribution <span class="help">(e.g. Morning Edition)</span></label>
+                        <label for="show">Source <span class="help">(e.g. Morning Edition)</span></label>
                         <input id="show" class="form-control" name="fontsize" type="text">
+                    </div>
+                    <div class="form-group">
+                    <label>Quotable guidelines</label>
+                        <a target="_blank" href="https://docs.google.com/document/d/1bFqOxGOIJB3BBV4HBo1x0uE0mHL3ZweZdgEJkBNaX5Q" class="guidelines">Please refer to the following guidelines when using this tool.</a>
                     </div>
                     <div class="form-group">
                         <button id="save" class="btn btn-lg btn-primary">Save image</button>

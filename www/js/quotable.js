@@ -6,37 +6,15 @@ var $aspectRatioButtons = null;
 var $quote = null;
 var $fontSize = null;
 var $show = null;
-var $source = null;
+var $attribution = null;
 var $quote = null;
 var $logoWrapper = null;
 var quotes = [
     {
-        "quote": "I'd been drinking.",
-        "source": "Dennis Rodman"
-    },
-    {
-        "quote": "I've made a huge mistake.",
-        "source": "G.O.B."
-    },
-    {
-        "quote": "Yes, I have smoked crack cocaine",
-        "source": "Toronto Mayor Rob Ford",
-        "size": 65
-    },
-    {
-        "quote": "Annyong.",
-        "source": "Annyong",
-        "size": 90
-    },
-    {
-        "quote": "STEVE HOLT!",
-        "source": "Steve Holt",
-        "size": 65
-    },
-    {
-        "quote": "Whoa, whoa, whoa. There's still plenty of meat on that bone. Now you take this home, throw it in a pot, add some broth, a potato. Baby, you've got a stew going.",
-        "source": "Carl Weathers",
-        "size": 40
+        "quote": "Your short quote goes here. Keep it under 100 characters. Someone else should edit it!",
+        "attribution": "Susie Jones, NPR editor, on how to make NPR Quotables",
+        "source": "ALL THINGS CONSIDERED",
+        "size": 32
     }
 ];
 
@@ -48,7 +26,7 @@ var onDocumentLoad = function() {
     $aspectRatioButtons = $('#aspect-ratio .btn');
     $fontSize = $('#fontsize');
     $show = $('#show');
-    $source = $('.source');
+    $attribution = $('.source');
     $showCredit = $('.show-credit');
     $quote = $('#quote');
     $logoWrapper = $('.logo-wrapper');
@@ -58,7 +36,8 @@ var onDocumentLoad = function() {
     $aspectRatioButtons.on('click', onAspectRatioButtonClick);
     $quote.on('click', onQuoteButtonClick);
     $fontSize.on('change', onFontSizeChange);
-    $show.on('keyup', onAttributionKeyup);
+    $show.on('keyup', onSourceKeyup);
+    $attribution.on('blur', onAttributionBlur);
 
     setupInitialState();
     setupMediumEditors();
@@ -70,8 +49,12 @@ var setupInitialState = function() {
         UTILS.adjustFontSize(quote.size);
     }
     $('blockquote p').text(quote.quote);
-    $source.html('&mdash;&thinsp;' + quote.source);
-    UTILS.processText();
+    $attribution.html('&mdash;&thinsp;' + quote.attribution);
+    if (quote.source){
+        $show.val(quote.source);
+        $showCredit.text(quote.source);
+    }
+    UTILS.processText()
 }
 
 var setupMediumEditors = function() {
@@ -87,26 +70,26 @@ var setupMediumEditors = function() {
     var sourceEditor = new MediumEditor(sourceEl, {
         toolbar: false,
         spellcheck: false,
-        placeholder: 'Type your quote source here'
+        placeholder: 'Type your quote attribution here.'
     });
 }
 
 var saveImage = function() {
     // first check if the quote actually fits
-    if (($source.offset().top + $source.height()) > $logoWrapper.offset().top) {
+    if (($attribution.offset().top + $attribution.height()) > $logoWrapper.offset().top) {
         alert("Your quote doesn't quite fit. Shorten the text or choose a smaller font-size.");
         return;
     }
 
     // don't print placeholder text if source is empty
-    if ($source.text() === '') {
-        alert("A source is required.");
+    if ($attribution.text() === '') {
+        alert("An attribution is required.");
         return;
     }
 
     // make sure source begins with em dash
-    if (!$source.text().match(/^[\u2014]/g)) {
-        $source.html('&mdash;&thinsp;' + $source.text());
+    if (!$attribution.text().match(/^[\u2014]/g)) {
+        $attribution.html('&mdash;&thinsp;' + $attribution.text());
     }
 
     UTILS.processText();
@@ -153,9 +136,16 @@ var onFontSizeChange = function() {
     UTILS.adjustFontSize($(this).val());
 }
 
-var onAttributionKeyup = function() {
+var onSourceKeyup = function() {
     var inputText = $(this).val();
     $showCredit.text(inputText);
+}
+
+var onAttributionBlur = function() {
+    // make sure source begins with em dash after loosing focus
+    if ($attribution.text().length >= 1 && !$attribution.text().match(/^[\u2014]/g)) {
+        $attribution.html('&mdash;&thinsp;' + $attribution.text());
+    }
 }
 
 $(onDocumentLoad);
