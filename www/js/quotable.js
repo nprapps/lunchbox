@@ -121,10 +121,17 @@ function adjustFontSize(size) {
     };
 }
 
+function getSelectionChar() {
+    if (window.getSelection) {
+      console.log(window.getSelection());
+      return window.getSelection().getRangeAt(0);
+    }
+}
+
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
-      console.log();
+      // console.log(window.getSelection().getRangeAt(0));
         text = window.getSelection().toString();
     } else if (document.selection && document.selection.type != "Control") {
         text = document.selection.createRange().text;
@@ -146,6 +153,7 @@ $(function() {
     $logoWrapper = $('.logo-wrapper');
     $highlightButtons = $('#highlight .btn');
     $resetHighlight = $('#reset-highlight');
+    var spanArray = [];
 
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
@@ -214,14 +222,28 @@ $(function() {
       selectedDiv = this;
     });
 
-    $(window).on('mouseup', function(){
+    $($poster).on('mouseup', function(){
       if(getSelectionText().length > 0 && highlight === 'highlight-on'){
+        // console.log(getSelectionChar());
+        spanArray.push({ 'start': getSelectionChar().startOffset, 'end': getSelectionChar().endOffset });
+        // console.log(spanArray);
+
         var selectedText = getSelectionText(),
             text = $(selectedDiv).text(),
-            textArray = text.split(selectedText);
+            textArray = text.split(selectedText),
+            ta = text.split('');
 
-        textArray.splice(1, 0, '<span>'+selectedText.split(' ').join('</span><span> </span><span>')+'</span>');
-        $(selectedDiv).html(textArray.join(''));
+        var count = 0;
+        $.each(spanArray, function(i, d){
+          ta.splice(d.start+count, 0, '<span>');
+          count += 1;
+          ta.splice(d.end+count, 0, '</span>');
+          count += 1;
+        });
+
+        // textArray.splice(1, 0, '<span>'+selectedText.split(' ').join('</span><span> </span><span>')+'</span>');
+        // $(selectedDiv).html(textArray.join(''));
+        $(selectedDiv).html(ta.join(''));
         $(selectedDiv).blur();
       }
     });
