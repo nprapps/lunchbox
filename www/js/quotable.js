@@ -128,6 +128,32 @@ function getSelectionChar() {
     }
 }
 
+function getSelectionCharOffsetsWithin(element) {
+    var start = 0, end = 0;
+    var sel, range, priorRange;
+    if (typeof window.getSelection != "undefined") {
+        range = window.getSelection().getRangeAt(0);
+        priorRange = range.cloneRange();
+        priorRange.selectNodeContents(element);
+        priorRange.setEnd(range.startContainer, range.startOffset);
+        start = priorRange.toString().length;
+        end = start + range.toString().length;
+    } else if (typeof document.selection != "undefined" &&
+            (sel = document.selection).type != "Control") {
+        range = sel.createRange();
+        priorRange = document.body.createTextRange();
+        priorRange.moveToElementText(element);
+        priorRange.setEndPoint("EndToStart", range);
+        start = priorRange.text.length;
+        end = start + range.text.length;
+    }
+    return {
+        start: start,
+        end: end
+    };
+}
+
+
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -153,7 +179,9 @@ $(function() {
     $logoWrapper = $('.logo-wrapper');
     $highlightButtons = $('#highlight .btn');
     $resetHighlight = $('#reset-highlight');
-    var spanArray = [];
+    var quoteArray = [],
+        attributionArray = [],
+        spanArray = quoteArray;
 
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
@@ -216,42 +244,52 @@ $(function() {
     var selectedDiv;
     $('.poster blockquote p').on('mousedown', function(){
       selectedDiv = this;
+      spanArray = quoteArray;
     });
 
     $('.poster .source').on('mousedown', function(){
       selectedDiv = this;
+      spanArray = attributionArray;
     });
 
     $($poster).on('mouseup', function(){
       if(getSelectionText().length > 0 && highlight === 'highlight-on'){
-        // console.log(getSelectionChar());
-        spanArray.push({ 'start': getSelectionChar().startOffset, 'end': getSelectionChar().endOffset });
-        // console.log(spanArray);
+        spanArray.push(getSelectionCharOffsetsWithin(selectedDiv));
+        spanArray = _.sortBy(spanArray, 'start');
+        if(spanArray.length > 1){
+          $.each(spanArray, function(i, d){
+            if(i+1 < spanArray.length){
+              if(d.end >= spanArray[i+1].start){
+                spanArray[i+1].start = d.start;
+                spanArray.splice(i, 1);
+              }
+            }
+          });
+        }
 
         var selectedText = getSelectionText(),
             text = $(selectedDiv).text(),
-            textArray = text.split(selectedText),
-            ta = text.split('');
+            textArray = text.split('');
 
         var count = 0;
         $.each(spanArray, function(i, d){
-          ta.splice(d.start+count, 0, '<span>');
+          textArray.splice(d.start+count, 0, '<span>');
           count += 1;
-          ta.splice(d.end+count, 0, '</span>');
+          textArray.splice(d.end+count, 0, '</span>');
           count += 1;
         });
 
-        // textArray.splice(1, 0, '<span>'+selectedText.split(' ').join('</span><span> </span><span>')+'</span>');
-        // $(selectedDiv).html(textArray.join(''));
-        $(selectedDiv).html(ta.join(''));
+        $(selectedDiv).html(textArray.join(''));
         $(selectedDiv).blur();
       }
     });
 
     $resetHighlight.on('click', function(){
       $.each($text, function(i, d){
-        $(d).html($(d).html().replace(/<span>/g, '').replace(/<\/span>/g, ''));
-      })
+        $(d).html($(d).text());
+      });
+      quoteArray = [];
+      attributionArray = [];
     });
 
 
