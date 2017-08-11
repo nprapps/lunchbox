@@ -284,6 +284,40 @@ $(function() {
       }
     });
 
+    $($poster).on('keyup', function(event){
+      var tempArray = [];
+      var spans = [];
+      $.each($(selectedDiv).find('span'), function(i, d){
+        spans.push($(d).html());
+      });
+      var array = $(selectedDiv).html().replace(/&nbsp;/g, ' ').split(/(<span>.*?<\/span>)/g);
+
+      var count = 0;
+      $.each(array, function(i, d){
+        if(d.match(/(<span>.*?<\/span>)/g)){
+          var item =  {
+              start: count,
+              end: 0,
+              text: d.replace(/<span>/, '').replace(/<\/span>/, '')
+          };
+          var text = d.replace(/<span>/, '').replace(/<\/span>/, '');
+          count += text.length;
+          item.end = count;
+          tempArray.push(item);
+        } else {
+          count += d.length;
+        }
+      });
+
+      if(spanArray === quoteArray){
+        quoteArray = tempArray;
+        spanArray = quoteArray;
+      } else {
+        attributionArray = tempArray;
+        spanArray = attributionArray;
+      }
+    });
+
     $resetHighlight.on('click', function(){
       $.each($text, function(i, d){
         $(d).html($(d).text());
