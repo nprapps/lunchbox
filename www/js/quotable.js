@@ -145,6 +145,8 @@ var onAttributionBlur = function() {
     // make sure source begins with em dash after loosing focus
     if ($attribution.text().length >= 1 && !$attribution.text().match(/^[\u2014]/g)) {
         $attribution.html('&mdash;&thinsp;' + $attribution.text());
+    } else {
+        $attribution.html($attribution.text());
     }
 }
 
