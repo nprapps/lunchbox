@@ -121,13 +121,6 @@ function adjustFontSize(size) {
     };
 }
 
-function getSelectionChar() {
-    if (window.getSelection) {
-      console.log(window.getSelection());
-      return window.getSelection().getRangeAt(0);
-    }
-}
-
 function getSelectionCharOffsetsWithin(element) {
     var start = 0, end = 0;
     var sel, range, priorRange;
