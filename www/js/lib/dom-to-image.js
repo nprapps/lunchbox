@@ -207,7 +207,7 @@
                     if (source.cssText) target.cssText = source.cssText;
                     else copyProperties(source, target);
 
-                    target.fontStretch = 'normal'; // fixes chrome update bug
+                    target.fontStretch = 'normal'; // fixes chrome update bug per https://github.com/tsayen/dom-to-image/issues/225
 
                     function copyProperties(source, target) {
                         util.asArray(source).forEach(function (name) {
