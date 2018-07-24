@@ -35,8 +35,8 @@ PRODUCTION_S3_BUCKET = 'apps.npr.org'
 STAGING_S3_BUCKET = 'stage-apps.npr.org'
 DEFAULT_MAX_AGE = 20
 
-FILE_SERVER_USER = 'tools-admin'
-FILE_SERVER = '10.36.2.26'
+FILE_SERVER_USER = 'visadmin'
+FILE_SERVER = '10.36.1.8'
 FILE_SERVER_PATH = '~/www'
 
 # These variables will be set at runtime. See configure_targets() below
