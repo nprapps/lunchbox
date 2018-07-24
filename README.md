@@ -199,21 +199,50 @@ At the bottom of the form, you will notice a Sharing Guidelines section. To edit
 
 ### Multiple Themes
 
-For Quotable and Factlist, you can provide up to three themes in addition to the default theme if your news organization requires different branding for different accounts (think [NPR](http://twitter.com/npr) vs. [NPR Music](http://twitter.com/nprmusic)).
+For Quotable and Factlist, you can provide multiple themes in addition to the default theme if your news organization requires different branding for different accounts (think [NPR](http://twitter.com/npr) vs. [NPR Music](http://twitter.com/nprmusic)). There is no limit to the number of themes that can be used. 
 
-In `less/variables.less`, you can define themes at the bottom of the file. For each theme, you can change the background color, text color, and logo:
+In `less/variables.less`, you can add and define themes at the bottom of the file. For each theme, you can change the background color, text color, and logo:
 
 ```
-@theme2-bg-color: #41474E;
-@theme2-text-color: #dbe0e6;
-@theme2-logo-path: url('../img/icon-socializr-white.svg');
-@theme2-sq-logo-width: 145px;
-@theme2-sq-logo-height: 48px;
-@theme2-16x9-logo-width: 121px;
-@theme2-16x9-logo-height: 40px;
+@theme5-bg-color: #dcdcdc;
+@theme5-text-color: #000;
+@theme5-credit-color: #656565;
+@theme5-logo-path: url('../img/american-anthem.png');
+@theme5-sq-logo-width: 247px;
+@theme5-sq-logo-height: 65px;
+@theme5-16x9-logo-width: 171px;
+@theme5-16x9-logo-height: 45px;
 ```
 
-In the form UI, you can change the display of the theme selection buttons in each app's HTML template (`templates/quotable.html`, `templates/factlist.html`). Be sure not to change the ID attribute of the button, as these IDs control the JavaScript that adds and removes classes on the image.
+In `less/factlist.less` and `less/quotable.less`, find where styles for `poster-theme` classes are set. Follow the pattern of the classes, as such:
+```
+.poster-theme5 {
+        background: @theme5-bg-color;
+        color: @theme5-text-color;
+        .logo-wrapper {
+            background: @theme5-bg-color;
+            color: @theme5-text-color;
+            background-image: @theme5-logo-path;
+            background-repeat: no-repeat;
+            background-size: @theme5-sq-logo-width @theme5-sq-logo-height;
+            width: @theme5-sq-logo-width + @padding;
+            height: @theme5-sq-logo-height + @padding;
+
+            .sixteen-by-nine& {
+                background-size: @theme5-16x9-logo-width @theme5-16x9-logo-height;
+                width: @theme5-16x9-logo-width + @padding;
+                height: @theme5-16x9-logo-height + @padding;
+            }
+        }
+        .show-credit {
+            color: @theme5-credit-color;
+        }
+    }
+```
+
+In the form UI, you can change the display of the theme selection buttons in each app's HTML template (`templates/quotable.html`, `templates/factlist.html`). Be sure not to change the ID attribute pattern of the button when you add a button for your new theme, as these IDs control the JavaScript that adds and removes classes on the image.
+
+Finally, in `www/js/quotable.js` and `www/js/factlist.js`, in the `onThemeButtonClick` function, add your new theme to the `removeClass()` method (e.g. `.removeClass('poster-theme1 poster-theme2 poster-theme3 poster-theme4 poster-theme5')`). 
 
 Deploy the desktop app
 -------------
