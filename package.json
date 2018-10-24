@@ -2,9 +2,9 @@
   "name": "lunchbox",
   "version": "1.0.0",
   "dependencies": {
-    "electron-packager": "~5.0.1",
+    "electron-packager": "~6.0.0",
     "electron-builder": "~2.0.0",
-    "less": "~1.7.0"
+    "less": "~2.1.0"
   },
   "scripts": {
     "clean": "npm run clean:osx && npm run clean:win",
