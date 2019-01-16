@@ -105,8 +105,8 @@ class JavascriptIncluder(Includer):
             src_paths.append('www/%s' % src)
 
             with codecs.open('www/%s' % src, encoding='utf-8') as f:
-                print '- compressing %s' % src
-                output.append(minify(f.read()))
+                print '- writing %s' % src
+                output.append(f.read())
 
         context = make_context()
         context['paths'] = src_paths

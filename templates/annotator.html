@@ -7,61 +7,59 @@
 
 {% block content %}
 <div class="content">
-    <div class="poster-wrapper">
-        <div class="poster quote poster-news sixteen-by-nine">
-            <h2 class="kicker-wrapper"><span class="kicker">Donald Trump On Gun Violence</span></h2>
-            <blockquote class="quote">
-                <p>Well, let me just tell you before we go any further in Chicago, which has the toughest gun laws in the United States, probably you could say by far, they have more gun violence than any other city. So we have the toughest laws and you have tremendous gun violence.</p>
-            </blockquote>
-            <div class="annotation-wrapper">
-                <div class="annotation">
-                    <p>Chicago has been an epicenter of gun violence and according to FBI data, homicides in that city account for a substantial proportion of a rise in new violent crime. Scholars say that violence there is largely concentrated in a few neighborhoods.</p>
-                </div>
-                <div class="annotation-author">
-                    <span class="author">Danielle Kurtzleben</span> <span class="title">NPR Political Reporter</span>
-                </div>
-                <div class="logo-wrapper"></div>
-            </div>
-            <p class="show-credit">Quoted on September 18, 2015 at the Republican Presidential Debate</p>
-        </div>
-    </div>
+    <div class="poster-wrapper"></div>
     <div class="container">
         <div class="row">
-            <div class="form controls col-md-12">
+            <form class="form controls col-md-12" autocomplete="false">
                 <div class="controls-wrapper">
                     <div class="form-group">
-                        <label for="kicker">
-                            Headline
-                        </label>
-                        <input id="kicker" class="form-control" name="kicker" type="text" placeholder="Donald Trump On Gun Violence">
+                        <label for="kicker">Headline</label>
+                        <input data-bound="kicker" class="form-control" id="kicker" value="Fact Check: Trump On Immigration" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="quote-adjustment">Quote Font Size</label>
-                        <p class="font-size-adjust quote">
-                            <span class="current-size">16px</span>
-                            <span class="decrease">-</span>
-                            <span class="increase">+</span>
-                        </p>
+                        <label for="quote">Quote</label>
+                        <textarea data-bound="quote" class="form-control" id="quote">...in Chicago, which has the toughest gun laws in the United States, probably you could say by far, they have more gun violence than any other city. So we have the toughest laws and you have tremendous gun violence.</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="quote-adjustment">Annotation Font Size</label>
-                        <p class="font-size-adjust annotation">
-                            <span class="current-size">16px</span>
-                            <span class="decrease">-</span>
-                            <span class="increase">+</span>
-                        </p>
+                        <input type="checkbox" id="add-quotes" data-bound="addQuotes" checked="true">
+                        <label for="add-quotes">Add quotes?</label>
                     </div>
                     <div class="form-group">
-                        <label for="show">Author</label>
-                        <input id="annotation-author" class="form-control" name="author" type="text" placeholder="Danielle Kurtzleben">
+                        <label for="annotation">Annotation</label>
+                        <textarea data-bound="annotation" class="form-control" id="annotation">Chicago has been an epicenter of gun violence and according to FBI data, homicides in that city account for a substantial proportion of a rise in new violent crime. Scholars say that violence there is largely concentrated in a few neighborhoods.</textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quote-size">Quote Font Size</label>
+                            <input data-bound="quoteSize" id="quote-size" class="current-size" type="number" value=16>
+                        </div>
+                        <div class="form-group">
+                            <label for="annotation-size">Annotation Font Size</label>
+                            <input data-bound="annotationSize" id="annotation-size" class="current-size" type="number" value=14>
+                        </div>
+                        <div class="form-group">
+                            <label>Aspect ratio</label>
+                            <div>
+                                <input type="radio" name="aspect" id="2x1" data-bound="aspect" value="2x1" checked="checked">
+                                <label for="2x1">2:1</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="aspect" id="16x9" data-bound="aspect" value="16x9">
+                                <label for="16x9">16:9</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="show">Title</label>
-                        <input id="annotation-title" class="form-control" name="title" type="text" placeholder="NPR Political Reporter">
+                        <label for="author">Author</label>
+                        <input data-bound="author" class="form-control" id="author" value="Danielle Kurtzleben">
                     </div>
                     <div class="form-group">
-                        <label for="show">Attribution</label>
-                        <input id="attribution" class="form-control" name="attribution" type="text" placeholder="Quoted on September 18, 2015 at the Republican Presidential debate">
+                        <label for="title">Title</label>
+                        <input data-bound="title" class="form-control" id="title" value="NPR Political Reporter" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="source">Attribution</label>
+                        <input data-bound="source" class="form-control" id="source" value="President Trump at the State of the Union on Jan. 29, 2019" type="text">
                     </div>
                     <div class="form-group">
                         <button id="save" class="btn btn-lg btn-primary">Save image</button>
@@ -71,7 +69,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 {% endblock %}
@@ -88,8 +86,6 @@
 
 {% block extra_foot_js %}
 {{ JS.push('js/lib/dom-to-image.js') }}
-{{ JS.push('js/lib/filesaver.js') }}
-{{ JS.push('js/lib/medium-editor.min.js') }}
 {{ JS.push('js/utils.js') }}
 {{ JS.push('js/annotator.js') }}
 {{ JS.render('js/annotator.min.js') }}

@@ -22,7 +22,8 @@ canvas {
 }
 
 .content {
-    display: table;
+    display: flex;
+    align-items: flex-start;
     width: 100%;
     max-width: 1200px;
     min-width: 640px;
@@ -30,16 +31,14 @@ canvas {
 
     .poster-wrapper,
     .container {
-        display: table-cell;
-        vertical-align: top;
+        display: block;
     }
 
     .poster-wrapper {
-        width: 640px;
-        padding: 0 @line-height @line-height;
+        position: sticky;
+        top: 10px;
+        flex: 0 0 743px;
     }
-
-
 
 }
 
@@ -49,6 +48,10 @@ canvas {
     small {
         font-size: 100%;
         opacity: 0.5;
+    }
+
+    input, textarea {
+        max-width: 100%;
     }
 
     .btn-group,
@@ -71,21 +74,26 @@ canvas {
         -webkit-font-smoothing: antialiased;
     }
 
-    .input-group .btn:focus {
-        outline: none;
-    }
-
     .btn-group-sm > .btn {
         font-size: 13px;
         padding: 5px;
     }
 
-    .btn:active,
-    .btn.active {
-        outline: 0;
-        background-image: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & > .form-group {
+            margin-right: 10px;
+            flex: 1;
+            min-width: 0;
+        }
+    }
+
+    textarea {
+        height: 20vh;
+        resize: vertical;
     }
 
     label {
@@ -100,42 +108,14 @@ canvas {
         }
     }
 
-    .font-size-adjust {
-        position: relative;
-
-        .current-size {
+    input[type="radio"], input[type="checkbox"] {
+        & + label {
             display: inline-block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50px;
-            padding: 5px 10px;
-            font-size: 12px;
-            color: #444;
-            background-color: #ddd;
-            border: 1px solid #ccc;
         }
+    }
 
-        .increase, .decrease {
-            position: relative;
-            display: inline-block;
-            padding: 5px 10px;
-            border: 1px solid #6d8ac4;
-            font-size: 12px;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            background-color: #6d8ac4;
-
-            &:hover {
-                background-color: #3551A0;
-            }
-        }
-
-        .decrease {
-            padding: 5px 12px;
-            margin-left: 60px;
-        }
+    input[type="number"] {
+        width: 75px;
     }
 
     .help {
@@ -150,39 +130,36 @@ canvas {
     background: @bg-color;
     // margin: @line-height;
     position: relative;
-    padding: @padding * 2;
+    padding: @padding;
     font-size: @base-font-size * 2;
     line-height: 1 !important;
     overflow: hidden;
     color: @text-color;
 
+    .left-quote {
+        top: @padding;
+        left: @padding;
+    }
+
+    .logo-wrapper {
+        // padding: @padding;
+
+        img {
+            width: 150px;
+        }
+
+        .poster-music& {
+            padding-bottom: @padding - 10;
+        }
+    }
+
 
     &.sixteen-by-nine {
         height: 447px;
-        padding: @padding;
+    }
 
-        .quote& {
-            .left-quote {
-                top: @padding;
-                left: @padding;
-            }
-        }
-
-        blockquote {
-            margin-bottom: 20px;
-        }
-
-        .logo-wrapper {
-            // padding: @padding;
-
-            img {
-                width: 150px;
-            }
-
-            .poster-music& {
-                padding-bottom: @padding - 10;
-            }
-        }
+    &.two-by-one {
+        height: 371px;
     }
 
     h2 {
@@ -208,7 +185,7 @@ canvas {
 
     blockquote {
         padding: 0;
-        margin: 40px 0 0 0;
+        margin: 40px 0 20px 0;
         border-left: none;
         font-size: inherit;
         line-height: 100%;
@@ -216,6 +193,7 @@ canvas {
         display: block;
         overflow: visible;
         font-family: Georgia;
+        font-size: 16px;
 
         &:focus {
             border: none;
@@ -228,7 +206,6 @@ canvas {
             margin: 0;
             line-height: 1.8;
             color: #333;
-            font-size: 16px;
         }
 
         &:last-child {
@@ -258,9 +235,10 @@ canvas {
         }
 
         .annotation {
+            font-size: 16px;
+
             p {
                 color: #222222;
-                font-size: 16px;
                 line-height: 1.7;
             }
         }
