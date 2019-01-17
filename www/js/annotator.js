@@ -2,6 +2,7 @@ var $ = (s, d = document) => Array.from(d.querySelectorAll(s));
 $.one = (s, d = document) => d.querySelector(s);
 
 var form = $.one(".form.controls");
+var counts = $(".character-count");
 
 // var canvas = $.one(".quotable-preview");
 // var context = canvas.getContext("2d");
@@ -18,6 +19,10 @@ var updateBindings = function() {
     ) return;
     var prop = input.getAttribute("data-bound");
     state[prop] = input.value;
+  });
+  counts.forEach(function(el) {
+    var from = el.getAttribute("data-from");
+    el.innerHTML = `${state[from].length} chars`;
   });
   render(state);
 };
@@ -59,19 +64,24 @@ updateBindings();
 
 $.one("#save").addEventListener("click", async function(e) {
   e.preventDefault();
-  var poster = $.one(".poster");
-  //check heights
-  var annotation = $.one(".poster .annotation-wrapper");
-  var annoBounds = annotation.getBoundingClientRect();
-  var poster = $.one(".poster");
-  var posterBounds = poster.getBoundingClientRect();
-  if (annoBounds.bottom >= posterBounds.bottom) {
-    return alert("Your text seems to be too large for the social image size. Reduce the font size or edit down the text.");
-  }
+  try {
+    var poster = $.one(".poster");
+    //check heights
+    var annotation = $.one(".poster .annotation-wrapper");
+    var annoBounds = annotation.getBoundingClientRect();
+    var poster = $.one(".poster");
+    var posterBounds = poster.getBoundingClientRect();
+    if (annoBounds.bottom >= posterBounds.bottom) {
+      return alert("Your text seems to be too large for the social image size. Reduce the font size or edit down the text.");
+    }
 
-  var image = await domtoimage.toPng(poster);
-  var a = document.createElement("a");
-  a.setAttribute("download", state.kicker.replace(/\s+/g, "-").toLowerCase() + ".png");
-  a.setAttribute("href", image);
-  a.click();
+    var image = await domtoimage.toPng(poster);
+    var a = document.createElement("a");
+    a.setAttribute("download", state.kicker.replace(/\s+/g, "-").toLowerCase() + ".png");
+    a.setAttribute("href", image);
+    a.click();
+  } catch (err) {
+    alert(`Unable to save image ("${err.message}")`);
+    console.error(err);
+  }
 })
