@@ -75,7 +75,7 @@ $.one("#save").addEventListener("click", async function(e) {
       return alert("Your text seems to be too large for the social image size. Reduce the font size or edit down the text.");
     }
 
-    var image = await domtoimage.toPng(poster);
+    var image = await domtoimage.toPng(poster, { bgcolor: "white" });
     var a = document.createElement("a");
     a.setAttribute("download", state.kicker.replace(/\s+/g, "-").toLowerCase() + ".png");
     a.setAttribute("href", image);
