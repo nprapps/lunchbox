@@ -158,6 +158,12 @@ canvas {
                 width: @logo-16x9-width + @padding;
                 height: @logo-16x9-height + @padding;
             }
+
+            .facebook-ratio& {
+                background-size: @logo-fb-ratio-width @logo-fb-ratio-height;
+                width: @logo-fb-ratio-width + @padding;
+                height: @logo-fb-ratio-height + @padding;
+            }
         }
     }
 
@@ -177,6 +183,12 @@ canvas {
                 background-size: @theme2-16x9-logo-width @theme2-16x9-logo-height;
                 width: @theme2-16x9-logo-width + @padding;
                 height: @theme2-16x9-logo-height + @padding;
+            }
+
+            .facebook-ratio& {
+              background-size: @theme2-fb-ratio-logo-width @theme2-fb-ratio-logo-height;
+              width: @theme2-fb-ratio-logo-width + @padding;
+              height: @theme2-fb-ratio-logo-height + @padding;
             }
         }
         .show-credit {
@@ -202,6 +214,12 @@ canvas {
                 width: @theme3-16x9-logo-width + @padding;
                 height: @theme3-16x9-logo-height + @padding;
             }
+
+            .facebook-ratio& {
+                background-size: @theme3-fb-ratio-logo-width @theme3-fb-ratio-logo-height;
+                width: @theme3-fb-ratio-logo-width + @padding;
+                height: @theme3-fb-ratio-logo-height + @padding;
+            }
         }
         .show-credit {
             color: @theme3-credit-color;
@@ -224,6 +242,12 @@ canvas {
                 background-size: @theme4-16x9-logo-width @theme4-16x9-logo-height;
                 width: @theme4-16x9-logo-width + @padding;
                 height: @theme4-16x9-logo-height + @padding;
+            }
+
+            .facebook-ratio& {
+                background-size: @theme4-fb-ratio-logo-width @theme4-fb-ratio-logo-height;
+                width: @theme4-fb-ratio-logo-width + @padding;
+                height: @theme4-fb-ratio-logo-height + @padding;
             }
         }
         .show-credit {
@@ -265,6 +289,43 @@ canvas {
         .show-credit {
             font-size: @base-font-size * 1.1;
         }
+    }
+
+    .facebook-ratio& {
+      width: 600px;
+      height: 315px;
+      padding: @padding;
+
+      .quote& {
+          .left-quote {
+              top: @padding;
+              left: @padding;
+          }
+      }
+
+      blockquote {
+          margin-bottom: 20px;
+      }
+
+      .logo-wrapper {
+          padding: @padding;
+
+          img {
+              width: 150px;
+          }
+
+          .poster-music& {
+              padding-bottom: @padding - 10;
+          }
+      }
+
+      p.source {
+          font-size: @base-font-size * 1.3;
+      }
+
+      .show-credit {
+          font-size: @base-font-size * 1.1;
+      }
     }
 
     .quote& {
@@ -373,6 +434,12 @@ canvas {
             background-size: @logo-16x9-width @logo-16x9-height;
             width: @logo-16x9-width + @padding;
             height: @logo-16x9-height + @padding;
+        }
+
+        .facebook-ratio& {
+            background-size: @logo-fb-ratio-width @logo-fb-ratio-height;
+            width: @logo-fb-ratio-width + @padding;
+            height: @logo-fb-ratio-height + @padding;
         }
 
         .logo {
