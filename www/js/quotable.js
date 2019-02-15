@@ -217,6 +217,11 @@ $(function() {
         $highlightButtons.removeClass().addClass('btn btn-primary');
         $(this).addClass('active');
         highlight = $(this).attr('id');
+        if ( highlight === 'highlight-on' ) {
+            $('body').addClass('highlight-cursor');
+        } else {
+            $('body').removeClass('highlight-cursor');
+        }
     });
 
     $fontSize.on('change', function() {
