@@ -9,6 +9,8 @@ var $show = null;
 var $source = null;
 var $quote = null;
 var $logoWrapper = null;
+var $highlightButtons = null;
+var $resetHighlight = null;
 
 var quotes = [
     {
@@ -120,6 +122,43 @@ function adjustFontSize(size) {
     };
 }
 
+function getSelectionCharOffsetsWithin(element) {
+    var start = 0, end = 0;
+    var sel, range, priorRange;
+    if (typeof window.getSelection != "undefined") {
+        range = window.getSelection().getRangeAt(0);
+        priorRange = range.cloneRange();
+        priorRange.selectNodeContents(element);
+        priorRange.setEnd(range.startContainer, range.startOffset);
+        start = priorRange.toString().length;
+        end = start + range.toString().length;
+    } else if (typeof document.selection != "undefined" &&
+            (sel = document.selection).type != "Control") {
+        range = sel.createRange();
+        priorRange = document.body.createTextRange();
+        priorRange.moveToElementText(element);
+        priorRange.setEndPoint("EndToStart", range);
+        start = priorRange.text.length;
+        end = start + range.text.length;
+    }
+    return {
+        start: start,
+        end: end
+    };
+}
+
+
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+      // console.log(window.getSelection().getRangeAt(0));
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+
 $(function() {
     $text = $('.poster blockquote p, .source');
     $save = $('#save');
@@ -132,6 +171,11 @@ $(function() {
     $showCredit = $('.show-credit');
     $quote = $('#quote');
     $logoWrapper = $('.logo-wrapper');
+    $highlightButtons = $('#highlight .btn');
+    $resetHighlight = $('#reset-highlight');
+    var quoteArray = [],
+        attributionArray = [],
+        spanArray = quoteArray;
 
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
@@ -169,6 +213,18 @@ $(function() {
         $poster.toggleClass('quote');
     });
 
+    var highlight = "highlight-off";
+    $highlightButtons.on('click', function() {
+        $highlightButtons.removeClass().addClass('btn btn-primary');
+        $(this).addClass('active');
+        highlight = $(this).attr('id');
+        if ( highlight === 'highlight-on' ) {
+            $('body').addClass('highlight-cursor');
+        } else {
+            $('body').removeClass('highlight-cursor');
+        }
+    });
+
     $fontSize.on('change', function() {
         adjustFontSize($(this).val());
     });
@@ -184,6 +240,90 @@ $(function() {
     //     console.log($(this)[0].selectionStart);
     //     process_text();
     // });
+    var selectedDiv;
+    $('.poster blockquote p').on('mousedown', function(){
+      selectedDiv = this;
+      spanArray = quoteArray;
+    });
+
+    $('.poster .source').on('mousedown', function(){
+      selectedDiv = this;
+      spanArray = attributionArray;
+    });
+
+    $($poster).on('mouseup', function(){
+      if(getSelectionText().length > 0 && highlight === 'highlight-on'){
+        spanArray.push(getSelectionCharOffsetsWithin(selectedDiv));
+        spanArray = _.sortBy(spanArray, 'start');
+        if(spanArray.length > 1){
+          $.each(spanArray, function(i, d){
+            if(i+1 < spanArray.length){
+              if(d.end >= spanArray[i+1].start){
+                spanArray[i+1].start = d.start;
+                spanArray.splice(i, 1);
+              }
+            }
+          });
+        }
+
+        var selectedText = getSelectionText(),
+            text = $(selectedDiv).text(),
+            textArray = text.split('');
+
+        var count = 0;
+        $.each(spanArray, function(i, d){
+          textArray.splice(d.start+count, 0, '<span>');
+          count += 1;
+          textArray.splice(d.end+count, 0, '</span>');
+          count += 1;
+        });
+
+        $(selectedDiv).html(textArray.join(''));
+        $(selectedDiv).blur();
+      }
+    });
+
+    $($poster).on('keyup', function(event){
+      var tempArray = [];
+      var spans = [];
+      $.each($(selectedDiv).find('span'), function(i, d){
+        spans.push($(d).html());
+      });
+      var array = $(selectedDiv).html().replace(/&nbsp;/g, ' ').split(/(<span>.*?<\/span>)/g);
+
+      var count = 0;
+      $.each(array, function(i, d){
+        if(d.match(/(<span>.*?<\/span>)/g)){
+          var item =  {
+              start: count,
+              end: 0,
+              text: d.replace(/<span>/, '').replace(/<\/span>/, '')
+          };
+          var text = d.replace(/<span>/, '').replace(/<\/span>/, '');
+          count += text.length;
+          item.end = count;
+          tempArray.push(item);
+        } else {
+          count += d.length;
+        }
+      });
+
+      if(spanArray === quoteArray){
+        quoteArray = tempArray;
+        spanArray = quoteArray;
+      } else {
+        attributionArray = tempArray;
+        spanArray = attributionArray;
+      }
+    });
+
+    $resetHighlight.on('click', function(){
+      $.each($text, function(i, d){
+        $(d).html($(d).text());
+      });
+      quoteArray = [];
+      attributionArray = [];
+    });
 
 
     var quoteEl = document.querySelectorAll('.poster blockquote');
