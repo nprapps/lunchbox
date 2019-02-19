@@ -614,6 +614,7 @@ var onCopyrightChange = function() {
                 $photographer.parents('.form-group').removeClass('required')
             }
         } else {
+            $photographer.val('');
             $photographer.parents('.form-group').slideUp();
         }
 
@@ -625,10 +626,13 @@ var onCopyrightChange = function() {
                 $source.parents('.form-group').removeClass('required')
             }
         } else {
+            $source.val('');
             $source.parents('.form-group').slideUp();
         }
     } else {
+        $photographer.val('');
         $photographer.parents('.form-group').slideUp();
+        $source.val('');
         $source.parents('.form-group').slideUp();
         credit = '';
     }
