@@ -30,6 +30,7 @@ This fork includes a few extra features:
 
 * A *facebook* aspect ratio in *Quotable*, *Factlist* and *Waterbug*
 * Ability to highlight parts of text in *Quotable*
+* An updated *twitter* aspect ratio of 2x1 in *Quotable*, *Factlist* and *Waterbug*. The 16x9 aspect ratio is retained as well.
 
 Assumptions
 -------------
