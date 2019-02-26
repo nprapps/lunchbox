@@ -307,6 +307,34 @@ canvas {
         }
     }
 
+    &.two-by-one {
+        height: 320px;
+        padding: @padding;
+
+        .quote& {
+            .left-quote {
+                top: @padding;
+                left: @padding;
+            }
+        }
+
+        blockquote {
+            margin-bottom: 20px;
+        }
+
+        .logo-wrapper {
+            padding: @padding;
+
+            img {
+                width: 150px;
+            }
+
+            .poster-music& {
+                padding-bottom: @padding - 10;
+            }
+        }
+    }
+
     &.facebook-ratio {
         width: 600px;
         height: 315px;
@@ -427,6 +455,12 @@ canvas {
             background-size: @logo-16x9-width @logo-16x9-height;
             width: @logo-16x9-width + @padding;
             height: @logo-16x9-height + @padding;
+        }
+
+        .two-by-one& {
+            background-size: @logo-2x1-width @logo-2x1-height;
+            width: @logo-2x1-width + @padding;
+            height: @logo-2x1-height + @padding;
         }
 
         .facebook-ratio& {

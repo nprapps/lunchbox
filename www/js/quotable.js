@@ -197,9 +197,9 @@ $(function() {
     $aspectRatioButtons.on('click', function() {
         $aspectRatioButtons.removeClass().addClass('btn btn-primary');
         $(this).addClass('active');
-        $poster.removeClass('square sixteen-by-nine facebook-ratio').addClass($(this).attr('id'));
+        $poster.removeClass('square sixteen-by-nine facebook-ratio two-by-one').addClass($(this).attr('id'));
 
-        if ($poster.hasClass('sixteen-by-nine') || $poster.hasClass('facebook-ratio')) {
+        if ($poster.hasClass('sixteen-by-nine') || $poster.hasClass('facebook-ratio') || $poster.hasClass('two-by-one')) {
             adjustFontSize(32);
             $fontSize.val(32);
         } else {
