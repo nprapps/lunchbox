@@ -216,6 +216,10 @@ canvas {
         .show-credit {
             color: @theme2-credit-color;
         }
+        blockquote p span {
+            background-color: @theme2-highlight-bg-color;
+            color: @theme2-highlight-text-color;
+        }
     }
 
 
@@ -252,6 +256,10 @@ canvas {
         .show-credit {
             color: @theme3-credit-color;
         }
+        blockquote p span {
+            background-color: @theme3-highlight-bg-color;
+            color: @theme3-highlight-text-color;
+        }
     }
 
     &.poster-theme4 {
@@ -286,6 +294,10 @@ canvas {
         }
         .show-credit {
             color: @theme4-credit-color;
+        }
+        blockquote p span {
+            background-color: @theme4-highlight-bg-color;
+            color: @theme4-highlight-text-color;
         }
     }
 
@@ -439,7 +451,8 @@ canvas {
 
             span {
                 line-height: inherit !important;
-                background-color: #fff200;
+                background-color: @highlight-bg-color;
+                color: @highlight-text-color;
             }
         }
 
