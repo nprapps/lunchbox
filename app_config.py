@@ -13,6 +13,9 @@ import os
 """
 NAMES
 """
+# Change the name of the app that shows up everywhere
+PROJECT_NAME = 'Lunchbox'
+
 # Project name to be used in urls
 # Use dashes, not underscores!
 PROJECT_SLUG = 'lunchbox-test'
@@ -28,11 +31,16 @@ REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME
 
 DEV_CONTACT = 'EDIT THIS IN APP_CONFIG.PY'
 
+# URL for the favicon
+FAVICON = 'http://media.npr.org/favicon.ico'
+
 """
 DEPLOYMENT
 """
 PRODUCTION_S3_BUCKET = 'apps.npr.org'
+PRODUCTION_S3_DOMAIN = 'http://%s' % PRODUCTION_S3_BUCKET
 STAGING_S3_BUCKET = 'stage-apps.npr.org'
+STAGING_S3_DOMAIN = 'http://%s' % STAGING_S3_BUCKET
 DEFAULT_MAX_AGE = 20
 
 FILE_SERVER_USER = 'ubuntu'
@@ -87,14 +95,16 @@ def configure_targets(deployment_target):
         DEBUG = False
         ASSETS_MAX_AGE = 0
     if deployment_target == 'production':
+        S3_DOMAIN = PRODUCTION_S3_DOMAIN
         S3_BUCKET = PRODUCTION_S3_BUCKET
-        S3_BASE_URL = 'http://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
+        S3_BASE_URL = '%s/%s' % (S3_DOMAIN, PROJECT_SLUG)
         S3_DEPLOY_URL = 's3://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         DEBUG = False
         ASSETS_MAX_AGE = 86400
     elif deployment_target == 'staging':
+        S3_DOMAIN = STAGING_S3_DOMAIN
         S3_BUCKET = STAGING_S3_BUCKET
-        S3_BASE_URL = 'http://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
+        S3_BASE_URL = '%s/%s' % (S3_DOMAIN, PROJECT_SLUG)
         S3_DEPLOY_URL = 's3://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         DEBUG = True
         ASSETS_MAX_AGE = 20

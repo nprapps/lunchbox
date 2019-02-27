@@ -129,24 +129,17 @@
 
 .canvas-cell {
     width: 320px;
-    height: 200px;
     overflow: hidden;
     position: relative;
     margin: 0 auto;
 
     @media screen and (min-width: 700px){
         width: 640px;
-        height: 400px;
-    }
-
-    @media screen and (min-width: 960px){
-        height: auto;
     }
 }
 
 .drag-help {
-    position: absolute;
-    top: 370px;
+    margin-top: 8px;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.05rem;
@@ -154,8 +147,6 @@
     color: @gray-light;
 
     @media screen and (max-width: 699px){
-        top: 185px;
-        width: 100%;
         padding-left: @grid-gutter-width;
     }
 }
