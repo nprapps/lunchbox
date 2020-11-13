@@ -1,34 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="150px" height="51px"
-	 viewBox="-230 371 150 51" style="enable-background:new -230 371 150 51;" xml:space="preserve">
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 518.8 178.2" style="enable-background:new 0 0 518.8 178.2;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#FFFFFF;stroke-width:2;}
-	.st1{fill:#FFFFFF;}
+	.st0{fill:#FFFFFF;}
 </style>
-<title>logo-npr-white</title>
-<desc>Created with Sketch.</desc>
-<g id="Page-1_2_" sketch:type="MSPage">
-	<g id="logo-npr-white" transform="translate(1.000000, 1.000000)" sketch:type="MSLayerGroup">
-		<g id="Page-1_1_" sketch:type="MSShapeGroup">
-			<g id="logo-music-white">
-				<g id="Page-1">
-					<g id="npr_music_line_rev">
-						<path id="Stroke-12" class="st0" d="M-230,420h49v-49h-49V420L-230,420z M-181,420h50v-49h-50V420L-181,420z M-131,420h49v-49
-							h-49V420L-131,420z"/>
-						<path id="Fill-13" class="st1" d="M-200,408v-14.6c0-2.2-0.7-3.7-1.5-4.7s-2.3-1.5-4.2-1.5c-0.9,0-1.4,0.2-2.4,0.7
-							s-1.9,1.1-1.9,1.8V408h-6v-25h3.4l1.1,2.2c1.6-1.9,4-2.9,7.1-2.9c3,0,5.7,0.9,7.4,2.7s2.9,4.3,2.9,7.5V408H-200"/>
-						<path id="Fill-14" class="st1" d="M-156,408.6c3.9,0,6.9-1.1,9.1-3.4c2.2-2.2,3.3-5.5,3.3-9.6c0-8.9-3.9-13.4-12-13.4
-							c-2.2,0-4.4,0.7-5.4,2.1V383h-6v35h6v-10.6C-160,408.2-157.9,408.6-156,408.6L-156,408.6L-156,408.6z M-157.4,387.3
-							c2.7,0,4.6,0.6,5.8,1.8c1.2,1.2,1.7,3.3,1.7,6.3c0,2.8-0.6,4.9-1.8,6.2c-1.2,1.3-3,2-5.8,2c-1.4,0-2.6-0.4-3.6-1.3v-13.4
-							C-160,387.8-158.8,387.3-157.4,387.3L-157.4,387.3L-157.4,387.3z"/>
-						<path id="Fill-15" class="st1" d="M-99.5,388.2c-1.1-0.7-2.2-1-3.5-1c-1.4,0-3,0.6-4,1.9c-1.1,1.2-2,2.8-2,4.6V408h-6v-25h6v2
-							c2-1.9,4.2-2.9,7-2.9c2,0,3.8,0.3,4.8,0.9L-99.5,388.2"/>
-					</g>
-				</g>
-			</g>
-		</g>
-	</g>
+<g>
+	<path class="st0" d="M0,0v178.2h518.8V0H0z M511.2,7.7v162.8H348.7V7.7H511.2z M340.7,7.7v162.8H178.2V7.7H340.7z M170.5,7.7v162.8
+		H7.7V7.7H170.5z"/>
+	<path class="st0" d="M73.1,70.9c1.9-2.5,4.6-4.6,8-6.2c3.4-1.7,6.6-2.5,9.6-2.5c6.5,0,11.1,1.7,14,5.1c2.9,3.4,4.3,8.8,4.3,16.3
+		v50.3h20.4V80.3c0-11.1-3-19.8-9-26c-6-6.2-14.2-9.3-24.6-9.3c-10.8,0-19,3.2-24.6,9.6l-3.8-8.2H52.7v87.4h20.4V70.9z"/>
+	<path class="st0" d="M241.7,131.7c5.3,2.5,11.1,3.8,17.5,3.8c13.3,0,23.8-3.9,31.5-11.6c7.7-7.7,11.5-18.7,11.5-33
+		c0-30.7-13.9-46-41.8-46c-7.5,0-13.7,2.5-18.9,7.3v-5.9h-20.4v111.3h20.4V131.7z M241.7,68.1c3.8-3.8,8.1-5.7,13-5.7
+		c9.4,0,16.1,2.1,20.2,6.3c4.1,4.2,6.1,11.5,6.1,21.8c0,9.6-2,16.7-6.1,21.2c-4.1,4.5-10.8,6.7-20.2,6.7c-4.9,0-9.3-1.5-12.9-4.5
+		V68.1z"/>
+	<path class="st0" d="M424,84.2c0-6.2,1.8-11.4,5.5-15.7c3.7-4.3,7.8-6.4,12.5-6.4c4.3,0,8.3,1.1,11.9,3.4l8.6-17.4
+		c-3.7-2.1-9-3.2-15.9-3.2c-9.4,0-17,3.3-22.6,9.8v-8.3h-20.4v87.4H424V84.2z"/>
 </g>
 </svg>

@@ -9,14 +9,14 @@ var logos = {
         whitePath: '../img/logo-npr-white.svg', // path to white logo
         blackPath: '../img/logo-npr-black.svg', // path to black logo
         w: 150, // width of logo
-        h: 51, // height of logo
+        h: 52, // height of logo
         display: 'NPR'
     },
     'music': {
         whitePath: '../img/logo-music-white.svg',
         blackPath: '../img/logo-music-black.svg',
-        w: 306,
-        h: 81,
+        w: 297,
+        h: 52,
         display: 'NPR Music'
     }
 };

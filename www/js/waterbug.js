@@ -200,7 +200,8 @@ var renderCanvas = function() {
     ctx.drawImage(
         logo,
         elementPadding,
-        currentLogo === 'npr'? elementPadding : elementPadding - 14,
+        // currentLogo === 'npr'? elementPadding : elementPadding - 14,
+        currentLogo === 'npr'? elementPadding : elementPadding,
         logos[currentLogo]['w'],
         logos[currentLogo]['h']
     );
