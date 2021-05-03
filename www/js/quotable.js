@@ -107,7 +107,7 @@ var onThemeButtonClick = function() {
     $themeButtons.removeClass().addClass('btn btn-primary');
     $(this).addClass('active');
     $poster
-        .removeClass('poster-theme1 poster-theme2 poster-theme3 poster-theme4 poster-theme5 poster-theme6')
+        .removeClass('poster-theme1 poster-theme2 poster-theme3 poster-theme4 poster-theme5 poster-theme6 poster-theme7')
         .addClass('poster-' + $(this).attr('id'));
 }
 
