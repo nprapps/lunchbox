@@ -50,12 +50,36 @@ What's in here?
 Quick Start
 -------------
 
-Bootstrap the project by forking this repo and installing the following:
+Clone or fork this repo (NPR users: Use the `npr` branch), then do the following:
+
+Change to the project directory you just cloned:
 
 ```
-mkvirtualenv lunchbox
 cd lunchbox
+```
+
+Create a new virtualenv to get an isolated Python environment:
+
+| with virtualenvwrapper | with Anaconda |
+|------------------------|---------------|
+| ```mkvirtualenv lunchbox``` |  ```conda create --name lunchbox python=2.7``` |
+
+Then, activate your virtual environment.
+
+| with virtualenvwrapper | with Anaconda |
+|------------------------|---------------|
+| ```workon lunchbox``` |  ```conda activate lunchbox``` |
+
+
+Next, install Python dependencies:
+
+```
 pip install -r requirements.txt
+```
+
+Install the Node.js dependencies (most importantly, Less):
+
+```
 npm install
 ```
 
