@@ -27,8 +27,8 @@ var blackLogoAlpha = '0.6';
 
 // type
 var fontWeight = 'normal'; // font weight for credit
-var fontSize = '20pt'; // font size for credit
-var fontFace = "Gotham Ssm"; // font family for credit
+var fontSize = '23pt'; // font size for credit
+var fontFace = "Lato"; // font family for credit
 var fontShadow = 'rgba(0,0,0,0.7)'; // font shadow for credit
 var fontShadowOffsetX = 0; // font shadow offset x
 var fontShadowOffsetY = 0; // font shadow offset y
