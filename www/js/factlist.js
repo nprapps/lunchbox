@@ -44,7 +44,7 @@ var onDocumentLoad = function() {
     updateTimestamp();
     timestampInterval = setInterval(updateTimestamp, 1000);
     setupMediumEditor();
-    
+
     $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -121,6 +121,7 @@ var saveImage = function() {
 
     html2canvas($poster, {
       letterRendering: true,
+      scale: 2,
       onrendered: function(canvas) {
         document.body.appendChild(canvas);
         window.oCanvas = document.getElementsByTagName("canvas");
@@ -171,9 +172,9 @@ var onThemeClick = function(e) {
 var onAspectRatioClick = function(e) {
     $aspectRatioButtons.removeClass().addClass('btn btn-primary');
     $(this).addClass('active');
-    $poster.removeClass('square sixteen-by-nine').addClass($(this).attr('id'));
+    $poster.removeClass('square sixteen-by-nine facebook-ratio two-by-one').addClass($(this).attr('id'));
 
-    if ($poster.hasClass('sixteen-by-nine')) {
+    if ($poster.hasClass('sixteen-by-nine') || $poster.hasClass('facebook-ratio') || $poster.hasClass('two-by-one')) {
         $fontSize.attr('min', 24);
         $fontSize.val(24);
         adjustFontSize(null, 32);

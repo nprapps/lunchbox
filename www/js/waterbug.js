@@ -15,6 +15,7 @@ var $dragHelp;
 var $filename;
 var $fileinput;
 var $customFilename;
+var $cell;
 
 // Constants
 var IS_MOBILE = Modernizr.touch && Modernizr.mq('screen and max-width(700px)');
@@ -31,7 +32,12 @@ var imageFilename = 'image';
 var currentCopyright;
 var credit = 'Belal Khan/Flickr'
 var shallowImage = false;
-
+var scale = 1;
+var canvasWidth;
+var currentLogoColor = 'white';
+var currentLogoPosition = 'tl';
+var currentTextColor = 'white';
+var currentTextPosition = 'br';
 
 // JS objects
 var ctx;
@@ -48,8 +54,9 @@ var onDocumentLoad = function(e) {
     ctx = canvas.getContext('2d');
     $save = $('.save-btn');
     $textColor = $('input[name="textColor"]');
-    $crop = $('input[name="crop"]');
     $logoColor = $('input[name="logoColor"]');
+    $textPosition = $('input[name="textPosition"]');
+    $logoPosition = $('input[name="logoPosition"]');
     $qualityQuestions = $('.quality-question');
     $copyrightHolder = $('.copyright-holder');
     $dragHelp = $('.drag-help');
@@ -57,6 +64,10 @@ var onDocumentLoad = function(e) {
     $fileinput = $('.fileinput');
     $customFilename = $('.custom-filename');
     $logosWrapper = $('.logos-wrapper');
+    $cropsWrapper = $('.crops-wrapper');
+    $cell = $('.canvas-cell');
+
+    canvasWidth = cropOptions[currentCrop].width;
 
     img.src = defaultImage;
     img.onload = onImageLoad;
@@ -69,7 +80,8 @@ var onDocumentLoad = function(e) {
     $save.on('click', onSaveClick);
     $textColor.on('change', onTextColorChange);
     $logoColor.on('change', onLogoColorChange);
-    $crop.on('change', onCropChange);
+    $textPosition.on('change', onTextPositionChange);
+    $logoPosition.on('change', onLogoPositionChange);
     $canvas.on('mousedown touchstart', onDrag);
     $copyrightHolder.on('change', onCopyrightChange);
     $customFilename.on('click', function(e) {
@@ -81,12 +93,12 @@ var onDocumentLoad = function(e) {
     });
 
     $(window).on('resize', resizeCanvas);
-    resizeCanvas();
     buildForm();
+    resizeCanvas();
 }
 
 var resizeCanvas = function() {
-    var scale = $('.canvas-cell').width() / canvasWidth;
+    scale = $cell.width() / canvasWidth;
     $canvas.css({
         'webkitTransform': 'scale(' + scale + ')',
         'MozTransform': 'scale(' + scale + ')',
@@ -100,6 +112,7 @@ var resizeCanvas = function() {
 var buildForm = function() {
     var copyrightKeys = Object.keys(copyrightOptions);
     var logoKeys = Object.keys(logos);
+    var cropKeys = Object.keys(cropOptions);
 
     for (var i = 0; i < copyrightKeys.length; i++) {
         var key = copyrightKeys[i];
@@ -124,7 +137,26 @@ var buildForm = function() {
         $logo.on('change', onLogoChange);
     } else {
         $logosWrapper.hide();
+        if ( cropKeys.length > 2 ) {
+            $cropsWrapper.removeClass('col-lg-6').addClass('col-lg-12');
+        }
     }
+
+    var $crops = $('.crops');
+    for (var i = 0; i < cropKeys.length; i++) {
+        var key = cropKeys[i];
+        var display = cropOptions[key]['display']
+        var tooltip = ''
+        if (cropOptions[key].height) tooltip = cropOptions[key].width+'x'+cropOptions[key].height;
+        $crops.append('<label class="btn btn-primary" title="'+tooltip+'"><input type="radio" name="crop" id="' + key + '" value="' + key + '">' + display + '</label>');
+        if (key === currentCrop) {
+            $('#' + key).attr('checked', true);
+            $('#' + key).parent('.btn').addClass('active');
+        }
+    }
+
+    $crop = $('input[name="crop"]');
+    $crop.on('change', onCropChange);
 }
 
 
@@ -132,13 +164,8 @@ var buildForm = function() {
 * Draw the image, then the logo, then the text
 */
 var renderCanvas = function() {
-    // canvas is always the same width
-    canvas.width = canvasWidth;
-
-    // if we're cropping, use the aspect ratio for the height
-    if (currentCrop !== 'original') {
-        canvas.height = canvasWidth / (16/9);
-    }
+    // Set the canvas width
+    canvas.width = cropOptions[currentCrop].width;
 
     // clear the canvas
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -146,17 +173,10 @@ var renderCanvas = function() {
     // determine height of canvas and scaled image, then draw the image
     var imageAspect = img.width / img.height;
 
-    if (currentCrop === 'original') {
-        canvas.height = canvasWidth / imageAspect;
-        scaledImageHeight = canvas.height;
-        ctx.drawImage(
-            img,
-            0,
-            0,
-            canvasWidth,
-            scaledImageHeight
-        );
-    } else {
+    // Set the canvas height
+    if (cropOptions[currentCrop].height) {
+        canvas.height = cropOptions[currentCrop].height;
+
         if (img.width / img.height > canvas.width / canvas.height) {
             shallowImage = true;
 
@@ -189,6 +209,16 @@ var renderCanvas = function() {
                 scaledImageHeight
             );
         }
+    } else {
+        canvas.height = canvas.width / imageAspect;
+        scaledImageHeight = canvas.height;
+        ctx.drawImage(
+            img,
+            0,
+            0,
+            canvasWidth,
+            scaledImageHeight
+        );
     }
 
     // set alpha channel, draw the logo
@@ -197,10 +227,13 @@ var renderCanvas = function() {
     } else {
         ctx.globalAlpha = blackLogoAlpha;
     }
+
+    var logoXY = calcPosition(currentLogoPosition, logos[currentLogo]['w'], logos[currentLogo]['h']);
+
     ctx.drawImage(
         logo,
-        elementPadding,
-        currentLogo === 'npr'? elementPadding : elementPadding - 14,
+        logoXY[0],
+        logoXY[1],
         logos[currentLogo]['w'],
         logos[currentLogo]['h']
     );
@@ -226,14 +259,45 @@ var renderCanvas = function() {
     }
 
     var creditWidth = ctx.measureText(credit);
+
+    var textXY = calcPosition(currentTextPosition, creditWidth.width, parseInt(fontSize), true);
     ctx.fillText(
         credit,
-        canvas.width - (creditWidth.width + elementPadding),
-        canvas.height - elementPadding
+        textXY[0],
+        textXY[1]
     );
+
+    // update container height
+    $cell.height(canvas.height * scale);
 
     validateForm();
 }
+
+var calcPosition = function(pos, width, height, measureFromBottom) {
+    var x, y;
+
+    if ( measureFromBottom ) {
+        if ( pos[0] === 'b' ) {
+            y = canvas.height - elementPadding;
+        } else {
+            y = elementPadding + height;
+        }
+    } else {
+        if ( pos[0] === 'b' ) {
+            y = canvas.height - (height + elementPadding);
+        } else {
+            y = elementPadding;
+        }
+    }
+
+    if ( pos[1] === 'r' ) {
+        x = canvas.width - (width + elementPadding);
+    } else {
+        x = elementPadding;
+    }
+
+    return [x, y];
+};
 
 /*
 * Build the proper format for the credit based on current copyright
@@ -243,10 +307,11 @@ var buildCreditString = function() {
     var val = $copyrightHolder.val();
 
     if ($photographer.val() !== '') {
+        var d = copyrightOptions[val]['delimiter'] || '/'
         if (copyrightOptions[val]['source']) {
-            creditString = $photographer.val() + '/' + copyrightOptions[val]['source'];
+            creditString = $photographer.val() + d + copyrightOptions[val]['source'];
         } else {
-            creditString = $photographer.val() + '/' + $source.val();
+            creditString = $photographer.val() + d + $source.val();
         }
     } else {
         if (copyrightOptions[val]['source']) {
@@ -254,6 +319,10 @@ var buildCreditString = function() {
         } else {
             creditString = $source.val();
         }
+    }
+
+    if (copyrightOptions[val]['prefix']) {
+      creditString = copyrightOptions[val]['prefix'] + creditString;
     }
 
     if (copyrightOptions[val]['photographerRequired']) {
@@ -387,7 +456,6 @@ var handleImage = function(e) {
 * Set dragging status based on image aspect ratio and render canvas
 */
 var onImageLoad = function(e) {
-    renderCanvas();
     onCropChange();
 }
 
@@ -424,8 +492,8 @@ var disableLogo = function(){
 /*
 * Download the image on save click
 */
-var onSaveClick = function(e) {
-    e.preventDefault();
+var onSaveClick = function(eve) {
+    eve.preventDefault();
 
     /// create an "off-screen" anchor tag
     var link = document.createElement('a'),
@@ -437,13 +505,15 @@ var onSaveClick = function(e) {
         imageFilename = $customFilename.text();
     }
 
-    link.download =  'waterbug-' + imageFilename + '.png';
+    link.download =  ['waterbug', currentCrop, imageFilename, '.jpg'].join('-');
 
     /// convert canvas content to data-uri for link. When download
     /// attribute is set the content pointed to by link will be
     /// pushed as "download" in HTML5 capable browsers
-    link.href = canvas.toDataURL();
+    link.href = canvas.toDataURL('image/jpeg');
     link.target = "_blank";
+
+    console.log("Image download size: "+(link.href.length/1024).toFixed(2)+'KB');
 
     /// create a "fake" click-event to trigger the download
     if (document.createEvent) {
@@ -471,10 +541,27 @@ var onLogoColorChange = function(e) {
 }
 
 /*
+* Handle logo radio button clicks
+*/
+var onLogoPositionChange = function(e) {
+    currentLogoPosition = $(this).val();
+
+    renderCanvas();
+}
+
+/*
 * Handle text color radio button clicks
 */
 var onTextColorChange = function(e) {
     currentTextColor = $(this).val();
+    renderCanvas();
+}
+
+/*
+* Handle text color radio button clicks
+*/
+var onTextPositionChange = function(e) {
+    currentTextPosition = $(this).val();
     renderCanvas();
 }
 
@@ -493,16 +580,21 @@ var onLogoChange = function(e) {
 */
 var onCropChange = function() {
     currentCrop = $crop.filter(':checked').val();
+    canvasWidth = cropOptions[currentCrop].width;
 
+    dy = 0;
+    dx = 0;
+
+    resizeCanvas();
+
+    $canvas.removeClass('is-draggable shallow');
     if (currentCrop !== 'original') {
         var dragClass = shallowImage ? 'is-draggable shallow' : 'is-draggable';
         $canvas.addClass(dragClass);
         $dragHelp.show();
     } else {
-        $canvas.removeClass('is-draggable shallow');
         $dragHelp.hide();
     }
-    renderCanvas();
 }
 
 /*
@@ -522,6 +614,7 @@ var onCopyrightChange = function() {
                 $photographer.parents('.form-group').removeClass('required')
             }
         } else {
+            $photographer.val('');
             $photographer.parents('.form-group').slideUp();
         }
 
@@ -533,38 +626,16 @@ var onCopyrightChange = function() {
                 $source.parents('.form-group').removeClass('required')
             }
         } else {
+            $source.val('');
             $source.parents('.form-group').slideUp();
         }
     } else {
+        $photographer.val('');
         $photographer.parents('.form-group').slideUp();
+        $source.val('');
         $source.parents('.form-group').slideUp();
         credit = '';
     }
-
-    // if (currentCopyright === 'npr') {
-    //     $photographer.parents('.form-group').removeClass('required').slideDown();
-    //     $source.parents('.form-group').slideUp();
-    // } else if (currentCopyright === 'freelance') {
-    //     $photographer.parents('.form-group').slideDown();
-    //     $source.parents('.form-group').slideUp();
-    //     $photographer.parents('.form-group').addClass('has-warning required');
-    // } else if (currentCopyright === 'ap' || currentCopyright === 'getty') {
-    //     $photographer.parents('.form-group').removeClass('required').slideDown();
-    //     $source.parents('.form-group')
-    //         .slideUp()
-    //         .removeClass('has-warning required');
-
-    // } else if (currentCopyright === 'third-party') {
-    //     $photographer.parents('.form-group').removeClass('required').slideDown();
-    //     $source.parents('.form-group').slideDown();
-    //     $source.parents('.form-group').addClass('has-warning required');
-    // } else {
-    //     credit = '';
-    //     $photographer.parents('.form-group').slideUp();
-    //     $source.parents('.form-group')
-    //         .slideUp()
-    //         .parents('.form-group').removeClass('has-warning required');
-    // }
     renderCanvas();
 }
 

@@ -2,6 +2,7 @@
 =============
 
 * [What is this?](#what-is-this)
+* [Vox.com Fork](#vox-fork)
 * [Assumptions?](#assumptions)
 * [What's in here?](#what-is-in-here)
 * [Quick start](#quick-start)
@@ -17,6 +18,19 @@ What is this?
 * *Quotable*: Converts quoted text into a branded image.
 * *Factlist*: Produces a branded image with a list of items.
 * *Waterbug*: Creates a watermarked image with attribution.
+
+Vox Fork
+-------------
+
+This is a fork of the original project with a few extra features. The `master` branch retains branding
+and configuration from the original project. The `voxdotcom` branch contains Vox.com customization
+and branding.
+
+This fork includes a few extra features:
+
+* A *facebook* aspect ratio in *Quotable*, *Factlist* and *Waterbug*
+* Ability to highlight parts of text in *Quotable*
+* An updated *twitter* aspect ratio of 2x1 in *Quotable*, *Factlist* and *Waterbug*. The 16x9 aspect ratio is retained as well.
 
 Assumptions
 -------------
