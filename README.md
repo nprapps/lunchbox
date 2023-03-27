@@ -4,7 +4,8 @@
 * [What is this?](#what-is-this)
 * [Assumptions?](#assumptions)
 * [What's in here?](#what-is-in-here)
-* [Quick start](#quick-start)
+* [Docker Container quick start](#docker)
+* [Bootstrap quick start](#quick-start)
 * [Configuration](#configuration)
 * [Deploy the desktop app](#deploy-the-desktop-app)
 * [About](#about)
@@ -18,6 +19,14 @@ What is this?
 * *Factlist*: Produces a branded image with a list of items.
 * *Waterbug*: Creates a watermarked image with attribution.
 
+Docker
+-------------
+*This is assuming you already have docker set up on your machine*
+
+1. `docker pull scprdev/lunchbox`
+2. `docker run -p 80:8000 scprdev/lunchbox`
+3. Visit http://localhost/
+
 Assumptions
 -------------
 
@@ -28,6 +37,7 @@ The following things are assumed to be true in this documentation.
 * You are running OSX.
 * You are using Python 2.7. (Probably the version that came OSX.)
 * You have [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper) installed and working.
+* You have [node and npm](https://www.npmjs.com/get-npm) installed and working.
 
 What's in here?
 -------------
